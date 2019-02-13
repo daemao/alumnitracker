@@ -1,4 +1,5 @@
 {
     "login":"войти в систему",
-    "registration":"регистрация"
+    "registration":"регистрация",
+    "dashboard":"Дэшборд"
 }

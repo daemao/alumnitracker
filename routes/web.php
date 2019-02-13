@@ -14,14 +14,34 @@
 Route::get('/', function () {
     return view('app');
 });
-
-// это чтобы сервер находил страницу в браузере
 Route::get('/login', function () {
     return view('app');
 });
-Route::get("/dashboard",function (){
-    return view("app");
-});
-Route::get('/registration', function () {
+// это чтобы сервер находил страницу в браузере
+Route::get('/administrators', function () {
     return view('app');
 });
+Route::get('/administrators/{id}', function () {
+    return view('app');
+});
+Route::get('/dashboard', function () {
+    return view('app');
+});
+Route::get('/alumni', function () {
+    return view('app');
+});
+Route::get('/alumni/{id}', function () {
+    return view('app');
+});
+Route::get('/universities', function () {
+    return view('app');
+});
+Route::get('/universities/{id}', function () {
+    return view('app');
+});
+Route::get("/countries",function (){
+   return view("app");
+});
+
+
+

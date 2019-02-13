@@ -15,11 +15,10 @@ class CreateAlumniInfoTable extends Migration
     {
         Schema::create('alumni_info', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("id")->unsigned();
+            $table->integer("user_id")->unsigned();
             $table->integer("department_id")->unsigned();
             $table->integer("graduation_year")->unsigned();
             $table->float("culminative_gpa")->unsigned();
-
         });
     }
 

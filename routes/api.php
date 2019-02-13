@@ -14,7 +14,22 @@ use Illuminate\Http\Request;
 */
 
 //здесь запросы на АПИ
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::get("/data","Controller@data");
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    //user related
+    Route::get("/users","UserController@items");
+    Route::get("/user/{id}",'UserController@item');
+    Route::post("/user/save","UserController@save");
+    Route::post("/update-user-photo","UserController@updatePhoto");
+
+    //country related
+    Route::post("/country/save","CountryController@save");
+    //university related
+    Route::get("/universities","UniversityController@items");
+    Route::post("/university/save","UniversityController@save");
+    //department related
+});

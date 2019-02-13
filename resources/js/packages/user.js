@@ -7,32 +7,11 @@ export default function (Vue) {
         data: '',
         ready: false,
 
-
-        init(_this, callback) {
-            console.log("userInit")
-            let component = this;
-            get(_this, '/api/user', function (response) {
-                console.log(response);
-                component.data = response.data;
-                component.ready = true;
-                _this.$root.user = data;
-                _this.$root.userReady = true;
-
-                callback();
-
-            }, function () {
-
-            });
-
-        },
-
-        getName() {
-
-            return this.data ? this.data.name : '';
-
-        },
         isAdministrator(){
             return this.data.role_id ==1;
+        },
+        isAlumni(){
+            return this.data.role_id ==2;
         },
 
         getId() {

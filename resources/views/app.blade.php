@@ -3,12 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Сайт</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
     <body>
-    <!-- route outlet -->
-    <!-- component matched by the route will render here -->
         <div id="app"/>
     </body>
 </html>

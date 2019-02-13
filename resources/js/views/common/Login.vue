@@ -3,8 +3,6 @@
         Login page
         <input v-model="form.username"/>
         <input v-model="form.password"/>
-        Email: {{form.email}}
-        Password:{{form.password}}
         <button @click="login"> {{$t("system.login")}}</button>
     </div>
 </template>
@@ -17,7 +15,7 @@
                     username:"",
                     password:"",
                     client_id:2,
-                    client_secret:"Pnk7ozaTNn22qW67YGbw8FWNfoCTyx2cYIwpSf0R",
+                    client_secret:"1SzvmwTYI1vuAh9ikEX2uPcJo6knI4dE9ZQCi74x",
                     grant_type:"password"
                 },
                 loading:false,

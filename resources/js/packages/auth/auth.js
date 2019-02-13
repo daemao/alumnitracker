@@ -23,26 +23,12 @@ export default function (Vue) {
         destroyToken() {
             localStorage.removeItem('token');
             localStorage.removeItem('expiration');
-            this.destroyAccountId();
         },
 
         isAuthenticated() {
             return !!this.getToken();
         },
 
-        setAccountId(accountId) {
-            localStorage.setItem('accountId', accountId);
-        },
-        getAccountId(){
-
-            let accountId = localStorage.getItem('accountId');
-
-            return accountId ? accountId : null;
-
-        },
-        destroyAccountId(){
-            localStorage.removeItem('accountId');
-        },
     };
 
     Object.defineProperties(Vue.prototype, {

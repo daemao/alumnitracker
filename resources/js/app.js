@@ -6,18 +6,27 @@ import Common from './components/Common.vue';
 import Auth from './packages/auth/auth';
 import User from './packages/user';
 import VueI18n from 'vue-i18n';
+import BootstrapVue from 'bootstrap-vue';
+
+
 import {systemRu,systemEn} from "./i18n";           // import localization to front-end
 require('./bootstrap');
 
 window.Vue = require('vue');
 
 
-
+import modal from "./components/Modal.vue"
 // global data
 Vue.use(Auth);
 Vue.use(User);
 Vue.use(VueRouter);
 Vue.use(VueI18n);
+Vue.use(BootstrapVue);
+Vue.component('modal', modal);
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title + ' - Alumnitracker';
     if (to.meta.forAuth) {
@@ -25,12 +34,12 @@ router.beforeEach((to, from, next) => {
             next();
         } else {
             next({
-                path: '/'
+                path: '/login'
             });
         }
     } else if (to.meta.forVisitors) {
         if (Vue.auth.isAuthenticated()) {
-            next({ path: '/' })
+            next({path:"/profile"})
         } else {
             next();
         }

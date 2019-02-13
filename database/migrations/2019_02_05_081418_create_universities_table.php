@@ -15,6 +15,8 @@ class CreateUniversitiesTable extends Migration
     {
         Schema::create('universities', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer("country_id")->unsigned();
+            $table->foreign("country_id")->references("id")->on("countries")->onDelete("restrict");
         });
         Schema::create('university_translations', function (Blueprint $table) {
             $table->increments('id');
