@@ -17,4 +17,13 @@ class Country extends Model
             'name' => 'required',
         ];
     }
+    public function scopeFilter($query, $filters){
+        if (isset($filters['text'])) {
+            $search_text = $filters['text'];
+            $query->where(function ($query) use ($search_text) {
+                $query->whereTranslationLike("name",'%' . $search_text . '%');
+            });
+        }
+        return $query;
+    }
 }

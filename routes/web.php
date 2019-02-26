@@ -42,6 +42,9 @@ Route::get('/universities/{id}', function () {
 Route::get("/countries",function (){
    return view("app");
 });
+Route::get("/departments",function (){
+   return view("app");
+});
 
 
 

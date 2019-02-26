@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\AlumniInfo;
+use App\Http\Controllers\AlumniController;
 use App\User;
 
 class UserObserver
@@ -14,7 +16,7 @@ class UserObserver
      */
     public function creating(User $user)
     {
-        $user->password = bcrypt(123456);
+        if(!$user->password) $user->password = bcrypt(123456);
     }
 
     /**

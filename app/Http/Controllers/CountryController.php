@@ -6,6 +6,7 @@ use App\Country;
 use App\CountryTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
 class CountryController extends Controller
 {
@@ -30,5 +31,8 @@ class CountryController extends Controller
         else{
             return response()->json($errors,433);
         }
+    }
+    public function items(){
+        return Country::filter(Input::all())->paginate(20);
     }
 }

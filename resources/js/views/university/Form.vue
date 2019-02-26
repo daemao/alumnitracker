@@ -18,18 +18,26 @@
                         <button class="btn btn-primary block" @click.prevent="showRussianName=true"> add translation</button>
                     </template>
                 </div>
+                <div class="form-group row">
+                    <label class="form-check-label col-3"> country</label>
+                    <select class="form-control col-9" v-model="form.country_id">
+                        <option v-for="country in $common.data.countries" :value="country.id">
+                            {{country.name}}
+                        </option>
+                    </select>
+                </div>
             </form>
             <div class="container">
                 <template v-if="!showDepartments">
                     <button class="btn btn-primary btn-lg block" @click="showDepartments=true">Add departments</button>
                 </template>
                 <template v-else>
-                    <div class="row" v-for="department in departments">
+                    <div class="row" v-for="department in form.departments">
                         {{department.name}}
                     </div>
                     <div class="row">
-                        <select class="custom-select" >
-                            <option v-for="deparment in $common.data.departments">{{deparment.name}}</option>
+                        <select class="custom-select" v-model="departmentToAdd" >
+                            <option v-for="department in $common.data.departments" :value="department">{{department.name}}</option>
                         </select>
                         <div class="btn btn-success" @click="pushDepartmentToUniversity">add</div>
                     </div>
@@ -55,6 +63,7 @@
                         en:"",
                         ru:""
                     },
+                    country_id:"",
                     departments:[]
                 },
 
@@ -68,7 +77,7 @@
               this.$refs.modal.hide();
             },
             pushDepartmentToUniversity(){
-                this.departments.push(this.departmentToAdd);
+                this.form.departments.push(this.departmentToAdd);
                 this.departmentToAdd={};
             },
             sendForm(){

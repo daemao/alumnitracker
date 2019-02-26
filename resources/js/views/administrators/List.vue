@@ -3,11 +3,12 @@
         <div class="mb-3">
             <div class="">
                 <Form ref="new_admin" v-on:update="getList" />
-                <input v-model="filterData.text" class=""  >
-                <button @click="getList" class="btn btn-primary">Search</button>
-                <button class="btn btn-primary float-right" @click="$refs.new_admin.show()"> Create administrator [TODO]</button>
+                <div class="content-header h3">Administrators</div>
+                <input v-model="filterData.text" class="filter_text_input">
+                <button @click="getList" class="btn btn-primary btn-sm">Search</button>
+                <button class="btn btn-primary btn-sm float-right" @click="$refs.new_admin.show()"> Create administrator </button>
             </div>
-            <div class="row font-weight-light" style="font-size:0.7rem">
+            <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
             Found number of administrators: {{total}}
             </div>
         </div>
@@ -21,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-            <router-link :key="'user'+user.id" v-for="(user,index) in users" :to="{name:'administrator',params:{id:user.id}}">
+            <router-link :key="'user'+user.id" v-for="(user,index) in users" :to="{name:'administrator',params:{id:user.id}}" tag="tr">
                 <td>{{index}}</td>
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>

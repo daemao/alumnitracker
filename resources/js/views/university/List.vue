@@ -2,11 +2,38 @@
     <div>
         <Modal ref="form_modal"/>
         <div>
-            Filter
-            <div class="btn btn-primary" @click="$refs.form_modal.show()">Create new University</div>
+            <div class="content-header h3">Universities</div>
+            <input v-model="filterData.text" class="filter_text_input"/>
+            <button  class="btn btn-primary btn-sm" @click="getList">Search</button>
+            <div class="btn btn-primary btn-sm float-right" @click="$refs.form_modal.show()">
+                Create university
+            </div>
+            <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
+                Found number of countries: {{total}}
+            </div>
         </div>
         <div>
-            <div class="row" v-for="university in universities">{{university.name}}</div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <router-link :key="'university'+university.id" v-for="(university,index) in universities" :to="{name:'university',params:{id:university.id}}" tag="tr">
+                    <td>{{index}}</td>
+                    <td>{{university.name}}</td>
+                    <td>{{university.country.name}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" @click.prevent=""> edit</button>
+                        <button class="btn btn-sm btn-danger" @click.prevent=""> remove</button>
+                    </td>
+                </router-link>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>

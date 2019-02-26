@@ -1,0 +1,32 @@
+.sidebar{
+    width: 240px;
+    position: fixed;
+    top: 10vh;
+    left: 0;
+}
+.sidebar_menu{
+    height: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    // Because flex properties aren't inherited, we need to redeclare these first
+    // few properties so that content nested within behave properly.
+    > .container,
+    > .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.sidebar~.content {
+    margin-left: 240px;
+}

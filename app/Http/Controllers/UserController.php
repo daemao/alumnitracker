@@ -47,6 +47,11 @@ class UserController extends Controller
             return User::with(["avatar","role"])->find($user->id);
         }
     }
+    public function changeLocale(Request $request){
+        if($request->get("locale")){
+            return User::where("id",$request->user()->id)->update(["locale"=>$request->get("locale")]);
+        }
+    }
 
 
 }

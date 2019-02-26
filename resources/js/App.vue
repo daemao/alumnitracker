@@ -2,7 +2,7 @@
     <div  >
         <Headbar v-if="$root.user" />
         <Sidebar v-if="$root.user" />
-        <div>
+        <div class="content">
             <router-view></router-view>
         </div>
     </div>

@@ -25,11 +25,17 @@ Route::middleware('auth:api')->group(function () {
     Route::get("/user/{id}",'UserController@item');
     Route::post("/user/save","UserController@save");
     Route::post("/update-user-photo","UserController@updatePhoto");
+    Route::post("/change-locale","UserController@changeLocale");
 
+    //alumni related
+    Route::get("/alumni","AlumniController@items");
     //country related
+    Route::get("/countries","CountryController@items");
     Route::post("/country/save","CountryController@save");
     //university related
     Route::get("/universities","UniversityController@items");
     Route::post("/university/save","UniversityController@save");
     //department related
+    Route::get("/departments","DepartmentController@items");
+    Route::post("/department/save","DepartmentController@save");
 });

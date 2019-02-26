@@ -24,8 +24,7 @@ Vue.use(VueI18n);
 Vue.use(BootstrapVue);
 Vue.component('modal', modal);
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import '../sass/app.scss'
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title + ' - Alumnitracker';

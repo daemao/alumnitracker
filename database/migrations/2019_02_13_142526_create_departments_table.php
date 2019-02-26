@@ -16,6 +16,14 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
         });
+        Schema::create('department_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string("name");
+            $table->string("locale")->index();
+            $table->integer("department_id")->unsigned();
+            $table->unique(["department_id","locale"]);
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+        });
     }
 
     /**

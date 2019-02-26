@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlumniInfoTable extends Migration
+class JoinUniversityProgramDepartmentTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAlumniInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('alumni_info', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer("user_id")->unsigned();
+        Schema::create("university_program_departments",function(Blueprint $table){
+            $table->increments("id");
+            $table->integer("university_id")->unsigned();
+            $table->integer("program_id")->unsigned();
             $table->integer("department_id")->unsigned();
-            $table->integer("graduation_year")->unsigned();
-            $table->float("culminative_gpa")->unsigned();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateAlumniInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alumni_info');
+        //
     }
 }

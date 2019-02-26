@@ -26,6 +26,7 @@ class CreateUniversitiesTable extends Migration
             $table->unique(["university_id","locale"]);
             $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
         });
+
     }
 
     /**

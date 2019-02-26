@@ -48,11 +48,11 @@
             },
             sendForm(){
                 let _this= this;
-                _this.form.role_id = 1;
+                _this.form.role_id = 2;
                 post(_this,"/api/user/save",_this.form,
                     (res)=>{
                         _this.$emit("update");
-                        _this.form = _this.newAdmin();
+                        _this.form = _this.newAlumni();
                         _this.$refs.modal.hide();
                     },
                     (err)=>{
@@ -60,7 +60,7 @@
                     }
                 );
             },
-            newAdmin(){
+            newAlumni(){
                 return {
                     first_name:"",
                     last_name:"",
