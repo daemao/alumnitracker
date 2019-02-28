@@ -3,22 +3,22 @@
         <div class="mb-3">
             <div class="">
                 <Form ref="new_admin" v-on:update="getList" />
-                <div class="content-header h3">Administrators</div>
+                <div class="content-header h3">{{$t("administrators.list")}}</div>
                 <input v-model="filterData.text" class="filter_text_input">
-                <button @click="getList" class="btn btn-primary btn-sm">Search</button>
-                <button class="btn btn-primary btn-sm float-right" @click="$refs.new_admin.show()"> Create administrator </button>
+                <button @click="getList" class="btn btn-primary btn-sm">{{$t("system.search")}}</button>
+                <button class="btn btn-primary btn-sm float-right" @click="$refs.new_admin.show()">{{$t("administrators.create")}} </button>
             </div>
             <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
-            Found number of administrators: {{total}}
+                {{$t('administrators.found_number')}}{{total}}
             </div>
         </div>
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
+                    <th>{{$t("alumni.first_name")}}</th>
+                    <th>{{$t("alumni.last_name")}}</th>
+                    <th>{{$t("alumni.email")}}</th>
                 </tr>
             </thead>
             <tbody>

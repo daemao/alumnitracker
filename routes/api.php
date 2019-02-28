@@ -29,13 +29,17 @@ Route::middleware('auth:api')->group(function () {
 
     //alumni related
     Route::get("/alumni","AlumniController@items");
+    Route::post("/alumni/save-alumni-info","AlumniController@createAlumniInfo");
+    Route::get("/alumni/{id}","AlumniController@item");
     //country related
     Route::get("/countries","CountryController@items");
     Route::post("/country/save","CountryController@save");
     //university related
     Route::get("/universities","UniversityController@items");
+    Route::get("/university/{id}","UniversityController@item");
     Route::post("/university/save","UniversityController@save");
     //department related
     Route::get("/departments","DepartmentController@items");
     Route::post("/department/save","DepartmentController@save");
+    Route::post("/add-university-department","DepartmentController@attachDepartmentsToUniversity");
 });

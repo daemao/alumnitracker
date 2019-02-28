@@ -1,0 +1,12 @@
+{
+    "list":"Alumni list",
+    "found_number":"Number of found alumni:",
+    "create":"new alumni",
+    "first_name":"first name",
+    "last_name":"last name",
+    "email":"email",
+    "modals":{
+        "create_header":"Create new alumni"
+    },
+    "add_graduation_info":"add NU graduation info"
+}

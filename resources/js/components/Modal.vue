@@ -1,7 +1,11 @@
 <template>
     <b-modal id="modal" :title="title" v-model = "showModal" hide-footer>
-        <slot name="body" />
-        <slot name="footer"/>
+        <div class="modal-body">
+            <slot name="body" />
+        </div>
+        <div class="modal-footer">
+            <slot name="footer"/>
+        </div>
     </b-modal>
 </template>
 <!--there will be template for all modals in project-->

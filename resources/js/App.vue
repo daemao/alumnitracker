@@ -13,6 +13,6 @@
     export default{
         components:{
             Sidebar,Headbar
-        }
+        },
     }
 </script>

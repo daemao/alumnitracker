@@ -42,4 +42,7 @@ class UniversityController extends Controller
             return response()->json($errors,433);
         }
     }
+    public function item($id,Request $request){
+        return University::with(["country","departments","programs"])->find($id);
+    }
 }

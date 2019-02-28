@@ -44,6 +44,9 @@ class User extends Authenticatable
     {
         return $this->where('email', $user)->first();
     }
+    public function alumni_info(){
+        return $this->hasMany("App\AlumniInfo");
+    }
 
 
 }

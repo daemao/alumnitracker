@@ -14,7 +14,6 @@ class JoinUniversityProgramDepartmentTables extends Migration
     public function up()
     {
         Schema::create("university_program_departments",function(Blueprint $table){
-            $table->increments("id");
             $table->integer("university_id")->unsigned();
             $table->integer("program_id")->unsigned();
             $table->integer("department_id")->unsigned();

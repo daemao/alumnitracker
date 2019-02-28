@@ -27,6 +27,9 @@ class CreateAlumniInfoTable extends Migration
             $table->string("id_in_university")->nullable();
             $table->integer("program_id")->unsigned();
             $table->foreign('program_id')->references('id')->on('programs')->onDelete('restrict');
+            $table->integer("university_id")->unsigned();
+            $table->foreign('university_id')->references('id')->on('universities')->onDelete('restrict');
+
         });
 
     }

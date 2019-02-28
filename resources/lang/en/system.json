@@ -1,5 +1,14 @@
 {
     "login":"login",
     "registration":"registration",
-    "dashboard":"Dashboard"
+    "dashboard":"Dashboard",
+    "administrators":"Administrators",
+    "alumni":"Alumni",
+    "universities":"Universities",
+    "countries":"Countries",
+    "departments":"Departments",
+    "search":"search",
+    "create":"create",
+    "cancel":"cancel",
+    "add":"add"
 }

@@ -9,7 +9,7 @@ import VueI18n from 'vue-i18n';
 import BootstrapVue from 'bootstrap-vue';
 
 
-import {systemRu,systemEn} from "./i18n";           // import localization to front-end
+import {systemRu,systemEn,alumniEn,alumniRu,administratorsEn,administratorsRu} from "./i18n";           // import localization to front-end
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -47,19 +47,24 @@ router.beforeEach((to, from, next) => {
 });
 const messages={
     ru:{
-        system:systemRu
+        system:systemRu,
+        alumni:alumniRu,
+        administrators:administratorsRu
     },
     en:{
-        system:systemEn
+        system:systemEn,
+        alumni:alumniEn,
+        administrators:administratorsEn
     }
 };
+
+
+const common = Vue.prototype.$common = new Vue(Common).$mount();
+document.body.appendChild(common.$el);
 const i18n = new VueI18n({
     locale: 'en',               // set locale
     messages:messages           // set locale messages
 });
-
-const common = Vue.prototype.$common = new Vue(Common).$mount();
-document.body.appendChild(common.$el);
 import {get} from "./api"
 new Vue({
     el: '#app',
@@ -88,6 +93,7 @@ new Vue({
         setAccount(account, afterLogin) {
             this.$user.data = account;
             this.user = this.$user;
+            this.$i18n.locale=this.user.data.locale;
             this.userReady = this.ready = true;
             if (afterLogin) {
                 this.afterLogin(this.user);
@@ -101,6 +107,17 @@ new Vue({
             else{
                 this.$router.push("/profile");
             }
+        },
+        getAvailableGraduationYears(){
+            var today = new Date().getFullYear();
+            console.log(today);
+            let years=[];
+           while(today>=2015){
+               years.push(today);
+               today=today-1;
+           }
+           return years;
+
         }
     },
     mounted() {

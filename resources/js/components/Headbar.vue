@@ -1,10 +1,15 @@
+<style scoped>
+    .allowed{
+        color:#ffffff;
+    }
+</style>
 <template>
     <nav class="navbar fixed-top navbar-dark bg-primary ">
             <router-link class="navbar-brand" :to="{ name: 'home' }">Alumnitracker</router-link>
             <div class="headbar-left">
-                <div style="margin-right:40px;">
-                    <span :class="{'navbar-muted':$i18n.locale==='en'}" @click="changeLocale('en')">En</span>
-                    <span :class="{'navbar-muted':$i18n.locale==='ru'}" @click="changeLocale('ru    ')">Ru</span>
+                <div style="margin-right:40px;" class="nav-item">
+                    <span :class="{'disabled':$i18n.locale==='en','muted':$i18n.locale==='en','allowed':$i18n.locale!=='en'}" @click="changeLocale('en')">English</span>
+                    <span :class="{'disabled':$i18n.locale==='ru','muted':$i18n.locale==='ru','allowed':$i18n.locale!=='ru'}" @click="changeLocale('ru')" class="pl-4">Русский</span>
                 </div>
                 <div class="headbar-exit" @click="logout"> </div>
             </div>

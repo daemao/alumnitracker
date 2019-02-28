@@ -21,7 +21,11 @@ class University extends Model
         return $query;
     }
     public  function  departments(){
-        return $this->belongsToMany("App\Department");
+        return $this->belongsToMany("App\Department","university_program_departments")
+            ->withPivot("program_id");
+    }
+    public  function  programs(){
+        return $this->belongsToMany("App\Program","university_program_departments")->distinct();
     }
     public function country(){
         return $this->belongsTo("App\Country");

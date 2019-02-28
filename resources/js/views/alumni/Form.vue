@@ -1,21 +1,21 @@
 <template>
-    <modal ref="modal" title="Create new administrator">
+    <modal ref="modal" :title="$t('alumni.modals.create_header')">
         <template slot="body">
             <form>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">First name</label>
+                    <label class="col-3 col-form-label">{{$t("alumni.first_name")}}</label>
                     <div class="col-9">
                         <input type="text"  class="form-control" v-model="form.first_name" >
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Last name</label>
+                    <label class="col-3 col-form-label">{{$t("alumni.last_name")}}</label>
                     <div class="col-9">
                         <input type="text"  class="form-control" v-model="form.last_name" >
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">Email</label>
+                    <label class="col-3 col-form-label">{{$t("alumni.email")}}</label>
                     <div class="col-9">
                         <input type="email"  class="form-control " v-model="form.email" >
                     </div>
@@ -23,8 +23,8 @@
             </form>
         </template>
         <template slot="footer">
-            <button class="btn btn-secondary float-left "> Cancel</button>
-            <button class="btn btn-primary float-right " @click="sendForm"> Create</button>
+            <button class="btn btn-secondary float-left "> {{$t("system.cancel")}}</button>
+            <button class="btn btn-primary float-right " @click="sendForm"> {{$t("system.create")}}</button>
         </template>
     </modal>
 </template>
