@@ -27,23 +27,22 @@ Vue.component('modal', modal);
 import '../sass/app.scss'
 
 router.beforeEach((to, from, next) => {
+    console.log(Vue.user);
     document.title = to.meta.title + ' - Alumnitracker';
     if (to.meta.forAuth) {
         if (Vue.auth.isAuthenticated()) {
-            next();
-        } else {
-            next({
-                path: '/login'
-            });
-        }
+            if(to.meta.forAdmin && Vue.user.isAdministrator())return next();
+            if(to.meta.forAlumni && Vue.user.isAlumni())return next();
+            else if(to.meta.forAlumni) return next({path:"/no_access"});
+            else if(to.meta.forAdmin) return next({path:"/no_access"});
+            return next();
+        } 
+        return next({path: '/login'});
     } else if (to.meta.forVisitors) {
-        if (Vue.auth.isAuthenticated()) {
-            next({path:"/profile"})
-        } else {
-            next();
-        }
+        if (Vue.auth.isAuthenticated())return next({path:"/profile"})
+        return next();
     }
-    next();
+    return next();
 });
 const messages={
     ru:{
@@ -105,7 +104,7 @@ new Vue({
                 this.$router.push("/dashboard");
             }
             else{
-                this.$router.push("/profile");
+                this.$router.push({name:"alumni-item",props:{"id":user.data.id}});
             }
         },
         getAvailableGraduationYears(){

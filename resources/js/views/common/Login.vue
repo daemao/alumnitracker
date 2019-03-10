@@ -24,16 +24,16 @@
     }
 </style>
 <template>
-    <div class="auth_page">
+    <div class="auth_page" v-on:keyup.enter="login">
         <div class="auth_wrap">
             <h1 class="auth_logo">Alumnitracker</h1>
             <label class="form-group" style="width: 100%">
-                <input v-model="form.username" class="form-control" placeholder="Email" />
+                <input v-model="form.username" class="form-control" placeholder="Email" ref="emailInput" />
             </label>
             <label class="form-group" style="width: 100%">
                 <input v-model="form.password" class="form-control" type="password" placeholder="password"/>
             </label>
-            <button @click="login" class="btn btn-primary btn-block"> {{$t("system.login")}}</button>
+            <button @click="login"  class="btn btn-primary btn-block"> {{$t("system.login")}}</button>
 
         </div>
     </div>
@@ -53,6 +53,9 @@
                 },
                 loading:false,
             }
+        },
+        mounted(){
+            this.$refs.emailInput.focus();
         },
         methods:{
             login() {

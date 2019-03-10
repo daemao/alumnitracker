@@ -31,7 +31,14 @@
         <table class="table">
             <thead>
             <tr>
-                <th>#</th>
+                <th>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" v-model="allUsers">
+                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                        </label>
+                    </div>
+                </th>
                 <th>{{$t("alumni.first_name")}}</th>
                 <th>{{$t("alumni.last_name")}}</th>
                 <th>{{$t("alumni.email")}}</th>
@@ -77,6 +84,7 @@
                 base_url:'/api/alumni',
                 total:'',
                 selectedAlumni:[],
+                allUsers:false
             }
         },
         methods:{

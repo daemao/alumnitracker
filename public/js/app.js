@@ -2452,6 +2452,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2471,7 +2478,8 @@ __webpack_require__.r(__webpack_exports__);
       next_page_url: '/api/alumni',
       base_url: '/api/alumni',
       total: '',
-      selectedAlumni: []
+      selectedAlumni: [],
+      allUsers: false
     };
   },
   methods: {
@@ -2693,6 +2701,9 @@ __webpack_require__.r(__webpack_exports__);
       },
       loading: false
     };
+  },
+  mounted: function mounted() {
+    this.$refs.emailInput.focus();
   },
   methods: {
     login: function login() {
@@ -59385,7 +59396,51 @@ var render = function() {
     _c("table", { staticClass: "table" }, [
       _c("thead", [
         _c("tr", [
-          _c("th", [_vm._v("#")]),
+          _c("th", [
+            _c("div", { staticClass: "checkbox" }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allUsers,
+                      expression: "allUsers"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.allUsers)
+                      ? _vm._i(_vm.allUsers, null) > -1
+                      : _vm.allUsers
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.allUsers,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.allUsers = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.allUsers = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.allUsers = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("th", [_vm._v(_vm._s(_vm.$t("alumni.first_name")))]),
           _vm._v(" "),
@@ -59485,7 +59540,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "cr" }, [
+      _c("i", { staticClass: "cr-icon glyphicon glyphicon-ok" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -59814,73 +59878,94 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "auth_page" }, [
-    _c("div", { staticClass: "auth_wrap" }, [
-      _c("h1", { staticClass: "auth_logo" }, [_vm._v("Alumnitracker")]),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "form-group", staticStyle: { width: "100%" } },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.username,
-                expression: "form.username"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { placeholder: "Email" },
-            domProps: { value: _vm.form.username },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+  return _c(
+    "div",
+    {
+      staticClass: "auth_page",
+      on: {
+        keyup: function($event) {
+          if (
+            !("button" in $event) &&
+            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+          ) {
+            return null
+          }
+          return _vm.login($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "auth_wrap" }, [
+        _c("h1", { staticClass: "auth_logo" }, [_vm._v("Alumnitracker")]),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-group", staticStyle: { width: "100%" } },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.username,
+                  expression: "form.username"
                 }
-                _vm.$set(_vm.form, "username", $event.target.value)
-              }
-            }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "label",
-        { staticClass: "form-group", staticStyle: { width: "100%" } },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.password,
-                expression: "form.password"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "password", placeholder: "password" },
-            domProps: { value: _vm.form.password },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              ],
+              ref: "emailInput",
+              staticClass: "form-control",
+              attrs: { placeholder: "Email" },
+              domProps: { value: _vm.form.username },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "username", $event.target.value)
                 }
-                _vm.$set(_vm.form, "password", $event.target.value)
               }
-            }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-block", on: { click: _vm.login } },
-        [_vm._v(" " + _vm._s(_vm.$t("system.login")))]
-      )
-    ])
-  ])
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-group", staticStyle: { width: "100%" } },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.password,
+                  expression: "form.password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "password", placeholder: "password" },
+              domProps: { value: _vm.form.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "password", $event.target.value)
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-block",
+            on: { click: _vm.login }
+          },
+          [_vm._v(" " + _vm._s(_vm.$t("system.login")))]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -75369,27 +75454,31 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_M
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('modal', _components_Modal_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 
 _router__WEBPACK_IMPORTED_MODULE_2__["default"].beforeEach(function (to, from, next) {
+  console.log(vue__WEBPACK_IMPORTED_MODULE_0___default.a.user);
   document.title = to.meta.title + ' - Alumnitracker';
 
   if (to.meta.forAuth) {
     if (vue__WEBPACK_IMPORTED_MODULE_0___default.a.auth.isAuthenticated()) {
-      next();
-    } else {
-      next({
-        path: '/login'
+      if (to.meta.forAdmin && vue__WEBPACK_IMPORTED_MODULE_0___default.a.user.isAdministrator()) return next();
+      if (to.meta.forAlumni && vue__WEBPACK_IMPORTED_MODULE_0___default.a.user.isAlumni()) return next();else if (to.meta.forAlumni) return next({
+        path: "/no_access"
+      });else if (to.meta.forAdmin) return next({
+        path: "/no_access"
       });
+      return next();
     }
+
+    return next({
+      path: '/login'
+    });
   } else if (to.meta.forVisitors) {
-    if (vue__WEBPACK_IMPORTED_MODULE_0___default.a.auth.isAuthenticated()) {
-      next({
-        path: "/profile"
-      });
-    } else {
-      next();
-    }
+    if (vue__WEBPACK_IMPORTED_MODULE_0___default.a.auth.isAuthenticated()) return next({
+      path: "/profile"
+    });
+    return next();
   }
 
-  next();
+  return next();
 });
 var messages = {
   ru: {
@@ -75451,10 +75540,17 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       this.loading = false;
     },
     afterLogin: function afterLogin(user) {
+      console.log(">", user);
+
       if (user.isAdministrator()) {
         this.$router.push("/dashboard");
       } else {
-        this.$router.push("/profile");
+        this.$router.push({
+          name: "alumni-item",
+          props: {
+            "id": user.data.id
+          }
+        });
       }
     },
     getAvailableGraduationYears: function getAvailableGraduationYears() {
