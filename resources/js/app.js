@@ -36,10 +36,10 @@ router.beforeEach((to, from, next) => {
             else if(to.meta.forAlumni) return next({path:"/no_access"});
             else if(to.meta.forAdmin) return next({path:"/no_access"});
             return next();
-        } 
+        }
         return next({path: '/login'});
     } else if (to.meta.forVisitors) {
-        if (Vue.auth.isAuthenticated())return next({path:"/profile"})
+        if (Vue.auth.isAuthenticated())return next({path:"/dashboard"})
         return next();
     }
     return next();

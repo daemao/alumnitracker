@@ -20,6 +20,8 @@ import CountriesItem from "./views/country/Item.vue";
 import DepartmentsList from "./views/departments/List.vue";
 import DepartmentsItem from "./views/departments/Item.vue";
 
+import Profile from "./views/alumni_page/profile.vue";
+
 export default new VueRouter({
     mode: 'history',
     base: __dirname,
@@ -61,6 +63,16 @@ export default new VueRouter({
             props:false,
             meta:{
                 title:"Dashboard",
+                forAuth:true,
+            }
+        },
+        {
+            name:"profile",
+            path:"/profile/:id",
+            component:Profile,
+            props:true,
+            meta:{
+                title:Profile,
                 forAuth:true,
             }
         },
