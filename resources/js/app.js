@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
         }
         return next({path: '/login'});
     } else if (to.meta.forVisitors) {
-        if (Vue.auth.isAuthenticated())return next({path:"/profile"})
+        if (Vue.auth.isAuthenticated())return next({path:"/dashboard"})
         return next();
     }
     return next();

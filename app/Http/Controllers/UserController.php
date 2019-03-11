@@ -18,7 +18,7 @@ class UserController extends Controller
         return User::where("role_id",1)->filter(Input::all())->paginate(20);
     }
     public function item(Request $request,$id){
-        return User::with(["avatar","role"])->find($id);
+        return User::with(["avatar","role","photos"])->find($id);
     }
 
     public function save(Request $request){

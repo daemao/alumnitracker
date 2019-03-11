@@ -15,7 +15,7 @@ class AlumniController extends Controller{
         return User::where("role_id",2)->with(["alumni_info"])->filter(Input::all())->paginate(20);
     }
     public function item(Request $request,$id){
-        return User::with(["avatar","alumni_info.program","alumni_info.department"])->find($id);
+        return User::with(["avatar","alumni_info.program","alumni_info.department","photos"])->find($id);
     }
     public function createAlumniInfo(Request $request){
         $validator = Validator::make($request->all(), [

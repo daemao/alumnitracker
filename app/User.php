@@ -47,6 +47,9 @@ class User extends Authenticatable
     public function alumni_info(){
         return $this->hasMany("App\AlumniInfo");
     }
+    public function photos(){
+        return $this->hasMany("App\Photo","user_id");
+    }
 
 
 }
