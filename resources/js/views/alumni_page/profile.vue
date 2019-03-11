@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div v-if="user.photos" class="carousel">
+                    <div v-if="user.photos && user.photos.length>3" class="carousel">
                         <b-carousel
                             id="carousel1"
                             style="text-shadow: 1px 1px 2px #333;"

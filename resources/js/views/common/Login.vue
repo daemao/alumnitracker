@@ -48,7 +48,7 @@
                     username:"",
                     password:"",
                     client_id:2,
-                    client_secret:"35RaCDvcY32RJym0lukAOIZ1zsZJfS0sz4fREpa6",
+                    client_secret:"TKhrrZWcBH7yrbbzrvGsonkhJE4B1P55S2j14bGF",
                     grant_type:"password"
                 },
                 loading:false,

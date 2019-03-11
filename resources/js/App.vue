@@ -1,7 +1,7 @@
  <template>
     <div  >
         <Headbar v-if="$root.user" />
-        <Sidebar v-if="$root.user && $root.user.data.role_id != 1" />
+        <Sidebar v-if="$root.user && $root.user.data.role_id == 1" />
         <div class="content">
             <router-view></router-view>
         </div>

@@ -5,7 +5,7 @@
 </style>
 <template>
     <nav class="navbar fixed-top navbar-dark bg-primary ">
-            <router-link class="navbar-brand" :to="{ name: 'home' }">Alumnitracker</router-link>
+            <router-link class="navbar-brand" :to="{ name: 'dashboard' }">Alumnitracker</router-link>
             <div class="headbar-left">
                 <div style="margin-right:40px;" class="nav-item">
                     <span :class="{'disabled':$i18n.locale==='en','muted':$i18n.locale==='en','allowed':$i18n.locale!=='en'}" @click="changeLocale('en')">English</span>

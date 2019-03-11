@@ -102,11 +102,14 @@ new Vue({
             this.loading=false;
         },
         afterLogin(user) {
+            console.log(">>",user);
             if(user.isAdministrator()){
+                console.log("admin")
                 this.$router.push("/dashboard");
             }
             else{
-                this.$router.push({name:"alumni-item",props:{"id":user.data.id}});
+                console.log("al");
+                this.$router.push("/profile/"+user.data.id);
             }
         },
         getAvailableGraduationYears(){

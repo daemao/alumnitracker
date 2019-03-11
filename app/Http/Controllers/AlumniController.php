@@ -97,6 +97,7 @@ class AlumniController extends Controller{
                 $sheet->setCellValue('E'.$row,$user->alumni_info[0]->department->name);
                 $sheet->setCellValue('F'.$row,$user->alumni_info[0]->cumulative_gpa);
             }
+            $row = $row+1;
         }
         $writer = new Xlsx($spreadsheet);
         $hash = date('mdYHis').uniqid();
