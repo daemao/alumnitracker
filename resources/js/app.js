@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Chart from 'chart.js';
 import VueRouter from 'vue-router';
 import router from './router';
 import App from './App.vue';
@@ -7,6 +8,7 @@ import Auth from './packages/auth/auth';
 import User from './packages/user';
 import VueI18n from 'vue-i18n';
 import BootstrapVue from 'bootstrap-vue';
+import VueChartkick from 'vue-chartkick'
 
 
 import {systemRu,systemEn,alumniEn,alumniRu,administratorsEn,administratorsRu} from "./i18n";           // import localization to front-end
@@ -23,7 +25,7 @@ Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(BootstrapVue);
 Vue.component('modal', modal);
-
+Vue.use(VueChartkick, {adapter: Chart});
 import '../sass/app.scss'
 
 router.beforeEach((to, from, next) => {
@@ -36,7 +38,7 @@ router.beforeEach((to, from, next) => {
             else if(to.meta.forAlumni) return next({path:"/no_access"});
             else if(to.meta.forAdmin) return next({path:"/no_access"});
             return next();
-        } 
+        }
         return next({path: '/login'});
     } else if (to.meta.forVisitors) {
         if (Vue.auth.isAuthenticated())return next({path:"/profile"})

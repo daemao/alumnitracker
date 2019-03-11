@@ -36,5 +36,6 @@ class AdministratorSeeder extends Seeder
 
         \App\User::create($karina_administator);
         \App\User::create($yersultan_administator);
+
     }
 }

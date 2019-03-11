@@ -10,8 +10,9 @@
                 <div style="margin-right:40px;" class="nav-item">
                     <span :class="{'disabled':$i18n.locale==='en','muted':$i18n.locale==='en','allowed':$i18n.locale!=='en'}" @click="changeLocale('en')">English</span>
                     <span :class="{'disabled':$i18n.locale==='ru','muted':$i18n.locale==='ru','allowed':$i18n.locale!=='ru'}" @click="changeLocale('ru')" class="pl-4">Русский</span>
+                    <span  @click="logout"  class="mr-3 ml-3 allowed">Logout </span>
+
                 </div>
-                <div class="headbar-exit" @click="logout"> </div>
             </div>
     </nav>
 </template>

@@ -1,22 +1,23 @@
 <template>
     <div >
-        <div  class="navbar fixed-bottom bg-secondary justify-content-between">
+        <div  class="navbar fixed-bottom bg-secondary justify-content-between" v-if="selectedAlumni && selectedAlumni.length>0 || allUsers">
             <div class="navbar-brand"></div>
             <form class="form-inline">
                 <div class="form-group">
-                    <div class="label">With selected {{selectedAlumni.length}}:</div>
+                    <span class="label">With selected {{selectedAlumni.length}}:</span>
                     <select v-model="selectedAlumniAction" class="form-control">
                         <option value="export">export excel</option>
                         <option value="email">send email</option>
                     </select>
                 </div>
-                <div class="btn btn-primary ">Apply</div>
+                <div class="btn btn-primary " @click="massaction">Apply</div>
             </form>
         </div>
+        <MassactionSelectAlumni ref="massaction_select_alumni" :selected_ids="selectedAlumni" :action ="selectedAlumniAction"/>
         <div class="mb-3">
             <div class="">
                 <Form ref="new_alumni" v-on:update="getList" />
-                <GraduateInfoModal ref="graduate_info"/>
+                <GraduateInfoModal ref="graduate_info" v-on:update="getList"/>
                 <div class="content-header h3">{{$t("alumni.list")}}</div>
                 <input v-model="filterData.text" class="filter_text_input">
                 <button @click="getList" class="btn btn-primary btn-sm">{{$t("system.search")}}</button>
@@ -32,12 +33,7 @@
             <thead>
             <tr>
                 <th>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" v-model="allUsers">
-                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                        </label>
-                    </div>
+                    <input type="checkbox" v-model="allUsers" @click = "selectAll">
                 </th>
                 <th>{{$t("alumni.first_name")}}</th>
                 <th>{{$t("alumni.last_name")}}</th>
@@ -64,13 +60,15 @@
     </div>
 </template>
 <script>
-    import {get} from "../../api";
     import Form from "./Form.vue"
     import GraduateInfoModal from "./modals/Graduate_information_info.vue"
+    import MassactionSelectAlumni from "./modals/Massaction_select_alumni.vue"
+    import {post,get} from "../../api";
     export default {
         components:{
             Form:Form,
             GraduateInfoModal,
+            MassactionSelectAlumni
         },
         data(){
             return {
@@ -84,7 +82,8 @@
                 base_url:'/api/alumni',
                 total:'',
                 selectedAlumni:[],
-                allUsers:false
+                allUsers:false,
+                selectedAlumniAction:"export"
             }
         },
         methods:{
@@ -106,6 +105,33 @@
                     )
                 }
             },
+            massaction(){
+                if(this.selectedAlumniAction =="export"){
+                    if(this.allUsers)this.$refs.massaction_select_alumni.show();
+                    else{
+                        let form = {};
+                        form.all_alumni = false;
+                        form.alumni_list = this.selectedAlumni;
+                        let _this = this;
+                        post(_this,"/api/alumni/export-spreadsheet",form,
+                            (res)=>{
+                                window.open(res.data);
+                            },
+                            (err)=>{}
+                        );
+                    }
+                }
+
+            },
+            selectAll(){
+                this.selectedAlumni = [];
+                this.$nextTick(()=>{
+                    if(this.allUsers) {
+                        this.selectedAlumni = this.users.map(el=>el.id);
+                    }
+                });
+
+            }
 
         },
         mounted(){

@@ -20,6 +20,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    //dashboard related
+    Route::get("/dashboard/alumni-trend","Controller@getAlumniTrend");
+
+
     //user related
     Route::get("/users","UserController@items");
     Route::get("/user/{id}",'UserController@item');
@@ -31,6 +36,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get("/alumni","AlumniController@items");
     Route::post("/alumni/save-alumni-info","AlumniController@createAlumniInfo");
     Route::get("/alumni/{id}","AlumniController@item");
+    Route::post("/alumni/export-spreadsheet","AlumniController@exportAlumniSpreadsheet");
     //country related
     Route::get("/countries","CountryController@items");
     Route::post("/country/save","CountryController@save");

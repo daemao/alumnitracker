@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router';
 
 import Login from './views/common/Login.vue';
-import Registration from './views/common/Register.vue';
 import About from './views/common/About.vue';
 import Dashboard from  './views/common/Dashboard.vue';
 
@@ -42,16 +41,6 @@ export default new VueRouter({
             meta:{
                 title:"Login",
                 forVisitors:true,
-            }
-        },
-        {
-            name:"registration",
-            path:"/registration",
-            component:Registration,
-            props:false,
-            meta:{
-                title:"Registration",
-                forAuth:false,
             }
         },
         {

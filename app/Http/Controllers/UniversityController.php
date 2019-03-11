@@ -43,6 +43,8 @@ class UniversityController extends Controller
         }
     }
     public function item($id,Request $request){
-        return University::with(["country","departments","programs"])->find($id);
+        $university = University::with(["country","departments","programs"])->find($id);
+        $university->alumni_number = $university->alumni()->count();
+        return response()->json($university,200);
     }
 }

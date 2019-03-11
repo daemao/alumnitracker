@@ -30,4 +30,7 @@ class University extends Model
     public function country(){
         return $this->belongsTo("App\Country");
     }
+    public function alumni(){
+        return $this->hasMany("App\AlumniInfo");
+    }
 }

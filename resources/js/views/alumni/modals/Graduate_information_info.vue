@@ -73,7 +73,10 @@
                     graduate_year:this.graduate_year
                 }
                 post(_this,"/api/alumni/save-alumni-info",form,
-                    (res)=>{},
+                    (res)=>{
+                        _this.$emit("update");
+                        _this.hide();
+                    },
                     (err)=>{}
                 );
             }
