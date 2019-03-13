@@ -32,7 +32,6 @@ class AlumniController extends Controller{
             AlumniInfo::create($request->all());
         }
     }
-
     public function exportAlumniSpreadsheet(Request $request){
         $style_default = [
             'font' => [
@@ -104,5 +103,4 @@ class AlumniController extends Controller{
         $writer->save('sheets/' . $hash . '.xlsx');
         return url('/') . '/sheets/' . $hash . '.xlsx';
     }
-
 }

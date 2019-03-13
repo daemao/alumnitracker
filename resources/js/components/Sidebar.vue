@@ -7,6 +7,8 @@
             <router-link :to="{path:'/universities'}" :class="{'sidebar_link-current':links.universities.indexOf($route.name)>-1}" class="nav-item sidebar_link sidebar_link-universities">{{$t('system.universities')}}</router-link>
             <router-link :to="{path:'/countries'}" :class="{'sidebar_link-current':links.countries.indexOf($route.name)>-1}" class="nav-item sidebar_link sidebar_link-countries">{{$t('system.countries')}}</router-link>
             <router-link :to="{path:'/departments'}" :class="{'sidebar_link-current':links.departments.indexOf($route.name)>-1}" class="nav-item sidebar_link sidebar_link-departments">{{$t('system.departments')}}</router-link>
+            <router-link :to="{path:'/companies'}" :class="{'sidebar_link-current':links.companies.indexOf($route.name)>-1}" class="nav-item sidebar_link sidebar_link-departments">{{$t('system.companies')}}</router-link>
+
         </ul>
     </div>
 </template>
@@ -20,7 +22,9 @@
                     administrators:["administrators","administrator"],
                     universities:["universities"],
                     countries:["countries"],
-                    departments:["departments"]
+                    departments:["departments"],
+                    companies:["companies"]
+
                 }
 
             }

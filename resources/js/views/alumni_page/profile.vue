@@ -9,7 +9,7 @@
     }
     .topper{
         height: 30vh;
-        background-image: linear-gradient(#a769b7, #482f63);
+        background-image: linear-gradient(#431C5D, #e7e3e5);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -84,18 +84,13 @@
         width: 20vh;
         height: 20vh;
     }
-    .news{
-        background: white;
-        width: 80vh;
-        font-size: 20px;
-    }
-    .news p1{
-        font-style: italic;
-    }
     .info{
         font-size: 20px;
         text-align: center;
         font-weight: bold;
+    }
+    .tab_selector{
+        width:100%;
     }
 </style>
 <template>
@@ -118,12 +113,12 @@
                         <div class="upload_button" @click="$refs.upload_image_button.click()">Upload image</div>
                     </div>
                     <div class="info">
-                        <p>Followers:</p>
-                        <p>Following:</p>
+                        <p>Followers:25</p>
+                        <p>Following:50</p>
                     </div>
                 </div>
                 <div class="right">
-                    <div v-if="user.photos && user.photos.length>3" class="carousel">
+                    <div v-if="user.photos && user.photos.length>0" class="carousel">
                         <b-carousel
                             id="carousel1"
                             style="text-shadow: 1px 1px 2px #333;"
@@ -137,51 +132,20 @@
                             @sliding-start="onSlideStart"
                             @sliding-end="onSlideEnd"
                         >
-                            <b-carousel-slide
-                                :img-src="'/storage/'+user.photos[0].url"
-                                class="carousel_component"
-                            />
-                            <b-carousel-slide :img-src="'/storage/'+user.photos[1].url" class="carousel_component"/>
-                            <b-carousel-slide :img-src="'/storage/'+user.photos[2].url" class="carousel_component"/>
+                            <b-carousel-slide v-for="photo in user.photos" :key="'photo_'+photo.id" :img-src="'/storage/'+photo.url"class="carousel_component"/>
                         </b-carousel>
                     </div>
                     <div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
+                        <div class="nav nav-tabs">
+                            <li :class="{active:current_tab=='news'}"><a href="" @click.prevent="current_tab='news'">News</a></li>
+                            <li :class="{active:current_tab=='education'}"><a href="" @click.prevent="current_tab='education'">education</a></li>
+                            <li :class="{active:current_tab=='work_experience'}"><a href="" @click.prevent="current_tab='work_experience'">work_experience</a></li>
+                            <li :class="{active:current_tab=='achievements'}"><a href="" @click.prevent="current_tab='achievements'">achievements</a></li>
                         </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
-                        <div class="news">
-                            <p1>Day/Month/Year</p1>
-                            <p>News</p>
-                        </div>
+                        <Achievements v-if="current_tab=='achievements'"/>
+                        <Education v-if="current_tab=='education'"/>
+                        <News v-if="current_tab=='news'"/>
+                        <WorkExperience v-if="current_tab=='work_experience'"/>
                     </div>
                 </div>
             </div>
@@ -189,6 +153,10 @@
     </div>
 </template>
 <script>
+    import Achievements from "./components/achievements.vue";
+    import Education from "./components/education.vue";
+    import News from "./components/news.vue";
+    import WorkExperience from "./components/work_experience.vue";
     import {get,post} from "../../api";
     export default {
         props:["id"],
@@ -197,8 +165,12 @@
                 user:"",
                 loading:true,
                 slide: 0,
-                sliding: null
+                sliding: null,
+                current_tab:'news'
             }
+        },
+        components:{
+            Achievements,Education,News,WorkExperience
         },
         methods:{
             getItem(){

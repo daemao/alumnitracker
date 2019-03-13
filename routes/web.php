@@ -27,6 +27,12 @@ Route::get('/administrators/{id}', function () {
 Route::get('/dashboard', function () {
     return view('app');
 });
+Route::get('/companies', function () {
+    return view('app');
+});
+Route::get('/companies/{id}', function () {
+    return view('app');
+});
 Route::get('/alumni', function () {
     return view('app');
 });
