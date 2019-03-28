@@ -18,4 +18,13 @@ class Department extends Model
         }
         return $query;
     }
+
+    public  function  universities(){
+        return $this->belongsToMany("App\University","university_program_departments")
+            ->withPivot("program_id");
+    }
+
+    public function alumnis(){
+        return $this->hasMany("App\AlumniInfo","department_id");
+    }
 }

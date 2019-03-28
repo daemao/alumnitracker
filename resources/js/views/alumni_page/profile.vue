@@ -1,3 +1,105 @@
+
+<template>
+    <div class="base" v-if="$root && $root.user && $root.user.data && $root.user.data.id">
+        <div class="main">
+            <div class="topper">
+                <h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
+                <h2 class="name1">Current city (status)</h2>
+            </div>
+            <div class="bottom">
+                <div class="left">
+                    <div class="avatar">
+                        <template v-if="user.avatar">
+                            <img :src="'/storage/'+user.avatar.url" alt="there is an image" class="avatar" >
+                        </template>
+                        <template v-else>
+                            <img src='/storage/noimage.png' class="avatar">
+                        </template>
+                        <input type="file" accept="image/png, image/jpeg" @change="sendFile" ref="upload_image_button" hidden />
+                        <div class="container">
+                            <div v-if="user.photos && user.photos.length>0" class="row"  >
+                                <div class="col-4" v-for="(photo,i) in user.photos" v-if="i<3" style="padding:0px;margin:0px;">
+                                    <img  :key="'photo_'+photo.id" :src="'/storage/'+photo.url" style="width: 100%"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload_button" @click="$refs.upload_image_button.click()">Upload image</div>
+                    </div>
+
+                    <div class="info">
+                        <p>Followers:25</p>
+                        <p>Following:50</p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div style="width:100%">
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                            <ul class="navbar-nav ">
+                                <li :class="{active:current_tab=='news'}" class="nav-item"><a href="" @click.prevent="current_tab='news'" class="nav-link">News</a></li>
+                                <li :class="{active:current_tab=='education'}" class="nav-item"><a href="" @click.prevent="current_tab='education'"class="nav-link">Education</a></li>
+                                <li :class="{active:current_tab=='work_experience'}" class="nav-item"><a href="" @click.prevent="current_tab='work_experience'"class="nav-link">Work experience</a></li>
+                                <li :class="{active:current_tab=='achievements'}" class="nav-item"><a href="" @click.prevent="current_tab='achievements'"class="nav-link">Achievements</a></li>
+                            </ul>
+                        </nav>
+                        <Achievements v-if="current_tab=='achievements'" :profile="user"/>
+                        <Education v-if="current_tab=='education'" :profile="user"/>
+                        <News v-if="current_tab=='news'"/>
+                        <WorkExperience v-if="current_tab=='work_experience'" :profile="user"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import Achievements from "./components/achievements.vue";
+    import Education from "./components/education.vue";
+    import News from "./components/news.vue";
+    import WorkExperience from "./components/work_experience.vue";
+    import {get,post} from "../../api";
+    export default {
+        props:["id"],
+        data(){
+            return {
+                user:"",
+                loading:true,
+                slide: 0,
+                sliding: null,
+                current_tab:'education'
+            }
+        },
+        components:{
+            Achievements,Education,News,WorkExperience
+        },
+        methods:{
+            getItem(){
+                let _this=this;
+                get(_this,"/api/alumni/"+this.id,{},
+                    (res)=>{
+                        _this.user=res.data;
+                    },
+                    (err)=>{}
+                );
+            },
+            sendFile(e){
+                let _this=this;
+                let formData = new FormData();
+                formData.append('photo', e.target.files[0]);
+                formData.append("id",_this.user.id);
+                post(_this,"/api/update-user-photo",formData ,
+                    (res)=>{
+                        _this.user = res.data;
+                    },
+                    (err)=>{
+
+                    })
+            },
+        },
+        created(){
+            this.getItem();
+        }
+    }
+</script>
 <style scoped>
     .main{
         display: flex;
@@ -44,14 +146,15 @@
         align-items: center;
         max-height: 70vh;
     }
+/*Subjected to change */
     .upload_button{
         position: relative;
-        top: -55px;
+        bottom: -0px;
         text-align: center;
         font-weight:bold;
         font-size: 30px;
         font-family: cursive;
-        background: white;
+        background: red;
         width:70%;
         border-radius: 20px;
         z-index: 1000;
@@ -79,10 +182,9 @@
         background:white;
     }
     .carousel_component{
-        max-width: 25vh;
-        max-height: 25vh;
-        width: 20vh;
-        height: 20vh;
+        width:100%;
+        height:auto;
+        max-height:480px;
     }
     .info{
         font-size: 20px;
@@ -93,118 +195,4 @@
         width:100%;
     }
 </style>
-<template>
-    <div class="base" v-if="$root && $root.user && $root.user.data && $root.user.data.id">
-        <div class="main">
-            <div class="topper">
-                <h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
-                <h2 class="name1">Current city (status)</h2>
-            </div>
-            <div class="bottom">
-                <div class="left">
-                    <div class="avatar">
-                        <template v-if="user.avatar">
-                            <img :src="'/storage/'+user.avatar.url" alt="there is an image" class="avatar" >
-                        </template>
-                        <template v-else>
-                            <img src='/storage/noimage.png' class="avatar">
-                        </template>
-                        <input type="file" accept="image/png, image/jpeg" @change="sendFile" ref="upload_image_button" hidden />
-                        <div class="upload_button" @click="$refs.upload_image_button.click()">Upload image</div>
-                    </div>
-                    <div class="info">
-                        <p>Followers:25</p>
-                        <p>Following:50</p>
-                    </div>
-                </div>
-                <div class="right">
-                    <div v-if="user.photos && user.photos.length>0" class="carousel">
-                        <b-carousel
-                            id="carousel1"
-                            style="text-shadow: 1px 1px 2px #333;"
-                            controls
-                            indicators
-                            background="#ababab"
-                            :interval="4000"
-                            img-width="1024"
-                            img-height="480"
-                            v-model="slide"
-                            @sliding-start="onSlideStart"
-                            @sliding-end="onSlideEnd"
-                        >
-                            <b-carousel-slide v-for="photo in user.photos" :key="'photo_'+photo.id" :img-src="'/storage/'+photo.url"class="carousel_component"/>
-                        </b-carousel>
-                    </div>
-                    <div>
-                        <div class="nav nav-tabs">
-                            <li :class="{active:current_tab=='news'}"><a href="" @click.prevent="current_tab='news'">News</a></li>
-                            <li :class="{active:current_tab=='education'}"><a href="" @click.prevent="current_tab='education'">education</a></li>
-                            <li :class="{active:current_tab=='work_experience'}"><a href="" @click.prevent="current_tab='work_experience'">work_experience</a></li>
-                            <li :class="{active:current_tab=='achievements'}"><a href="" @click.prevent="current_tab='achievements'">achievements</a></li>
-                        </div>
-                        <Achievements v-if="current_tab=='achievements'"/>
-                        <Education v-if="current_tab=='education'"/>
-                        <News v-if="current_tab=='news'"/>
-                        <WorkExperience v-if="current_tab=='work_experience'"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-<script>
-    import Achievements from "./components/achievements.vue";
-    import Education from "./components/education.vue";
-    import News from "./components/news.vue";
-    import WorkExperience from "./components/work_experience.vue";
-    import {get,post} from "../../api";
-    export default {
-        props:["id"],
-        data(){
-            return {
-                user:"",
-                loading:true,
-                slide: 0,
-                sliding: null,
-                current_tab:'news'
-            }
-        },
-        components:{
-            Achievements,Education,News,WorkExperience
-        },
-        methods:{
-            getItem(){
-                let _this=this;
-                get(_this,"/api/alumni/"+this.id,{},
-                    (res)=>{
-                        _this.user=res.data;
-                    },
-                    (err)=>{}
-                );
-            },
-            sendFile(e){
-                let _this=this;
-                let formData = new FormData();
-                formData.append('photo', e.target.files[0]);
-                formData.append("id",_this.user.id);
-                post(_this,"/api/update-user-photo",formData ,
-                    (res)=>{
-                        _this.user = res.data;
-                    },
-                    (err)=>{
-
-                    })
-            },
-            onSlideStart(slide) {
-                this.sliding = true
-            },
-            onSlideEnd(slide) {
-                this.sliding = false
-            }
-        },
-        created(){
-            this.getItem();
-        }
-    }
-</script>
 

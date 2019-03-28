@@ -1,14 +1,4 @@
-<style scoped>
-    .news{
-        background: white;
-        width: 80vh;
-        font-size: 20px;
-    }
-    .news p1{
-        font-style: italic;
-    }
-    .new_body{}
-</style>
+
 <template>
     <div>
         <div class="news">
@@ -22,3 +12,15 @@
 
     }
 </script>
+
+<style scoped>
+    .news{
+        background: white;
+        width: 80vh;
+        font-size: 20px;
+    }
+    .news p1{
+        font-style: italic;
+    }
+    .new_body{}
+</style>

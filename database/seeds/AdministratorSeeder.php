@@ -36,6 +36,13 @@ class AdministratorSeeder extends Seeder
 
         \App\User::create($karina_administator);
         \App\User::create($yersultan_administator);
-
+        $yersultan_alumni = [
+            "first_name" => "Yersultan",
+            "last_name" => "Nagashtay",
+            "password" => bcrypt(123456),
+            "role_id" => 2,
+            "email" =>"alumni@nu.edu.kz",
+        ];
+        \App\User::create($yersultan_alumni);
     }
 }

@@ -28,9 +28,17 @@ class CreateCompaniesTable extends Migration
            $table->increments("id");
            $table->integer("company_id")->unsigned();
            $table->integer("country_id")->unsigned();
-           $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+           $table->foreign('country_id')->references('id')->on('countries')->onDelete('restrict');
            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
+        Schema::create("user_companies",function (Blueprint $table){
+            $table->increments("id");
+            $table->integer("company_id")->unsigned();
+            $table->integer("user_id")->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
+        });
+
     }
 
     /**

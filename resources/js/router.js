@@ -17,7 +17,6 @@ import CountriesList from "./views/country/List.vue";
 import CountriesItem from "./views/country/Item.vue";
 
 import DepartmentsList from "./views/departments/List.vue";
-import DepartmentsItem from "./views/departments/Item.vue";
 
 import CompaniesList from "./views/companies/List.vue";
 import CompaniesItem from "./views/companies/Item.vue";
@@ -44,7 +43,7 @@ export default new VueRouter({
             component:CompaniesList,
             props:false,
             meta:{
-                title:"About",
+                title:"Companies",
                 forVisitors:false,
             }
         },
@@ -175,16 +174,6 @@ export default new VueRouter({
             props:false,
             meta:{
                 title:"Departments",
-                forAuth:true
-            }
-        },
-        {
-            name:"department",
-            path:"/department/:id",
-            component:DepartmentsItem,
-            props:true,
-            meta:{
-                title:"Department",
                 forAuth:true
             }
         }

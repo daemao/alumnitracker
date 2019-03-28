@@ -13,7 +13,15 @@ class DepartmentController extends Controller
 {
     public function items(Request $request){
         app()->setLocale($request->user()->locale);
-        return Department::filter(Input::all())->paginate(20);
+        return Department::filter(Input::all())->with(['alumnis',"universities"])->paginate(20);
+    }
+    public function item(Request $request,$id){
+        app()->setLocale($request->user()->locale);
+        return Department::with(['alumnis',"universities"])->find($id);
+    }
+
+    public function remove(Request $request,$id){
+        return Department::where("id",$id)->delete();
     }
     public  function  save(Request $request){
         $en = $request->get("en");

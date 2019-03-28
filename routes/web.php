@@ -51,6 +51,9 @@ Route::get("/countries",function (){
 Route::get("/departments",function (){
    return view("app");
 });
+Route::get("/department/{id}",function (){
+    return view("app");
+});
 Route::get("/profile/{id}", function(){
     return view("app");
 });

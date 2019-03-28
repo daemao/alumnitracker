@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AlumniInfo;
+use App\Company;
 use App\Country;
 use App\Department;
 use App\Program;
@@ -27,8 +28,10 @@ class Controller extends BaseController
         $data["nu_departments"]=$nu->departments;
         $data["nu_programs"]=$nu->programs;
         $data["programs"]=Program::all();
+        $data["universities"]=University::all();
         $data["departments"]=Department::all();
         $data["countries"]=Country::all();
+        $data["companies"]=Company::all();
         return response()->json($data,200);
     }
     //get the number of alumni graduate each year

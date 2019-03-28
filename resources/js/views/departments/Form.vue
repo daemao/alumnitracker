@@ -1,7 +1,7 @@
 <template>
     <modal ref="modal" title="Add new departmnet">
         <template slot="body">
-            <form>
+            <div>
                 <div class="form-group row">
                     <label class="col-4"> English name</label>
                     <input class="form-control col-8" v-model="form.en"/>
@@ -15,12 +15,11 @@
                         <input class="form-control col-8" v-model="form.ru"/>
                     </div>
                 </template>
-            </form>
+            </div>
         </template>
         <template slot="footer">
-            <div class="btn btn-secondary"> cancel</div>
-            <div class="btn btn-primary" @click="sendForm"> create</div>
-
+            <div class="btn btn-secondary" @click="hide()"> cancel</div>
+            <div class="btn btn-primary" @click="sendForm"> {{form.id?"update":"create"}}</div>
         </template>
     </modal>
 </template>
@@ -31,13 +30,23 @@
             return {
                 showTranslation:false,
                 form:{
+                    id:"",
                     en:"",
                     ru:""
                 }
             }
         },
         methods:{
-            show(){
+            show(item){
+                if(item){
+                    this.form.id=item.id;
+                    if(item.translations && item.translations.length!=0){
+                        for(let i = 0; i<item.translations.length;i++){
+                            if(item.translations[i].locale =="ru") this.form.ru = item.translations[i].name;
+                            if(item.translations[i].locale =="en") this.form.en = item.translations[i].name;
+                        }
+                    }
+                }
                 this.$refs.modal.show();
             },
             hide(){
@@ -47,7 +56,8 @@
                 let _this=this;
                 post(_this,"/api/department/save",_this.form,
                     (res)=>{
-                        console.log(res);
+                        _this.$emit("update");
+                        _this.$refs.modal.hide();
                     },
                     (err)=>{
                         console.log(err);

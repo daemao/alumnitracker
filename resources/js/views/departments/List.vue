@@ -1,5 +1,20 @@
 <template>
     <div>
+        <modal :title="$tc('departments.remove_modal_title')" ref="removeModal">
+            <template slot="body">
+                <div>
+                    remove {{toremove.name}}
+                </div>
+            </template>
+            <template slot="footer">
+                    <button class="btn btn-secondary" @click= "toremove='';$refs.removeModal.hide()">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary" @click="remove()">
+                        Delete
+                    </button>
+            </template>
+        </modal>
         <div>
             <div class="content-header h3">University departments</div>
             <input v-model="filterData.text" class="filter_text_input"/>
@@ -10,11 +25,37 @@
             <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
                 Found number of departments: {{total}}
             </div>
-            <Form ref="modal"/>
+            <Form ref="modal" v-on:update="getList"/>
         </div>
-        <div>
-            <div class="row" v-for="department in departments">{{department.name}}</div>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-9">
+                        {{$t("department.name")}}
+                    </th>
+                    <th class="col-1">
+                        {{$t("department.alumni_number")}}
+                    </th>
+                    <th class="col-1">
+                        {{$t("department.universities_number")}}
+                    </th>
+                    <th class="col-1">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="department in departments">
+                    <td>{{department.name}}</td>
+                    <td>{{department.alumnis.length}}</td>
+                    <td>{{department.universities.length}}</td>
+                    <td class="btn-group">
+                        <button class="btn  btn-sm col-6 edit_button" @click="$refs.modal.show(department)"/>
+                        <button class="btn btn-danger btn-sm col-6 " @click="toremove=department;$refs.removeModal.show()"> Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 <script>
@@ -34,7 +75,8 @@
                 scrollLoad:false,
                 next_page_url:'/api/departments',
                 base_url:'/api/departments',
-                total:''
+                total:'',
+                toremove:'',
             }
         },
         methods:{
@@ -56,6 +98,17 @@
                     )
                 }
             },
+            remove(){
+                let _this=this;
+                get(_this,"/api/department/remove/"+_this.toremove.id,{},
+                    (res)=>{
+                        _this.getList();
+                        _this.$refs.removeModal.hide();
+                        _this.toremove='';
+                    },
+                    (err)=>{}
+                )
+            }
 
         },
         mounted(){

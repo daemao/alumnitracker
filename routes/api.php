@@ -35,6 +35,8 @@ Route::middleware('auth:api')->group(function () {
     //alumni related
     Route::get("/alumni","AlumniController@items");
     Route::post("/alumni/save-alumni-info","AlumniController@createAlumniInfo");
+    Route::post("/alumni/save-work-experience","AlumniController@createWorkExperience");
+    Route::post("/alumni/save-achievement","AlumniController@createAchivement");
     Route::get("/alumni/{id}","AlumniController@item");
     Route::post("/alumni/export-spreadsheet","AlumniController@exportAlumniSpreadsheet");
     //country related
@@ -46,6 +48,11 @@ Route::middleware('auth:api')->group(function () {
     Route::post("/university/save","UniversityController@save");
     //department related
     Route::get("/departments","DepartmentController@items");
+    Route::get("/department/{id}","DepartmentController@item");
+    Route::get("/department/remove/{id}","DepartmentController@remove");
     Route::post("/department/save","DepartmentController@save");
     Route::post("/add-university-department","DepartmentController@attachDepartmentsToUniversity");
+    //Company related stuff
+    Route::get("/companies","CompanyController@items");
+    Route::post("/company/save","CompanyController@save");
 });
