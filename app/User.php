@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
-    protected $fillable=["email","password","first_name","last_name","role_id","socials_fb","socials_github","socials_vk","socials_twitter"];
+    protected $fillable=["email",'current_university_id','current_company_id',"password","first_name","last_name","role_id","socials_fb","socials_github","socials_vk","socials_twitter"];
     protected $hidden=["password"];
 
     public function scopeFilter($query, $filters){
@@ -36,7 +36,6 @@ class User extends Authenticatable
     public function toArray()
     {
         $array = parent::toArray();
-        $array['friends'] = $this->friends;
         return $array;
     }
     public function avatar(){
@@ -64,20 +63,19 @@ class User extends Authenticatable
         return $this->hasMany("App\Photo","user_id");
     }
 
-    function getFriendsAttribute(){
-        return  $this->friendsOfMine->merge($this->friendOf);
+    public function current_company(){
+        return $this->hasOne("App\WorkExperience")->orderBy("id","desc");
+    }
+    public function current_university(){
+        return $this->hasOne("App\AlumniInfo")->orderBy("id","desc");
+
     }
 
-
-    //Helper for getting friends 1
-    function friendsOfMine(){
-        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id')
-            ->wherePivot('accepted', '=', 1)->withPivot("accepted");
+    public function followers(){
+        return  $this->belongsToMany("App\User","friends","friend_id","user_id");
     }
-    //Helper for getting friends 2
-    function friendOf(){
-        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id')
-            ->wherePivot('accepted', '=', 1)->withPivot("accepted");
+    public function followings(){
+        return  $this->belongsToMany("App\User","friends","user_id","user_id");
     }
 
     function inputFriendRequest(){

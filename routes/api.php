@@ -37,6 +37,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post("/alumni/save-alumni-info","AlumniController@createAlumniInfo");
     Route::post("/alumni/save-work-experience","AlumniController@createWorkExperience");
     Route::post("/alumni/save-achievement","AlumniController@createAchivement");
+    Route::get("/alumni/{id}/followers","AlumniController@getFollowers");
+    Route::get("/alumni/{id}/followings","AlumniController@getFollowings");
+
     Route::get("/alumni/{id}","AlumniController@item");
     Route::post("/alumni/export-spreadsheet","AlumniController@exportAlumniSpreadsheet");
     //country related

@@ -4,7 +4,8 @@
         <div class="main">
             <div class="topper">
                 <h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
-                <h2 class="name1">Current city (status)</h2>
+                <h2 class="name1" v-if="user.status_id==1">working at {{user.current_company.company.name}}</h2>
+                <h2 class="name1" v-if="user.status_id==2">studying at {{user.current_university.university.name}}</h2>
             </div>
             <div class="bottom">
                 <div class="left">
@@ -25,26 +26,25 @@
                         </div>
                         <div class="upload_button" @click="$refs.upload_image_button.click()">Upload image</div>
                     </div>
-
-                    <div class="info">
-                        <p>Followers:25</p>
-                        <p>Following:50</p>
-                    </div>
                 </div>
                 <div class="right">
                     <div style="width:100%">
                         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                             <ul class="navbar-nav ">
-                                <li :class="{active:current_tab=='news'}" class="nav-item"><a href="" @click.prevent="current_tab='news'" class="nav-link">News</a></li>
+                                <!--<li :class="{active:current_tab=='news'}" class="nav-item"><a href="" @click.prevent="current_tab='news'" class="nav-link">News</a></li>-->
                                 <li :class="{active:current_tab=='education'}" class="nav-item"><a href="" @click.prevent="current_tab='education'"class="nav-link">Education</a></li>
                                 <li :class="{active:current_tab=='work_experience'}" class="nav-item"><a href="" @click.prevent="current_tab='work_experience'"class="nav-link">Work experience</a></li>
                                 <li :class="{active:current_tab=='achievements'}" class="nav-item"><a href="" @click.prevent="current_tab='achievements'"class="nav-link">Achievements</a></li>
+                                <li :class="{active:current_tab=='followers'}" class="nav-item"><a href="" @click.prevent="current_tab='followers'"class="nav-link">Followers  <badge class="badge badge-light"><span class="h6">{{user.followers.length}}</span></badge></a></li>
+                                <li :class="{active:current_tab=='followings'}" class="nav-item"><a href="" @click.prevent="current_tab='followings'"class="nav-link">Followings  <badge class="badge badge-light"><span class="h6"> {{user.followings.length}}</span></badge></a></li>
                             </ul>
                         </nav>
                         <Achievements v-if="current_tab=='achievements'" :profile="user"/>
                         <Education v-if="current_tab=='education'" :profile="user"/>
                         <News v-if="current_tab=='news'"/>
                         <WorkExperience v-if="current_tab=='work_experience'" :profile="user"/>
+                        <Followers v-if="current_tab=='followers'" :profile="user"/>
+                        <Followings v-if="current_tab=='followings'" :profile="user"/>
                     </div>
                 </div>
             </div>
@@ -55,8 +55,11 @@
     import Achievements from "./components/achievements.vue";
     import Education from "./components/education.vue";
     import News from "./components/news.vue";
+    import Followers from "./components/followers.vue";
+    import Followings from "./components/followings.vue";
     import WorkExperience from "./components/work_experience.vue";
     import {get,post} from "../../api";
+    import Badge from "bootstrap-vue/es/components/badge/badge";
     export default {
         props:["id"],
         data(){
@@ -69,7 +72,8 @@
             }
         },
         components:{
-            Achievements,Education,News,WorkExperience
+            Badge,
+            Achievements,Education,News,WorkExperience,Followers,Followings
         },
         methods:{
             getItem(){
@@ -148,8 +152,8 @@
     }
 /*Subjected to change */
     .upload_button{
-        position: relative;
-        bottom: -0px;
+        /*position: relative;*/
+        /*bottom: -0px;*/
         text-align: center;
         font-weight:bold;
         font-size: 30px;
@@ -176,23 +180,12 @@
         text-align: center;
         font-family: monospace;
     }
-    .carousel{
-        height: 25vh;
-        width: 80vh;
-        background:white;
-    }
-    .carousel_component{
-        width:100%;
-        height:auto;
-        max-height:480px;
-    }
+
     .info{
+        margin-top:100px;
         font-size: 20px;
-        text-align: center;
+        /*text-align: center;*/
         font-weight: bold;
-    }
-    .tab_selector{
-        width:100%;
     }
 </style>
 

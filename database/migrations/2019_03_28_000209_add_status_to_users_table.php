@@ -26,10 +26,10 @@ class AddStatusToUsersTable extends Migration
         });
         Schema::table('users', function (Blueprint $table) {
             $table->integer("status_id")->unsigned();
-            $table->integer("current_university_id")->unsigned();
-            $table->integer("current_work_id")->unsigned();
-            $table->foreign("current_university_id")->references("id")->on("alumni_info")->onDelete("cascade");
-            $table->foreign("current_work_id")->references("id")->on("work_experiences")->onDelete("cascade");
+            $table->integer("current_university_id")->unsigned()->nullable();
+            $table->integer("current_work_id")->unsigned()->nullable();
+            $table->foreign("current_university_id")->references("id")->on("alumni_info")->onDelete("restrict");
+            $table->foreign("current_work_id")->references("id")->on("work_experiences")->onDelete("restrict");
         });
         $statuses=[
             ["ru"=>"работает","en"=>"working"],

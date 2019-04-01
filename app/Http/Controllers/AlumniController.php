@@ -23,7 +23,18 @@ class AlumniController extends Controller{
         return User::where("role_id",2)->with(["alumni_info"])->filter(Input::all())->paginate(20);
     }
     public function item(Request $request,$id){
-        return User::with(["avatar","alumni_info.program","achievements","alumni_info.department","work_experience.company","alumni_info.university.country","photos"])->find($id);
+        return User::with(["avatar","alumni_info.program","followers","followings","achievements","alumni_info.department","current_university.university","current_company.company","work_experience.company","alumni_info.university.country","photos"])->find($id);
+    }
+
+    public function getFollowers($id){
+        return User::whereHas("followers",function ($q) use($id){
+           $q->where("friend_id",$id);
+        })->get();
+    }
+    public function getFollowings($id){
+        return User::whereHas("followers",function ($q) use($id){
+            $q->where("user_id",$id);
+        })->get();
     }
 
     public function createWorkExperience(Request $request){
@@ -42,6 +53,7 @@ class AlumniController extends Controller{
         $we->company_id = $company->id;
         $we->position = $request->get("position");
         $we->save();
+        User::where("id",$we->user_id)->update(["status_id"=>1,"current_university_id"=>$we->id]);
     }
     public function createAlumniInfo(Request $request){
         $validator = Validator::make($request->all(), [
@@ -56,15 +68,14 @@ class AlumniController extends Controller{
             if($request->get("university_id")=='other'){
                 $university = $request->get("new_university");
                 if($university["country_id"]=="other"){
-                    $temp = Country::whereTranslationIs("name",$request->get("new_country"))->first();
+                    $temp = Country::whereTranslation("name",$request->get("new_country"))->first();
                     $new_country = $temp? $temp:Country::create();
                     $country = $request->get("new_country");
                     $new_country->translateOrNew($request->user()->locale)->name=$country["name"];
                     $new_country->save();
                 }
-                $temp_c = University::whereTranslationIs("name",$request->get("new_university"))->first();
-                $new_country = $temp_c? $temp_c:University::create();
-                $new_university = new University();
+                $temp_c = University::whereTranslation("name",$request->get("new_university"))->first();
+                $new_university = $temp_c? $temp_c:new University();
                 $new_university->country_id = $university["country_id"]=="other"?$new_country->id:$university["country_id"];
                 $new_university->translateOrNew($request->user()->locale)->name=$university["name"];
                 $new_university->save();
@@ -78,7 +89,9 @@ class AlumniController extends Controller{
                 $new_department->save();
                 $info["department_id"]=$new_department->id;
             }
-            AlumniInfo::create($info);
+            $alumni_info=AlumniInfo::create($info);
+            Log::info($alumni_info->toArray());
+            User::where("id",$alumni_info->user_id)->update(["status_id"=>2,"current_university_id"=>$alumni_info->id]);
         }
     }
     public function createAchivement(Request $request){
