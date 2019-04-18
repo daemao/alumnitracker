@@ -3,14 +3,13 @@
         <div  class="navbar fixed-bottom bg-secondary justify-content-between" v-if="selectedAlumni && selectedAlumni.length>0 || allUsers">
             <div class="navbar-brand"></div>
             <form class="form-inline">
-                <div class="form-group">
-                    <span class="label">With selected {{selectedAlumni.length}}:</span>
-                    <select v-model="selectedAlumniAction" class="form-control">
-                        <option value="export">export excel</option>
-                        <option value="email">send email</option>
+                <span class="label float-left">{{$tc("system.with_selected",selectedAlumni.length)}} </span>
+                <div class=" form-group">
+                    <select v-model="selectedAlumniAction" class="form-control-sm">
+                        <option value="export">{{$t("system.export_excel")}}</option>
                     </select>
                 </div>
-                <div class="btn btn-primary " @click="massaction">Apply</div>
+                <div class="btn btn-primary btn-sm" @click="massaction">{{$t('system.apply')}}</div>
             </form>
         </div>
         <MassactionSelectAlumni ref="massaction_select_alumni" :selected_ids="selectedAlumni" :action ="selectedAlumniAction"/>
@@ -26,7 +25,7 @@
                 </div>
             </div>
             <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
-                {{$t('alumni.found_number')}}{{total}}
+                {{$tc('alumni.found_number',total)}}
             </div>
         </div>
         <table class="table">
@@ -51,7 +50,7 @@
                 <td>{{user.email}}</td>
                 <td>
                     <button class="btn btn-success btn-sm" @click="$refs.graduate_info.show(user.id)">{{$t("alumni.add_graduation_info")}}</button>
-                    <button class="btn btn-primary btn-sm" @click="$router.push({name:'alumni-item',params:{id:user.id}})">profile</button>
+                    <button class="btn btn-primary btn-sm" @click="$router.push({name:'alumni-item',params:{id:user.id}})">{{$t("alumni.profile")}}</button>
                 </td>
             </tr>
             </tbody>

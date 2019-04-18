@@ -1,25 +1,25 @@
 <template>
-    <modal ref="modal" title="Add new departmnet">
+    <modal ref="modal" :title="$tc('university.department.add_department_to_system')">
         <template slot="body">
             <div>
                 <div class="form-group row">
-                    <label class="col-4"> English name</label>
+                    <label class="col-4"> {{$t("system.english_name")}}</label>
                     <input class="form-control col-8" v-model="form.en"/>
                 </div>
                 <div class="form-group row" v-if="!showTranslation">
-                    <div class="btn btn-success btn-block" @click="showTranslation=true"> Show russian translation </div>
+                    <div class="btn btn-success btn-block" @click="showTranslation=true"> {{$t("system.show_russian_tr")}} </div>
                 </div>
                 <template v-if="showTranslation">
                     <div class="form-group row">
-                        <label class="col-4"> Russian name</label>
+                        <label class="col-4"> {{$t("system.russian_name")}}</label>
                         <input class="form-control col-8" v-model="form.ru"/>
                     </div>
                 </template>
             </div>
         </template>
         <template slot="footer">
-            <div class="btn btn-secondary" @click="hide()"> cancel</div>
-            <div class="btn btn-primary" @click="sendForm"> {{form.id?"update":"create"}}</div>
+            <div class="btn btn-secondary" @click="hide()"> {{$t("system.cancel")}}</div>
+            <div class="btn btn-primary" @click="sendForm"> {{form.id? $t('system.update'): $t('system.create')}}</div>
         </template>
     </modal>
 </template>

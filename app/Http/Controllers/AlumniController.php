@@ -28,12 +28,12 @@ class AlumniController extends Controller{
 
     public function getFollowers($id){
         return User::whereHas("followers",function ($q) use($id){
-           $q->where("friend_id",$id);
+           $q->where("user_id",$id);
         })->get();
     }
     public function getFollowings($id){
         return User::whereHas("followers",function ($q) use($id){
-            $q->where("user_id",$id);
+            $q->where("friend_id",$id);
         })->get();
     }
 
@@ -172,5 +172,24 @@ class AlumniController extends Controller{
         $hash = date('mdYHis').uniqid();
         $writer->save('sheets/' . $hash . '.xlsx');
         return url('/') . '/sheets/' . $hash . '.xlsx';
+    }
+
+    public function getAvailableFollowers(){
+        return User::where("role_id",2)->filter(Input::all())->get();
+    }
+
+    public function startFollow(Request $request){
+        $user_id = $request->get("user_id");
+        $user_ids = $request->get("users");
+        Log::info($user_id);
+        if($user_ids){
+                $requests=[];
+                foreach ($user_ids as $id){
+                    $requests[$id] = ['friend_id' => $id,"accepted"=>0];
+                }
+            }
+            $request->user()->followings()->attach($requests);
+        if($user_id)
+            $request->user()->followings()->attach(array($user_id));
     }
 }

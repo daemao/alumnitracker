@@ -1,5 +1,6 @@
 {
     "login":"login",
+    "found_departments_number":"Found {1} department| Found {n} departments",
     "registration":"registration",
     "dashboard":"Dashboard",
     "administrators":"Administrators",
@@ -10,5 +11,46 @@
     "search":"search",
     "create":"create",
     "cancel":"cancel",
-    "add":"add"
+    "add":"add",
+    "name":"name",
+    "university":"university",
+    "select":"select",
+    "upload_image":"upload image",
+    "not_given":"not given",
+    "with_selected":"With selected {n} alumni",
+    "export_excel":"export",
+    "apply":"apply",
+    "country":"country",
+    "remove":"remove",
+    "edit":"edit",
+    "english_name":"english name",
+    "russian_name":"russian name",
+    "show_russian_tr":"show russian translation",
+    "update":"update",
+    "logout":"logout",
+    "new_translation":"add translation",
+    "Companies":"Companies",
+    "companies_found_number":"Found {1} company| Found {n} companies",
+    "company":{
+        "create_modal_header":"Create new company"
+    },
+    "loading":"Loading...",
+    "Company":"Company",
+    "date":"Date",
+    "time":"Time",
+    "country_edit":"Edit company",
+    "found_countries_number":"Found {0} countires| Found {1} countiry| Found {n} countires",
+    "Dashboard":{
+        "per_year_total":"Number of alumni per year in total",
+        "total_users_number":"Users",
+        "working_total":"Working users",
+        "studying_total":"Studying users",
+        "no_info_total":"No information",
+        "year":"year"
+    },
+    "add_translation":"add translation",
+    "add_department":"add department",
+    "info":"Information"
+
+
 }

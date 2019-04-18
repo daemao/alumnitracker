@@ -1,13 +1,15 @@
 <template>
     <div>
-        <WEForm ref="new_exp"/>
+        <WEForm ref="new_exp" v-on:update="$emit('update')"/>
         <div style="text-align:center;" class="h1 m-2">
-            Work experience
-            <span @click="$refs.new_exp.show(profile.id)" class="btn btn-primary btn-sm">add new work experience</span>
+            {{$t("roleAlumni.workExperience")}}
+            <span @click="$refs.new_exp.show(profile.id)" class="btn btn-primary btn-sm"
+                  v-if="$root.user.data.id==profile.id"
+            >{{$t("system.create")}}</span>
         </div>
         <div v-for="info in profile.work_experience" class="we-container">
-            <div><span class="h5">Company:</span>{{info.company.name}}</div>
-            <div><span class="h5">Position:</span>{{info.position}}</div>
+            <div><span class="h5">{{$t("system.Company")}}:</span>{{info.company.name}}</div>
+            <div><span class="h5">{{$t("roleAlumni.position")}}:</span>{{info.position}}</div>
         </div>
     </div>
 </template>

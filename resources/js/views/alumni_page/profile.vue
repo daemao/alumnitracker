@@ -4,8 +4,8 @@
         <div class="main">
             <div class="topper">
                 <h1 class="name">{{user.first_name}} {{user.last_name}}</h1>
-                <h2 class="name1" v-if="user.status_id==1">working at {{user.current_company.company.name}}</h2>
-                <h2 class="name1" v-if="user.status_id==2">studying at {{user.current_university.university.name}}</h2>
+                <h2 class="name1" v-if="user.status_id==1">{{$t("roleAlumni.workingAt")}} {{user.current_company.company.name}}</h2>
+                <h2 class="name1" v-if="user.status_id==2">{{$t("roleAlumni.studyingAt")}} {{user.current_university.university.name}}</h2>
             </div>
             <div class="bottom">
                 <div class="left">
@@ -24,7 +24,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="upload_button" @click="$refs.upload_image_button.click()">Upload image</div>
+                        <div class="upload_button" @click="$refs.upload_image_button.click()"
+                            v-if="id==$root.user.data.id"
+                        >{{$t("roleAlumni.uploadImage")}}</div>
                     </div>
                 </div>
                 <div class="right">
@@ -32,19 +34,19 @@
                         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                             <ul class="navbar-nav ">
                                 <!--<li :class="{active:current_tab=='news'}" class="nav-item"><a href="" @click.prevent="current_tab='news'" class="nav-link">News</a></li>-->
-                                <li :class="{active:current_tab=='education'}" class="nav-item"><a href="" @click.prevent="current_tab='education'"class="nav-link">Education</a></li>
-                                <li :class="{active:current_tab=='work_experience'}" class="nav-item"><a href="" @click.prevent="current_tab='work_experience'"class="nav-link">Work experience</a></li>
-                                <li :class="{active:current_tab=='achievements'}" class="nav-item"><a href="" @click.prevent="current_tab='achievements'"class="nav-link">Achievements</a></li>
-                                <li :class="{active:current_tab=='followers'}" class="nav-item"><a href="" @click.prevent="current_tab='followers'"class="nav-link">Followers  <badge class="badge badge-light"><span class="h6">{{user.followers.length}}</span></badge></a></li>
-                                <li :class="{active:current_tab=='followings'}" class="nav-item"><a href="" @click.prevent="current_tab='followings'"class="nav-link">Followings  <badge class="badge badge-light"><span class="h6"> {{user.followings.length}}</span></badge></a></li>
+                                <li :class="{active:current_tab=='education'}" class="nav-item"><a href="" @click.prevent="current_tab='education'"class="nav-link">{{$t("roleAlumni.education")}}</a></li>
+                                <li :class="{active:current_tab=='work_experience'}" class="nav-item"><a href="" @click.prevent="current_tab='work_experience'"class="nav-link">{{$t("roleAlumni.workExperience")}}</a></li>
+                                <li :class="{active:current_tab=='achievements'}" class="nav-item"><a href="" @click.prevent="current_tab='achievements'"class="nav-link">{{$t("roleAlumni.achievements")}}</a></li>
+                                <li :class="{active:current_tab=='followers'}" class="nav-item"><a href="" @click.prevent="current_tab='followers'"class="nav-link">{{$t("roleAlumni.followers")}}  <badge class="badge badge-light"><span class="h6">{{user.followers?user.followers.length:0}}</span></badge></a></li>
+                                <li :class="{active:current_tab=='followings'}" class="nav-item"><a href="" @click.prevent="current_tab='followings'"class="nav-link">{{$t("roleAlumni.followings")}}  <badge class="badge badge-light"><span class="h6"> {{user.followings?user.followings.length:0}}</span></badge></a></li>
                             </ul>
                         </nav>
-                        <Achievements v-if="current_tab=='achievements'" :profile="user"/>
-                        <Education v-if="current_tab=='education'" :profile="user"/>
-                        <News v-if="current_tab=='news'"/>
-                        <WorkExperience v-if="current_tab=='work_experience'" :profile="user"/>
-                        <Followers v-if="current_tab=='followers'" :profile="user"/>
-                        <Followings v-if="current_tab=='followings'" :profile="user"/>
+                        <Achievements v-if="current_tab=='achievements'" :profile="user" v-on:update="getItem()"/>
+                        <Education v-if="current_tab=='education'" :profile="user" v-on:update="getItem()"/>
+                        <News v-if="current_tab=='news'" v-on:update="getItem()"/>
+                        <WorkExperience v-if="current_tab=='work_experience'" :profile="user" v-on:update="getItem()"/>
+                        <Followers v-if="current_tab=='followers'" :profile="user" v-on:update="getItem()"/>
+                        <Followings v-if="current_tab=='followings'" :profile="user" v-on:update="getItem()"/>
                     </div>
                 </div>
             </div>
@@ -54,7 +56,6 @@
 <script>
     import Achievements from "./components/achievements.vue";
     import Education from "./components/education.vue";
-    import News from "./components/news.vue";
     import Followers from "./components/followers.vue";
     import Followings from "./components/followings.vue";
     import WorkExperience from "./components/work_experience.vue";
@@ -73,7 +74,7 @@
         },
         components:{
             Badge,
-            Achievements,Education,News,WorkExperience,Followers,Followings
+            Achievements,Education,WorkExperience,Followers,Followings
         },
         methods:{
             getItem(){
@@ -101,6 +102,16 @@
         },
         created(){
             this.getItem();
+        },
+        watch:{
+            id: {
+                handler: function(val, oldVal) {
+                    if(val !== oldVal){
+                        this.getItem();
+                    }
+                },
+                deep: true
+            }
         }
     }
 </script>

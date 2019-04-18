@@ -1,21 +1,29 @@
 <template>
     <div v-if="!loading && $common.data && $common.data.nu_departments">
         <div class="mb-3">
-            <div class="content-header h3">Dashboard</div>
+            <div class="content-header h1">{{$tc("system.dashboard")}}</div>
         </div>
         <div class = "container ">
             <div class="row justify-content-between">
                 <div class="col col-12 mb-4">
-                    <div class="h4 text-center">Number of alumni per year in total</div>
-                    <line-chart :data="alumniPerYear" min="0" xtitle="year" ytitle="alumnis number"></line-chart>
+                    <div class="h4 text-center">{{$t("system.Dashboard.per_year_total")}}</div>
+                    <line-chart :data="alumniPerYear" min="0" :xtitle="$t('system.Dashboard.year')" :ytitle="$t('university.graduates_number')"></line-chart>
                 </div>
-                <div class="col col-5 mb-4">
-                    <div class="h4 text-center">Gpa groups</div>
-                <bar-chart :data="gpaDivisions"></bar-chart>
+                <div class="col col-12 mb-4 bg-primary text-white">
+                    <div  class="h2 text-left" > {{$t("system.Dashboard.total_users_number")}}</div>
+                    <div  class="h1 text-left">{{totalGrads}}</div>
                 </div>
-                <div class="col col-5 mb-4">
-                    <div class="h4 text-center">Alumni per school in total</div>
-                    <bar-chart :data="AlumniPerSchool"></bar-chart>
+                <div class="col col-3  mb-4 bg-success text-white">
+                    <div  class="h2 text-left" >{{$t("system.Dashboard.working_total")}}</div>
+                    <div  class="h1 text-left">{{totalWorking}}</div>
+                </div>
+                <div class="col col-3  offset-1 mb-4 bg-warning text-white">
+                    <div  class="h2 text-left" > {{$t("system.Dashboard.studying_total")}}</div>
+                    <div  class="h1 text-left">{{totalStudying}}</div>
+                </div>
+                <div class="col col-3  offset-1 mb-4 bg-danger text-white">
+                    <div  class="h2 text-left" > {{$t("system.Dashboard.no_info_total")}}</div>
+                    <div  class="h1 text-left">{{totalNoWorkInformation}}</div>
                 </div>
             </div>
         </div>
@@ -32,6 +40,7 @@
             return {
                 alumniTrend:{},
                 loading:true,
+                alumni:[],
                 availableYears:""
             }
         },
@@ -39,7 +48,8 @@
             getAlumniTrend(){
                 let _this = this;
                 get(_this,"/api/dashboard/alumni-trend",{},(res)=>{
-                    _this.alumniTrend = res.data;
+                    _this.alumniTrend = res.data.alumniTrend;
+                    _this.alumni = res.data.alumni;
                     _this.loading=false;
                 },()=>{
 
@@ -61,30 +71,21 @@
                 });
                 return data;
             },
-            gpaDivisions(){
-                let data=[["4.00",0],["3.00-3.99",0],["2.00-2.99",0],["1.00-1.99",0],["0.00-0.99",0]];
-                this.alumniTrend.map(alumni=>{
-                     data[4-Math.floor(alumni.cumulative_gpa)][1]+=1;
-                });
-                return data;
+            totalGrads(){
+                return this.alumni.length;
             },
-            AlumniPerSchool(){
-                let data=this.$common.data.nu_departments.map(dep=>{
-                    return [dep.id,0]
-                });
-                this.alumniTrend.map(alumni=>{
-                    data.forEach(el=>{
-                        if(el[0] == alumni.department_id) el[1]+=1;
-                    })
-                });
-                data.forEach(el=>{
-                   this.$common.data.nu_departments.map(dep=>{
-                       if(dep.id ==el[0])el[0]=dep.name;
-                   })
-                });
-                return data;
+            totalGradsWithoutAlumniInformation(){
+                return this.alumni.filter(x=> !x.alumni_info).length;
+            },
+            totalWorking(){
+                return this.alumni.filter(x=>x.status_id==2).length;
+            },
+            totalStudying(){
+                return this.alumni.filter(x=>x.status_id==1).length;
+            },
+            totalNoWorkInformation(){
+                return this.alumni.filter(x=>x.status_id==0).length;
             }
-
         }
     }
 </script>

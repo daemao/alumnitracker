@@ -5,19 +5,19 @@
                 <div class="row">
                     <div class="col-6 card">
                         <div class="card-body">
-                            <div class="card-title">all alumni</div>
-                            <div class="card-body">Select all alumni that are in the database</div>
+                            <div class="card-title">{{$tc("alumni.export.all")}}</div>
+                            <div class="card-body">{{$tc("alumni.export.all_description")}}</div>
                             <div class="card-footer">
-                                <div  class="btn btn-primary"  @click ="exportExcel('total')">Select</div>
+                                <div  class="btn btn-primary"  @click ="exportExcel('total')">{{$t("system.select")}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 card">
                         <div class="card-body">
-                            <div class="card-title">only loaded alumni</div>
-                            <div class="card-body">Select only alumni that loaded to the list</div>
+                            <div class="card-title">{{$tc("alumni.export.selected")}}</div>
+                            <div class="card-body">{{$tc("alumni.export.selected_description")}}</div>
                             <div class="card-footer">
-                                <div  class="btn btn-primary" @click ="exportExcel(null)">Select</div>
+                                <div  class="btn btn-primary" @click ="exportExcel(null)">{{$t("system.select")}}</div>
                             </div>
                         </div>
                     </div>

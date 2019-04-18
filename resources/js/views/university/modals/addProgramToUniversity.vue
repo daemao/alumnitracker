@@ -1,5 +1,5 @@
 <template>
-    <modal title="add program" ref="modal">
+    <modal :title="$t('university.add_program')" ref="modal">
         <template slot="body">
             <div class="form-group">
                 <select class="form-control" v-model="department_id">
@@ -7,7 +7,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label class="label">Programs available</label>
+                <label class="label">{{$t("university.programs_available")}}</label>
                 <div v-for="program in $common.data.programs">
                     <input type="checkbox" :value="program.id" v-model="selected_programs"/>
                     <label>{{program.name}}</label>
@@ -46,7 +46,8 @@
                 }
                 post(_this,"/api/add-university-department",form,
                     (res)=>{
-
+                        _this.$emit("update");
+                        _this.hide();
                     },
                     (err)=>{}
                 );

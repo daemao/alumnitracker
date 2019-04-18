@@ -11,7 +11,11 @@ import BootstrapVue from 'bootstrap-vue';
 import VueChartkick from 'vue-chartkick'
 
 
-import {systemRu,systemEn,alumniEn,alumniRu,administratorsEn,administratorsRu} from "./i18n";           // import localization to front-end
+import {systemRu,systemEn,
+    alumniEn,alumniRu,administratorsEn,administratorsRu,
+    universityKz,universityRu,
+    roleAlumniEn,roleAlumniRu
+} from "./i18n";           // import localization to front-end
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -50,12 +54,16 @@ const messages={
     ru:{
         system:systemRu,
         alumni:alumniRu,
-        administrators:administratorsRu
+        administrators:administratorsRu,
+        university:universityRu,
+        roleAlumni:roleAlumniRu
     },
     en:{
         system:systemEn,
         alumni:alumniEn,
-        administrators:administratorsEn
+        administrators:administratorsEn,
+        university:universityKz,
+        roleAlumni:roleAlumniEn
     }
 };
 

@@ -1,12 +1,28 @@
 {
     "list":"Alumni list",
-    "found_number":"Number of found alumni:",
+    "found_number":"Found {n} alumni",
+    "profile":"profile",
     "create":"new alumni",
     "first_name":"first name",
     "last_name":"last name",
     "email":"email",
+    "select_graduation_year":"graduation year",
+    "select_program":"study program",
+    "graduation_year":"Graduation year",
+    "program":"program",
+    "department":"department",
+    "new_graduation_info":"add graduate information",
+    "socials":"Social networks",
+    "edit_socials":"edit socials",
     "modals":{
         "create_header":"Create new alumni"
+    },
+    "select_massaction":"Download alumni",
+    "export":{
+        "all":"export all",
+        "all_description":"export all alumni from database",
+        "selected":"export selected",
+        "selected_description":"export only selected alumni"
     },
     "add_graduation_info":"add NU graduation info"
 }

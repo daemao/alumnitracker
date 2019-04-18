@@ -1,9 +1,9 @@
 <template>
-    <modal ref="modal" :title="$t('company.modals.create_header')">
+    <modal ref="modal" :title="$t('system.company.create_modal_header')">
         <template slot="body">
             <form>
                 <div class="form-group row">
-                    <label class="col-3 col-form-label">{{$t("company.name")}}</label>
+                    <label class="col-3 col-form-label">{{$t("system.name")}}</label>
                     <div class="col-9">
                         <input type="text"  class="form-control" v-model="form.name" >
                     </div>

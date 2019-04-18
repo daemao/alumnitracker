@@ -29,8 +29,14 @@ class UniversityController extends Controller
         }
         if (count($errors)==0){
             $university = $request->get("id")? University::find($request->get("id")):new University();
-            $university->translateOrNew("en")->name=$request->get("names")["en"];
-            $university->translateOrNew("ru")->name=$request->get("names")["ru"];
+            $ru_name=trim($request->get("names")["ru"]);
+            $en_name=trim($request->get("names")["en"]);
+            if($ru_name!="" ){
+                $university->translateOrNew("ru")->name=$ru_name;
+            }
+            if($en_name !=""){
+                $university->translateOrNew("en")->name=$en_name;
+            }
             $university->country_id = $request->get("country_id");
             $university->save();
             if($request->get("departments")){
@@ -46,5 +52,8 @@ class UniversityController extends Controller
         $university = University::with(["country","departments","programs"])->find($id);
         $university->alumni_number = $university->alumni()->count();
         return response()->json($university,200);
+    }
+    public function remove(Request $request){
+        return University::where("id",$request->get("university_id"))->delete();
     }
 }

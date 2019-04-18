@@ -9,7 +9,7 @@
                 <button class="btn btn-primary btn-sm float-right" @click="$refs.new_admin.show()">{{$t("administrators.create")}} </button>
             </div>
             <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
-                {{$t('administrators.found_number')}}{{total}}
+                {{$tc('administrators.found_number',total)}}
             </div>
         </div>
         <table class="table">
@@ -22,12 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-            <router-link :key="'user'+user.id" v-for="(user,index) in users" :to="{name:'administrator',params:{id:user.id}}" tag="tr">
+            <tr  v-for="(user,index) in users" >
                 <td>{{index}}</td>
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>
                 <td>{{user.email}}</td>
-            </router-link>
+            </tr>
             </tbody>
         </table>
 

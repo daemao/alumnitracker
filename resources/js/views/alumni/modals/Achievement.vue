@@ -3,14 +3,14 @@
         <template slot="body">
             <div class="form">
                 <div class="form-group " >
-                    <label class="label">Achievement description</label>
+                    <label class="label">{{$t("alumni.achievement.description")}}</label>
                     <textarea class=" form-control" v-model="form.description"/>
                 </div>
             </div>
         </template>
         <template slot="footer">
             <div class="btn btn-secondary" @click = "hide">{{$t('system.cancel')}}</div>
-            <div class="btn btn-primary float-right" @click="createWorkExperience" >create achievement</div>
+            <div class="btn btn-primary float-right" @click="createWorkExperience" >{{$t("system.create")}}</div>
         </template>
     </modal>
 </template>

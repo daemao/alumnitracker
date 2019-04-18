@@ -3,15 +3,15 @@
         <div class="mb-3">
             <div class="">
                 <Form ref="form" v-on:update="getList" />
-                <div class="content-header h3">{{$t("company.list")}}</div>
+                <div class="content-header h3">{{$t("system.Companies")}}</div>
                 <input v-model="filterData.text" class="filter_text_input">
                 <button @click="getList" class="btn btn-primary btn-sm">{{$t("system.search")}}</button>
                 <div class="float-right">
-                    <button class="btn btn-primary btn-sm " @click="$refs.form.show()"> {{$t("company.create")}} </button>
+                    <button class="btn btn-primary btn-sm " @click="$refs.form.show()"> {{$t("system.create")}} </button>
                 </div>
             </div>
             <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
-                {{$t('companies.found_number')}}{{total}}
+                {{$tc('system.companies_found_number',total)}}
             </div>
         </div>
         <table class="table">
@@ -19,7 +19,7 @@
             <tr>
                 <th>
                 </th>
-                <th>{{$t("company.name")}}</th>
+                <th>{{$t("system.name")}}</th>
                 <th></th>
             </tr>
             </thead>

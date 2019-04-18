@@ -36,6 +36,9 @@ class Controller extends BaseController
     }
     //get the number of alumni graduate each year
     public function getAlumniTrend(){
-        return AlumniInfo::all();
+        $data=[];
+        $data["alumniTrend"] = AlumniInfo::all();
+        $data["alumni"] = User::with("alumni_info.university")->where("role_id",2)->get();
+        return $data;
     }
 }

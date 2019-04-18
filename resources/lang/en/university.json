@@ -1,0 +1,27 @@
+{
+    "programs":{
+        "bachelor":"Bachelor",
+        "masters":"Masters",
+        "phd":"Phd"
+    },
+    "name":"name",
+    "found_number":"Found {1} university |Found {n} universities",
+    "universities":"Universities",
+    "country":"Country",
+    "graduates_number":"Graduates number",
+    "Programs":"Programs",
+    "departments":"Departments",
+    "add_program":"New program",
+    "programs_available":"Available programs",
+    "department":{
+        "name":"Department name",
+        "alumni_number":"alumni",
+        "universities_number":"universities",
+        "add_department_to_system":"create new department",
+        "remove_modal_title":"Remove department"
+    },
+    "departments_number":"departments number",
+    "remove_header":"Removing university",
+    "remove_body":"Do you really want to remove university from the system?"
+
+}

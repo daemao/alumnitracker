@@ -4,8 +4,8 @@
             remove program
         </template>
         <template slot="footer">
-            <div class="btn btn-secondary">cancel</div>
-            <div class="btn btn-danger">apply</div>
+            <div class="btn btn-secondary">{{$t(system.cancel)}}</div>
+            <div class="btn btn-danger">{{$t(system.delete)}}</div>
         </template>
     </modal>
 </template>

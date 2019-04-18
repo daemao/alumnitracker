@@ -9,19 +9,19 @@
         </div>
         <div class="general_info">
             <div class="general_info-row">
-                <div class="general_info-key"> First name</div>
+                <div class="general_info-key"> {{$t("alumni.first_name")}}</div>
                 <div class="general_info-value">{{user.first_name}}</div>
             </div>
             <div class="general_info-row">
-                <div class="general_info-key">Last name</div>
+                <div class="general_info-key">{{$t("alumni.last_name")}}</div>
                 <div class="general_info-value">{{user.last_name}}</div>
             </div>
             <div class="general_info-row">
-                <div class="general_info-key">Email</div>
+                <div class="general_info-key">{{$t("alumni.email")}}</div>
                 <div class="general_info-value">{{user.email}}</div>
             </div>
             <div class="general_info-row">
-                <div class="general_info-key">Role</div>
+                <div class="general_info-key">{{$t("administrators.role")}}</div>
                 <div class="general_info-value">{{user.role.name}}</div>
             </div>
         </div>

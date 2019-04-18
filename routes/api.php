@@ -39,6 +39,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post("/alumni/save-achievement","AlumniController@createAchivement");
     Route::get("/alumni/{id}/followers","AlumniController@getFollowers");
     Route::get("/alumni/{id}/followings","AlumniController@getFollowings");
+    Route::get("/alumni/get-list-to-follow","AlumniController@getAvailableFollowers");
+    Route::post('/alumni/start-follow',"AlumniController@startFollow");
+
 
     Route::get("/alumni/{id}","AlumniController@item");
     Route::post("/alumni/export-spreadsheet","AlumniController@exportAlumniSpreadsheet");
@@ -49,6 +52,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get("/universities","UniversityController@items");
     Route::get("/university/{id}","UniversityController@item");
     Route::post("/university/save","UniversityController@save");
+    Route::post("/university-remove","UniversityController@remove");
+
     //department related
     Route::get("/departments","DepartmentController@items");
     Route::get("/department/{id}","DepartmentController@item");

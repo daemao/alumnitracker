@@ -1,63 +1,63 @@
 <template>
-    <modal ref="modal" title="New graduate information">
+    <modal ref="modal" :title="$tc('alumni.new_graduation_info')">
         <template slot="body">
             <div class="form">
                 <div class="form-group row" v-if="$root.user.isAlumni">
-                    <label class="col-4">University</label>
+                    <label class="col-4">{{$t("system.university")}}</label>
                     <select class="col-8 form-control" v-model="university_id" >
                         <option :value="university.id" v-for="university in $common.data.universities" >{{university.name}}</option>
-                        <option value="other">other</option>
+                        <option value="other">{{$tc("system.other")}}</option>
                     </select>
                 </div>
                 <template v-if="university_id =='other'">
                     <div class="form-group row" >
-                        <label class="col-4">University name:</label>
+                        <label class="col-4">{{$t("system.university.name")}}</label>
                         <input class="col-8 form-control" v-model="new_university.name"/>
                     </div>
                     <div class="form-group row">
-                        <label class="col-4">Country</label>
+                        <label class="col-4">{{$t("system.country")}}</label>
                         <select class="col-8 form-control" v-model="new_university.country_id">
                             <option :value="country.id " v-for="country in $common.data.countries">{{country.name}}</option>
-                            <option value="other">other</option>
+                            <option value="other">{{$tc("system.other")}}</option>
                         </select>
                     </div>
                     <div class="form-group row" v-if="university_id =='other' && new_university.country_id =='other'" >
-                        <label class="col-4">Country name:</label>
+                        <label class="col-4">{{$t("system.country_name")}}</label>
                         <input class="col-8 form-control" v-model="new_country.name"/>
                     </div>
                 </template>
                 <div class="form-group row">
-                    <label class="col-4">Graduation year</label>
+                    <label class="col-4">{{$tc("alumni.graduation_year")}}</label>
                     <select  v-model="graduate_year" class="col-8 form-control select">
-                        <option value="" v-if="graduate_year =='' ">select graduation year</option>
+                        <option value="" v-if="graduate_year =='' ">{{$tc("alumni.select_graduation_year")}}</option>
                         <option v-for="year in $root.getAvailableGraduationYears()">{{year}}</option>
                     </select>
                 </div>
                 <div class="form-group row">
-                    <label class="col-4" >Program</label>
+                    <label class="col-4" >{{$tc("alumni.program")}}</label>
                     <select  v-model="program_id" class="col-8 form-control select">
-                        <option value="" v-if="program_id =='' ">select program</option>
+                        <option value="" v-if="program_id =='' ">{{$t("system.select")}}</option>
                         <option :value="program.id "v-for="program in $common.data.programs">{{program.name}}</option>
                     </select>
                 </div>
                 <div class="form-group row" v-if="program_id">
-                    <label class="col-4">Department</label>
+                    <label class="col-4">{{$t("alumni.department")}}</label>
                     <select  v-model="department_id" class="col-8 form-control select">
-                        <option value="" v-if="department_id ==''">select department</option>
+                        <option value="" v-if="department_id ==''">{{$t("system.select")}}</option>
                         <option :value="department.id"
                                 v-for="department in $common.data.departments">{{department.name}}</option>
                         <option value="other">other</option>
                     </select>
                 </div>
                 <div class="form-group row" v-if="department_id == 'other'">
-                    <label class="col-4">Your department:</label>
+                    <label class="col-4">{{$t("alumni.department_name")}}</label>
                     <input class="col-8 form-control" v-model="new_department"/>
                 </div>
             </div>
         </template>
         <template slot="footer">
             <div class="btn btn-secondary" @click = "hide">{{$t('system.cancel')}}</div>
-            <div class="btn btn-primary float-right" :class="{'disabled':!department_id }"@click="createGraduationInfo" >add alumni information</div>
+            <div class="btn btn-primary float-right" :class="{'disabled':!department_id }"@click="createGraduationInfo" >{{$t("system.create")}}</div>
         </template>
     </modal>
 </template>

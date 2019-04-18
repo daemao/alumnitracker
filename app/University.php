@@ -18,8 +18,23 @@ class University extends Model
         ];
     }
     public function scopeFilter($query, $filters){
+        if (isset($filters['text'])) {
+            $search_text = $filters['text'];
+            $query->whereTranslationLike("name","%".$search_text."%");
+            $query->orWhereHas("country",function ($q) use($search_text){
+                $q->whereTranslationLike("name","%".$search_text."%");
+            });
+        }
         return $query;
     }
+    public function toArray()
+    {
+        $array = parent::toArray();
+        $array["alumni_number"] = $this->alumni_number;
+        $array["departments_number"] = $this->departments_number;
+        return $array;
+    }
+
     public  function  departments(){
         return $this->belongsToMany("App\Department","university_program_departments")
             ->withPivot("program_id");
@@ -32,5 +47,12 @@ class University extends Model
     }
     public function alumni(){
         return $this->hasMany("App\AlumniInfo");
+    }
+
+    public function getAlumniNumberAttribute(){
+        return $this->alumni()->count();
+    }
+    public function getDepartmentsNumberAttribute(){
+        return $this->departments()->count();
     }
 }

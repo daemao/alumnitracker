@@ -1,7 +1,8 @@
 {
     "list":"Administrators list",
-    "found_number":"Number of found administrators:",
+    "found_number":"Found {1} administrator |Found {n} administrators",
     "create":"new administrator",
+    "role":"role",
     "modals":{
         "create_header":"Create new administrator"
     }

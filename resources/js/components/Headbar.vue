@@ -5,13 +5,14 @@
 </style>
 <template>
     <nav class="navbar fixed-top navbar-dark bg-primary ">
-            <router-link class="navbar-brand" :to="{ name: 'dashboard' }">Alumnitracker</router-link>
+            <router-link class="navbar-brand" :to="{ name: 'dashboard' }" v-if="$root.user.data.role_id==1">Alumnitracker</router-link>
+            <router-link class="navbar-brand" :to="{ path: '/profile/'+$root.user.data.id }" v-if="$root.user.data.role_id==2">Alumnitracker</router-link>
+
             <div class="headbar-left">
                 <div style="margin-right:40px;" class="nav-item">
                     <span :class="{'disabled':$i18n.locale==='en','muted':$i18n.locale==='en','allowed':$i18n.locale!=='en'}" @click="changeLocale('en')">English</span>
                     <span :class="{'disabled':$i18n.locale==='ru','muted':$i18n.locale==='ru','allowed':$i18n.locale!=='ru'}" @click="changeLocale('ru')" class="pl-4">Русский</span>
-                    <span  @click="logout"  class="mr-3 ml-3 allowed">Logout </span>
-
+                    <span  @click="logout"  class="mr-3 ml-3 allowed">{{$t("system.logout")}} </span>
                 </div>
             </div>
     </nav>

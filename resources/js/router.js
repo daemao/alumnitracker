@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router';
 
 import Login from './views/common/Login.vue';
-import About from './views/common/About.vue';
 import Dashboard from  './views/common/Dashboard.vue';
 
 import AlumniList from "./views/alumni/List.vue";
@@ -28,12 +27,12 @@ export default new VueRouter({
     base: __dirname,
     routes: [
         {
-            name:"about",
+            name:"login",
             path:"/",
-            component:About,
+            component:Login,
             props:false,
             meta:{
-                title:"About",
+                title:"Login",
                 forVisitors:true,
             }
         },

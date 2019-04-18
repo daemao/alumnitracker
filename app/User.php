@@ -22,6 +22,12 @@ class User extends Authenticatable
                 $query->orWhere('last_name', 'like', '%' . $search_text . '%');
             });
         }
+        if(isset($filters["current_user"])){
+            $user_id = $filters["current_user"];
+            $query->whereDoesntHave ("followings",function ($q) use($user_id){
+                $q->where("user_id",$user_id);
+            });
+        }
         return $query;
     }
     public static function rules($id = 0)
@@ -36,6 +42,7 @@ class User extends Authenticatable
     public function toArray()
     {
         $array = parent::toArray();
+
         return $array;
     }
     public function avatar(){
@@ -75,7 +82,7 @@ class User extends Authenticatable
         return  $this->belongsToMany("App\User","friends","friend_id","user_id");
     }
     public function followings(){
-        return  $this->belongsToMany("App\User","friends","user_id","user_id");
+        return  $this->belongsToMany("App\User","friends","user_id","friend_id");
     }
 
     function inputFriendRequest(){

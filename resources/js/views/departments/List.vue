@@ -1,29 +1,29 @@
 <template>
     <div>
-        <modal :title="$tc('departments.remove_modal_title')" ref="removeModal">
+        <modal :title="$tc('university.department.remove_modal_title')" ref="removeModal">
             <template slot="body">
                 <div>
-                    remove {{toremove.name}}
+                    {{$t("system.remove")}} {{toremove.name}}?
                 </div>
             </template>
             <template slot="footer">
                     <button class="btn btn-secondary" @click= "toremove='';$refs.removeModal.hide()">
-                        Cancel
+                        {{$t("system.cancel")}}
                     </button>
                     <button class="btn btn-primary" @click="remove()">
-                        Delete
+                        {{$t("system.remove")}}
                     </button>
             </template>
         </modal>
         <div>
-            <div class="content-header h3">University departments</div>
+            <div class="content-header h3">{{$t("university.departments")}}</div>
             <input v-model="filterData.text" class="filter_text_input"/>
-            <button  class="btn btn-primary btn-sm" @click="getList">Search</button>
+            <button  class="btn btn-primary btn-sm" @click="getList">{{$t("system.search")}}</button>
             <div class="btn btn-primary btn-sm float-right" @click="$refs.modal.show()">
-                Add department
+                {{$t("system.create")}}
             </div>
             <div class="row font-weight-light" style="font-size:0.7rem;margin-left: 3px">
-                Found number of departments: {{total}}
+                {{$tc("system.found_departments_number",total)}}
             </div>
             <Form ref="modal" v-on:update="getList"/>
         </div>
@@ -31,13 +31,13 @@
             <thead>
                 <tr>
                     <th class="col-9">
-                        {{$t("department.name")}}
+                        {{$t("university.department.name")}}
                     </th>
                     <th class="col-1">
-                        {{$t("department.alumni_number")}}
+                        {{$t("university.department.alumni_number")}}
                     </th>
                     <th class="col-1">
-                        {{$t("department.universities_number")}}
+                        {{$t("university.department.universities_number")}}
                     </th>
                     <th class="col-1">
 
@@ -50,8 +50,8 @@
                     <td>{{department.alumnis.length}}</td>
                     <td>{{department.universities.length}}</td>
                     <td class="btn-group">
-                        <button class="btn  btn-sm col-6 edit_button" @click="$refs.modal.show(department)"/>
-                        <button class="btn btn-danger btn-sm col-6 " @click="toremove=department;$refs.removeModal.show()"> Delete</button>
+                        <button class="btn btn-sm btn-warning" @click="$refs.modal.show(department)">{{$t("system.edit")}}</button>
+                        <button class="btn btn-danger btn-sm col-6 " @click="toremove=department;$refs.removeModal.show()"> {{$t("system.remove")}}</button>
                     </td>
                 </tr>
             </tbody>
