@@ -1851,6 +1851,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
@@ -2306,6 +2307,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2396,6 +2399,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id"],
@@ -2413,6 +2451,12 @@ __webpack_require__.r(__webpack_exports__);
       Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, "/api/alumni/" + this.id, {}, function (res) {
         _this.user = res.data;
       }, function (err) {});
+    },
+    getDate: function getDate(time) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(time, "YYYY-MM-DD hh-mm-ss").format("MMMM Do YYYY");
+    },
+    getTime: function getTime(time) {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(time, "YYYY-MM-DD hh-mm-ss").format("hh:mm");
     },
     sendFile: function sendFile(e) {
       var _this = this;
@@ -2490,7 +2534,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_Graduate_information_info_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/Graduate_information_info.vue */ "./resources/js/views/alumni/modals/Graduate_information_info.vue");
 /* harmony import */ var _modals_Massaction_select_alumni_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/Massaction_select_alumni.vue */ "./resources/js/views/alumni/modals/Massaction_select_alumni.vue");
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
-//
 //
 //
 //
@@ -2986,6 +3029,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3031,6 +3076,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["profile"],
@@ -3050,7 +3097,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
 //
 //
 //
@@ -3059,23 +3105,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["profile"],
   data: function data() {
     return {
-      followers: []
+      followers: this.profile.followers
     };
   },
-  methods: {
-    getList: function getList() {
-      var _this = this;
-
-      Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, "/api/alumni/" + _this.profile.id + "/followers", {}, function () {}, function () {});
+  watch: {
+    profile: {
+      handler: function handler(val, oldVal) {
+        if (val !== oldVal) {
+          this.followers = this.profile.followers;
+        }
+      },
+      deep: true
     }
-  },
-  mounted: function mounted() {
-    this.getList();
   }
 });
 
@@ -3090,7 +3151,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var _modals_search_alumni_modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modals/search_alumni_modal.vue */ "./resources/js/views/alumni_page/modals/search_alumni_modal.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3104,42 +3182,23 @@ __webpack_require__.r(__webpack_exports__);
   props: ["profile"],
   data: function data() {
     return {
-      followings: []
+      followings: this.profile.followings
     };
   },
-  methods: {
-    getList: function getList() {
-      var _this = this;
-
-      Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, "/api/alumni/" + _this.profile.id + "/followings", {}, function () {}, function () {});
-    }
+  components: {
+    SearchAlumniModal: _modals_search_alumni_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {
-    this.getList();
+  watch: {
+    profile: {
+      handler: function handler(val, oldVal) {
+        if (val !== oldVal) {
+          this.followings = this.profile.followings;
+        }
+      },
+      deep: true
+    }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/components/news.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -3166,11 +3225,115 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["profile"],
   components: {
     WEForm: _alumni_modals_Work_experience_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+/* harmony import */ var bootstrap_vue_es_components_tabs_tab__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue/es/components/tabs/tab */ "./node_modules/bootstrap-vue/es/components/tabs/tab.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Tab: bootstrap_vue_es_components_tabs_tab__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: ["user_id"],
+  data: function data() {
+    return {
+      form: {
+        current_user: this.user_id,
+        text: ""
+      },
+      selected_users: [],
+      users: []
+    };
+  },
+  methods: {
+    show: function show() {
+      this.$refs.modal.show();
+    },
+    hide: function hide() {
+      this.$refs.modal.hide();
+    },
+    addFriends: function addFriends() {
+      var _this = this;
+
+      var _newForm = {
+        users: _this.selected_users
+      };
+      Object(_api__WEBPACK_IMPORTED_MODULE_0__["post"])(_this, "/api/alumni/start-follow", _newForm, function (res) {
+        _this.$emit("update");
+
+        _this.hide();
+      }, function () {});
+    },
+    getAlumniList: function getAlumniList() {
+      var _this = this;
+
+      Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, "/api/alumni/get-list-to-follow", _this.form, function (res) {
+        _this.users = res.data;
+      }, function () {});
+    }
   }
 });
 
@@ -3187,12 +3350,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_achievements_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/achievements.vue */ "./resources/js/views/alumni_page/components/achievements.vue");
 /* harmony import */ var _components_education_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/education.vue */ "./resources/js/views/alumni_page/components/education.vue");
-/* harmony import */ var _components_news_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/news.vue */ "./resources/js/views/alumni_page/components/news.vue");
-/* harmony import */ var _components_followers_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/followers.vue */ "./resources/js/views/alumni_page/components/followers.vue");
-/* harmony import */ var _components_followings_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/followings.vue */ "./resources/js/views/alumni_page/components/followings.vue");
-/* harmony import */ var _components_work_experience_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/work_experience.vue */ "./resources/js/views/alumni_page/components/work_experience.vue");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
-/* harmony import */ var bootstrap_vue_es_components_badge_badge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! bootstrap-vue/es/components/badge/badge */ "./node_modules/bootstrap-vue/es/components/badge/badge.js");
+/* harmony import */ var _components_followers_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/followers.vue */ "./resources/js/views/alumni_page/components/followers.vue");
+/* harmony import */ var _components_followings_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/followings.vue */ "./resources/js/views/alumni_page/components/followings.vue");
+/* harmony import */ var _components_work_experience_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/work_experience.vue */ "./resources/js/views/alumni_page/components/work_experience.vue");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
+/* harmony import */ var bootstrap_vue_es_components_badge_badge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bootstrap-vue/es/components/badge/badge */ "./node_modules/bootstrap-vue/es/components/badge/badge.js");
 //
 //
 //
@@ -3246,7 +3408,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
 
 
 
@@ -3266,19 +3429,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    Badge: bootstrap_vue_es_components_badge_badge__WEBPACK_IMPORTED_MODULE_7__["default"],
+    Badge: bootstrap_vue_es_components_badge_badge__WEBPACK_IMPORTED_MODULE_6__["default"],
     Achievements: _components_achievements_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Education: _components_education_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    News: _components_news_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    WorkExperience: _components_work_experience_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Followers: _components_followers_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Followings: _components_followings_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    WorkExperience: _components_work_experience_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Followers: _components_followers_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Followings: _components_followings_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
     getItem: function getItem() {
       var _this = this;
 
-      Object(_api__WEBPACK_IMPORTED_MODULE_6__["get"])(_this, "/api/alumni/" + this.id, {}, function (res) {
+      Object(_api__WEBPACK_IMPORTED_MODULE_5__["get"])(_this, "/api/alumni/" + this.id, {}, function (res) {
         _this.user = res.data;
       }, function (err) {});
     },
@@ -3288,33 +3450,25 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append('photo', e.target.files[0]);
       formData.append("id", _this.user.id);
-      Object(_api__WEBPACK_IMPORTED_MODULE_6__["post"])(_this, "/api/update-user-photo", formData, function (res) {
+      Object(_api__WEBPACK_IMPORTED_MODULE_5__["post"])(_this, "/api/update-user-photo", formData, function (res) {
         _this.user = res.data;
       }, function (err) {});
     }
   },
   created: function created() {
     this.getItem();
+  },
+  watch: {
+    id: {
+      handler: function handler(val, oldVal) {
+        if (val !== oldVal) {
+          this.getItem();
+        }
+      },
+      deep: true
+    }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/common/About.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/common/About.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -3355,12 +3509,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       alumniTrend: {},
       loading: true,
+      alumni: [],
       availableYears: ""
     };
   },
@@ -3369,7 +3532,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, "/api/dashboard/alumni-trend", {}, function (res) {
-        _this.alumniTrend = res.data;
+        _this.alumniTrend = res.data.alumniTrend;
+        _this.alumni = res.data.alumni;
         _this.loading = false;
       }, function () {});
     }
@@ -3389,30 +3553,28 @@ __webpack_require__.r(__webpack_exports__);
       });
       return data;
     },
-    gpaDivisions: function gpaDivisions() {
-      var data = [["4.00", 0], ["3.00-3.99", 0], ["2.00-2.99", 0], ["1.00-1.99", 0], ["0.00-0.99", 0]];
-      this.alumniTrend.map(function (alumni) {
-        data[4 - Math.floor(alumni.cumulative_gpa)][1] += 1;
-      });
-      return data;
+    totalGrads: function totalGrads() {
+      return this.alumni.length;
     },
-    AlumniPerSchool: function AlumniPerSchool() {
-      var _this2 = this;
-
-      var data = this.$common.data.nu_departments.map(function (dep) {
-        return [dep.id, 0];
-      });
-      this.alumniTrend.map(function (alumni) {
-        data.forEach(function (el) {
-          if (el[0] == alumni.department_id) el[1] += 1;
-        });
-      });
-      data.forEach(function (el) {
-        _this2.$common.data.nu_departments.map(function (dep) {
-          if (dep.id == el[0]) el[0] = dep.name;
-        });
-      });
-      return data;
+    totalGradsWithoutAlumniInformation: function totalGradsWithoutAlumniInformation() {
+      return this.alumni.filter(function (x) {
+        return !x.alumni_info;
+      }).length;
+    },
+    totalWorking: function totalWorking() {
+      return this.alumni.filter(function (x) {
+        return x.status_id == 2;
+      }).length;
+    },
+    totalStudying: function totalStudying() {
+      return this.alumni.filter(function (x) {
+        return x.status_id == 1;
+      }).length;
+    },
+    totalNoWorkInformation: function totalNoWorkInformation() {
+      return this.alumni.filter(function (x) {
+        return x.status_id == 0;
+      }).length;
     }
   }
 });
@@ -3737,7 +3899,9 @@ __webpack_require__.r(__webpack_exports__);
 
       Object(_api__WEBPACK_IMPORTED_MODULE_0__["post"])(_this, "/api/country/save", {
         translations: this.translations
-      }, function () {}, function () {});
+      }, function (res) {
+        _this.$emit("update");
+      }, function () {});
     },
     newTranslation: function newTranslation() {
       if (this.translations.length === 0) {
@@ -4160,6 +4324,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     show: function show() {
+      var university = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      if (university) this.form = university;
       this.$refs.modal.show();
     },
     hide: function hide() {
@@ -4173,7 +4339,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       Object(_api__WEBPACK_IMPORTED_MODULE_0__["post"])(_this, "/api/university/save", _this.form, function (res) {
-        console.log(res);
+        _this.$emit("updated");
+
+        _this.hide();
       }, function (err) {});
     }
   }
@@ -4193,9 +4361,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
 /* harmony import */ var _modals_removeProgramWarning_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/removeProgramWarning.vue */ "./resources/js/views/university/modals/removeProgramWarning.vue");
 /* harmony import */ var _modals_addProgramToUniversity_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/addProgramToUniversity.vue */ "./resources/js/views/university/modals/addProgramToUniversity.vue");
-//
-//
-//
 //
 //
 //
@@ -4281,6 +4446,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../api */ "./resources/js/api.js");
 /* harmony import */ var _Form_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Form.vue */ "./resources/js/views/university/Form.vue");
+/* harmony import */ var _modals_RemoveModal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/RemoveModal.vue */ "./resources/js/views/university/modals/RemoveModal.vue");
 //
 //
 //
@@ -4320,11 +4486,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Modal: _Form_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Modal: _Form_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    RemoveModal: _modals_RemoveModal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -4336,7 +4523,8 @@ __webpack_require__.r(__webpack_exports__);
       scrollLoad: false,
       next_page_url: '/api/universities',
       base_url: '/api/universities',
-      total: ''
+      total: '',
+      toRemove: ""
     };
   },
   methods: {
@@ -4348,7 +4536,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.base_url = this.next_page_url ? this.next_page_url : null;
 
       if (this.base_url) {
-        Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, _this.base_url, {}, function (res) {
+        Object(_api__WEBPACK_IMPORTED_MODULE_0__["get"])(_this, _this.base_url, _this.filterData, function (res) {
           if (res.data.current_page === 1) {
             _this.universities = [];
           }
@@ -4362,6 +4550,53 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getList();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/university/modals/RemoveModal.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/university/modals/RemoveModal.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../api */ "./resources/js/api.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["id"],
+  methods: {
+    show: function show() {
+      this.$refs.modal.show();
+    },
+    hide: function hide() {
+      this.$refs.modal.hide();
+    },
+    remove: function remove() {
+      var _this = this;
+
+      Object(_api__WEBPACK_IMPORTED_MODULE_0__["post"])(_this, "/api/university-remove", {
+        university_id: _this.id
+      }, function (res) {
+        _this.hide();
+
+        _this.$emit("updated");
+      }, function () {});
+    }
   }
 });
 
@@ -4423,7 +4658,11 @@ __webpack_require__.r(__webpack_exports__);
         department_id: _this.department_id,
         selected_programs: _this.selected_programs
       };
-      Object(_api__WEBPACK_IMPORTED_MODULE_0__["post"])(_this, "/api/add-university-department", form, function (res) {}, function (err) {});
+      Object(_api__WEBPACK_IMPORTED_MODULE_0__["post"])(_this, "/api/add-university-department", form, function (res) {
+        _this.$emit("update");
+
+        _this.hide();
+      }, function (err) {});
     }
   }
 });
@@ -42095,25 +42334,6 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 // module
 exports.push([module.i, "\n.achievement[data-v-b8dbe926]{\n    background: #9f79e6;\n    border-radius: 20px ;\n    padding:20px;\n    margin-top:1vh;\n    margin-bottom:1vh;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css&":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.news[data-v-27494e9e]{\n    background: white;\n    width: 80vh;\n    font-size: 20px;\n}\n.news p1[data-v-27494e9e]{\n    font-style: italic;\n}\n.new_body[data-v-27494e9e]{}\n", ""]);
 
 // exports
 
@@ -92260,36 +92480,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/work_experience.vue?vue&type=style&index=0&id=4c8f0d46&scoped=true&lang=css&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/components/work_experience.vue?vue&type=style&index=0&id=4c8f0d46&scoped=true&lang=css& ***!
@@ -94891,11 +95081,27 @@ var render = function() {
     "nav",
     { staticClass: "navbar fixed-top navbar-dark bg-primary " },
     [
-      _c(
-        "router-link",
-        { staticClass: "navbar-brand", attrs: { to: { name: "dashboard" } } },
-        [_vm._v("Alumnitracker")]
-      ),
+      _vm.$root.user.data.role_id == 1
+        ? _c(
+            "router-link",
+            {
+              staticClass: "navbar-brand",
+              attrs: { to: { name: "dashboard" } }
+            },
+            [_vm._v("Alumnitracker")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.$root.user.data.role_id == 2
+        ? _c(
+            "router-link",
+            {
+              staticClass: "navbar-brand",
+              attrs: { to: { path: "/profile/" + _vm.$root.user.data.id } }
+            },
+            [_vm._v("Alumnitracker")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "headbar-left" }, [
         _c(
@@ -94940,7 +95146,7 @@ var render = function() {
             _c(
               "span",
               { staticClass: "mr-3 ml-3 allowed", on: { click: _vm.logout } },
-              [_vm._v("Logout ")]
+              [_vm._v(_vm._s(_vm.$t("system.logout")) + " ")]
             )
           ]
         )
@@ -95105,7 +95311,7 @@ var render = function() {
             },
             attrs: { to: { path: "/companies" } }
           },
-          [_vm._v(_vm._s(_vm.$t("system.companies")))]
+          [_vm._v(_vm._s(_vm.$t("system.Companies")))]
         )
       ],
       1
@@ -95322,7 +95528,7 @@ var render = function() {
         _c("div", { staticClass: "general_info" }, [
           _c("div", { staticClass: "general_info-row" }, [
             _c("div", { staticClass: "general_info-key" }, [
-              _vm._v(" First name")
+              _vm._v(" " + _vm._s(_vm.$t("alumni.first_name")))
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "general_info-value" }, [
@@ -95332,7 +95538,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "general_info-row" }, [
             _c("div", { staticClass: "general_info-key" }, [
-              _vm._v("Last name")
+              _vm._v(_vm._s(_vm.$t("alumni.last_name")))
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "general_info-value" }, [
@@ -95341,7 +95547,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "general_info-row" }, [
-            _c("div", { staticClass: "general_info-key" }, [_vm._v("Email")]),
+            _c("div", { staticClass: "general_info-key" }, [
+              _vm._v(_vm._s(_vm.$t("alumni.email")))
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "general_info-value" }, [
               _vm._v(_vm._s(_vm.user.email))
@@ -95349,7 +95557,9 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "general_info-row" }, [
-            _c("div", { staticClass: "general_info-key" }, [_vm._v("Role")]),
+            _c("div", { staticClass: "general_info-key" }, [
+              _vm._v(_vm._s(_vm.$t("administrators.role")))
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "general_info-value" }, [
               _vm._v(_vm._s(_vm.user.role.name))
@@ -95448,8 +95658,7 @@ var render = function() {
         [
           _vm._v(
             "\n            " +
-              _vm._s(_vm.$t("administrators.found_number")) +
-              _vm._s(_vm.total) +
+              _vm._s(_vm.$tc("administrators.found_number", _vm.total)) +
               "\n        "
           )
         ]
@@ -95472,27 +95681,17 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.users, function(user, index) {
-          return _c(
-            "router-link",
-            {
-              key: "user" + user.id,
-              attrs: {
-                to: { name: "administrator", params: { id: user.id } },
-                tag: "tr"
-              }
-            },
-            [
-              _c("td", [_vm._v(_vm._s(index))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.first_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.last_name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.email))])
-            ]
-          )
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(index))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.first_name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.last_name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(user.email))])
+          ])
         }),
-        1
+        0
       )
     ])
   ])
@@ -95695,7 +95894,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(" upload image")]
+              [_vm._v(" " + _vm._s(_vm.$t("system.upload_image")))]
             )
           ],
           2
@@ -95707,30 +95906,70 @@ var render = function() {
               _vm._v(_vm._s(_vm.user.first_name + " " + _vm.user.last_name))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-6" }, [_vm._v("Email")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-6" }, [
-                _vm._v(_vm._s(_vm.user.email))
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "h5" }, [_vm._v("Social networks")]),
-            _vm._v(" "),
             _c(
               "div",
-              {
-                staticClass: "btn btn-sm btn-warning",
-                on: {
-                  click: function($event) {
-                    _vm.edit_socials = true
-                  }
-                }
-              },
-              [_vm._v("edit")]
+              { staticClass: "row" },
+              [
+                _c("div", { staticClass: "col-6" }, [
+                  _vm._v(_vm._s(_vm.$t("alumni.email")))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6" }, [
+                  _vm._v(_vm._s(_vm.user.email))
+                ]),
+                _vm._v(" "),
+                _vm.user.status_id == 1
+                  ? [
+                      _c("div", { staticClass: "col-6" }, [
+                        _vm._v(_vm._s(_vm.$t("roleAlumni.workingAt")))
+                      ]),
+                      _c("div", { staticClass: "col-6" }, [
+                        _vm._v(
+                          " " + _vm._s(_vm.user.current_company.company.name)
+                        )
+                      ])
+                    ]
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.user.status_id == 2
+                  ? [
+                      _c("div", { staticClass: "col-6" }, [
+                        _vm._v(_vm._s(_vm.$t("roleAlumni.studyingAt")))
+                      ]),
+                      _c("div", { staticClass: "col-6" }, [
+                        _vm._v(
+                          " " +
+                            _vm._s(_vm.user.current_university.university.name)
+                        )
+                      ])
+                    ]
+                  : _vm._e()
+              ],
+              2
             ),
+            _vm._v(" "),
+            _c("div", { staticClass: "h4 mt-3 mb-2" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.$t("alumni.socials")) +
+                  "\n                "
+              ),
+              !_vm.edit_socials
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "btn btn-sm btn-primary float-right",
+                      staticStyle: { padding: "0.05rem 0.50rem" },
+                      on: {
+                        click: function($event) {
+                          _vm.edit_socials = true
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("alumni.edit_socials")))]
+                  )
+                : _vm._e()
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-6" }, [_vm._v("Facebook")]),
@@ -95765,7 +96004,7 @@ var render = function() {
                         }
                       }
                     })
-                  : _c("div", [_vm._v("not given")])
+                  : _c("div", [_vm._v(_vm._s(_vm.$t("system.not_given")))])
               ])
             ]),
             _vm._v(" "),
@@ -95792,6 +96031,7 @@ var render = function() {
                           expression: "user.socials_github"
                         }
                       ],
+                      staticClass: "form-control",
                       domProps: { value: _vm.user.socials_github },
                       on: {
                         input: function($event) {
@@ -95806,7 +96046,7 @@ var render = function() {
                         }
                       }
                     })
-                  : _c("div", [_vm._v("not given")])
+                  : _c("div", [_vm._v(_vm._s(_vm.$t("system.not_given")))])
               ])
             ]),
             _vm._v(" "),
@@ -95832,6 +96072,7 @@ var render = function() {
                           expression: "user.socials_vk"
                         }
                       ],
+                      staticClass: "form-control",
                       domProps: { value: _vm.user.socials_vk },
                       on: {
                         input: function($event) {
@@ -95842,7 +96083,9 @@ var render = function() {
                         }
                       }
                     })
-                  : _c("div", [_vm._v(" not given")])
+                  : _c("div", [
+                      _vm._v(" " + _vm._s(_vm.$t("system.not_given")))
+                    ])
               ])
             ]),
             _vm._v(" "),
@@ -95873,6 +96116,7 @@ var render = function() {
                           expression: "user.socials_twitter"
                         }
                       ],
+                      staticClass: "form-control",
                       domProps: { value: _vm.user.socials_twitter },
                       on: {
                         input: function($event) {
@@ -95887,7 +96131,9 @@ var render = function() {
                         }
                       }
                     })
-                  : _c("div", [_vm._v(" not given")])
+                  : _c("div", [
+                      _vm._v(" " + _vm._s(_vm.$t("system.not_given")))
+                    ])
               ])
             ]),
             _vm._v(" "),
@@ -95899,7 +96145,7 @@ var render = function() {
                       staticClass: "btn btn-block btn-primary",
                       on: { click: _vm.save }
                     },
-                    [_vm._v(" Save changes")]
+                    [_vm._v(" " + _vm._s(_vm.$t("system.update")))]
                   )
                 ])
               : _vm._e()
@@ -95910,55 +96156,132 @@ var render = function() {
             { staticClass: "container mt-5" },
             [
               _c("div", { staticClass: "h4 text-center" }, [
-                _vm._v("NU graduation information")
+                _vm._v(_vm._s(_vm.$t("roleAlumni.achievements")))
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.user.achievements, function(info) {
+                return _c("div", { staticClass: "card container mt-2" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.$t("system.date")) + ": ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.getDate(info.time)) + " ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.$t("system.time")) + ": ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.getTime(info.time)) + " ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "h5 text-center" }, [
+                    _vm._v(_vm._s(_vm.$t("roleAlumni.description")))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "h6" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(info.description) +
+                        "\n                "
+                    )
+                  ])
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "container mt-5" },
+            [
+              _c("div", { staticClass: "h4 text-center" }, [
+                _vm._v(_vm._s(_vm.$t("roleAlumni.education")))
               ]),
               _vm._v(" "),
               _vm._l(_vm.user.alumni_info, function(info) {
-                return info.university_id == 1
-                  ? _c("div", { staticClass: "card container mt-4" }, [
-                      _c(
-                        "div",
-                        { staticClass: "card-title h5 text-center mt-2" },
-                        [_vm._v(_vm._s(info.program.name) + " ")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-6" }, [
-                          _vm._v(" Graduation year")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-6" }, [
-                          _c("span", { staticClass: " float-right" }, [
-                            _vm._v(_vm._s(info.graduate_year))
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-6" }, [
-                          _vm._v("University ID")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-6 " }, [
-                          _c("span", { staticClass: "float-right" }, [
-                            _vm._v(_vm._s(info.id_in_university))
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-6" }, [
-                          _vm._v("Department")
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-6 " }, [
-                          _c("span", { staticClass: "float-right" }, [
-                            _vm._v(_vm._s(info.department.name))
-                          ])
-                        ])
+                return _c("div", { staticClass: "card container mt-2" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-title h5 text-center mt-2" },
+                    [
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.$tc("university.programs." + info.program.name)
+                          )
+                        )
+                      ]
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(" " + _vm._s(_vm.$t("alumni.graduation_year")))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _c("span", { staticClass: " float-right" }, [
+                        _vm._v(_vm._s(info.graduate_year))
                       ])
                     ])
-                  : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.$t("alumni.department")))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6 " }, [
+                      _c("span", { staticClass: "float-right" }, [
+                        _vm._v(_vm._s(info.department.name))
+                      ])
+                    ])
+                  ])
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "container mt-5" },
+            [
+              _c("div", { staticClass: "h4 text-center" }, [
+                _vm._v(_vm._s(_vm.$t("roleAlumni.workExperience")))
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.user.work_experience, function(info) {
+                return _c("div", { staticClass: "card container mt-2" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.$t("system.Company")) + ": ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(info.company.name) + " ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(_vm.$t("roleAlumni.position")) + ": ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-6" }, [
+                      _vm._v(_vm._s(info.position) + " ")
+                    ])
+                  ])
+                ])
               })
             ],
             2
@@ -95967,18 +96290,7 @@ var render = function() {
       ])
     : _c("div", [_vm._v("\n    Error\n")])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-6" }, [_vm._v("Phone")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [_vm._v("TODO")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -96014,13 +96326,15 @@ var render = function() {
               _c("div", { staticClass: "navbar-brand" }),
               _vm._v(" "),
               _c("form", { staticClass: "form-inline" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("span", { staticClass: "label" }, [
-                    _vm._v(
-                      "With selected " + _vm._s(_vm.selectedAlumni.length) + ":"
-                    )
-                  ]),
-                  _vm._v(" "),
+                _c("span", { staticClass: "label float-left" }, [
+                  _vm._v(
+                    _vm._s(
+                      _vm.$tc("system.with_selected", _vm.selectedAlumni.length)
+                    ) + " "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: " form-group" }, [
                   _c(
                     "select",
                     {
@@ -96032,7 +96346,7 @@ var render = function() {
                           expression: "selectedAlumniAction"
                         }
                       ],
-                      staticClass: "form-control",
+                      staticClass: "form-control-sm",
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -96051,11 +96365,7 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { value: "export" } }, [
-                        _vm._v("export excel")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "email" } }, [
-                        _vm._v("send email")
+                        _vm._v(_vm._s(_vm.$t("system.export_excel")))
                       ])
                     ]
                   )
@@ -96064,10 +96374,10 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "btn btn-primary ",
+                    staticClass: "btn btn-primary btn-sm",
                     on: { click: _vm.massaction }
                   },
-                  [_vm._v("Apply")]
+                  [_vm._v(_vm._s(_vm.$t("system.apply")))]
                 )
               ])
             ]
@@ -96155,8 +96465,7 @@ var render = function() {
           [
             _vm._v(
               "\n            " +
-                _vm._s(_vm.$t("alumni.found_number")) +
-                _vm._s(_vm.total) +
+                _vm._s(_vm.$tc("alumni.found_number", _vm.total)) +
                 "\n        "
             )
           ]
@@ -96295,7 +96604,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("profile")]
+                  [_vm._v(_vm._s(_vm.$t("alumni.profile")))]
                 )
               ])
             ])
@@ -96337,7 +96646,7 @@ var render = function() {
         _c("div", { staticClass: "form" }, [
           _c("div", { staticClass: "form-group " }, [
             _c("label", { staticClass: "label" }, [
-              _vm._v("Achievement description")
+              _vm._v(_vm._s(_vm.$t("alumni.achievement.description")))
             ]),
             _vm._v(" "),
             _c("textarea", {
@@ -96377,7 +96686,7 @@ var render = function() {
             staticClass: "btn btn-primary float-right",
             on: { click: _vm.createWorkExperience }
           },
-          [_vm._v("create achievement")]
+          [_vm._v(_vm._s(_vm.$t("system.create")))]
         )
       ])
     ],
@@ -96408,7 +96717,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "modal",
-    { ref: "modal", attrs: { title: "New graduate information" } },
+    { ref: "modal", attrs: { title: _vm.$tc("alumni.new_graduation_info") } },
     [
       _c("template", { slot: "body" }, [
         _c(
@@ -96417,7 +96726,9 @@ var render = function() {
           [
             _vm.$root.user.isAlumni
               ? _c("div", { staticClass: "form-group row" }, [
-                  _c("label", { staticClass: "col-4" }, [_vm._v("University")]),
+                  _c("label", { staticClass: "col-4" }, [
+                    _vm._v(_vm._s(_vm.$t("system.university")))
+                  ]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -96459,7 +96770,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "other" } }, [
-                        _vm._v("other")
+                        _vm._v(_vm._s(_vm.$tc("system.other")))
                       ])
                     ],
                     2
@@ -96471,7 +96782,7 @@ var render = function() {
               ? [
                   _c("div", { staticClass: "form-group row" }, [
                     _c("label", { staticClass: "col-4" }, [
-                      _vm._v("University name:")
+                      _vm._v(_vm._s(_vm.$t("system.university.name")))
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -96501,7 +96812,9 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group row" }, [
-                    _c("label", { staticClass: "col-4" }, [_vm._v("Country")]),
+                    _c("label", { staticClass: "col-4" }, [
+                      _vm._v(_vm._s(_vm.$t("system.country")))
+                    ]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -96545,7 +96858,7 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "other" } }, [
-                          _vm._v("other")
+                          _vm._v(_vm._s(_vm.$tc("system.other")))
                         ])
                       ],
                       2
@@ -96556,7 +96869,7 @@ var render = function() {
                   _vm.new_university.country_id == "other"
                     ? _c("div", { staticClass: "form-group row" }, [
                         _c("label", { staticClass: "col-4" }, [
-                          _vm._v("Country name:")
+                          _vm._v(_vm._s(_vm.$t("system.country_name")))
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -96590,7 +96903,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "form-group row" }, [
               _c("label", { staticClass: "col-4" }, [
-                _vm._v("Graduation year")
+                _vm._v(_vm._s(_vm.$tc("alumni.graduation_year")))
               ]),
               _vm._v(" "),
               _c(
@@ -96624,7 +96937,7 @@ var render = function() {
                 [
                   _vm.graduate_year == ""
                     ? _c("option", { attrs: { value: "" } }, [
-                        _vm._v("select graduation year")
+                        _vm._v(_vm._s(_vm.$tc("alumni.select_graduation_year")))
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -96639,7 +96952,9 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group row" }, [
-              _c("label", { staticClass: "col-4" }, [_vm._v("Program")]),
+              _c("label", { staticClass: "col-4" }, [
+                _vm._v(_vm._s(_vm.$tc("alumni.program")))
+              ]),
               _vm._v(" "),
               _c(
                 "select",
@@ -96672,7 +96987,7 @@ var render = function() {
                 [
                   _vm.program_id == ""
                     ? _c("option", { attrs: { value: "" } }, [
-                        _vm._v("select program")
+                        _vm._v(_vm._s(_vm.$t("system.select")))
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -96688,7 +97003,9 @@ var render = function() {
             _vm._v(" "),
             _vm.program_id
               ? _c("div", { staticClass: "form-group row" }, [
-                  _c("label", { staticClass: "col-4" }, [_vm._v("Department")]),
+                  _c("label", { staticClass: "col-4" }, [
+                    _vm._v(_vm._s(_vm.$t("alumni.department")))
+                  ]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -96721,7 +97038,7 @@ var render = function() {
                     [
                       _vm.department_id == ""
                         ? _c("option", { attrs: { value: "" } }, [
-                            _vm._v("select department")
+                            _vm._v(_vm._s(_vm.$t("system.select")))
                           ])
                         : _vm._e(),
                       _vm._v(" "),
@@ -96747,7 +97064,7 @@ var render = function() {
             _vm.department_id == "other"
               ? _c("div", { staticClass: "form-group row" }, [
                   _c("label", { staticClass: "col-4" }, [
-                    _vm._v("Your department:")
+                    _vm._v(_vm._s(_vm.$t("alumni.department_name")))
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -96791,7 +97108,7 @@ var render = function() {
             class: { disabled: !_vm.department_id },
             on: { click: _vm.createGraduationInfo }
           },
-          [_vm._v("add alumni information")]
+          [_vm._v(_vm._s(_vm.$t("system.create")))]
         )
       ])
     ],
@@ -96830,11 +97147,11 @@ var render = function() {
             _c("div", { staticClass: "col-6 card" }, [
               _c("div", { staticClass: "card-body" }, [
                 _c("div", { staticClass: "card-title" }, [
-                  _vm._v("all alumni")
+                  _vm._v(_vm._s(_vm.$tc("alumni.export.all")))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
-                  _vm._v("Select all alumni that are in the database")
+                  _vm._v(_vm._s(_vm.$tc("alumni.export.all_description")))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-footer" }, [
@@ -96848,7 +97165,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Select")]
+                    [_vm._v(_vm._s(_vm.$t("system.select")))]
                   )
                 ])
               ])
@@ -96857,11 +97174,11 @@ var render = function() {
             _c("div", { staticClass: "col-6 card" }, [
               _c("div", { staticClass: "card-body" }, [
                 _c("div", { staticClass: "card-title" }, [
-                  _vm._v("only loaded alumni")
+                  _vm._v(_vm._s(_vm.$tc("alumni.export.selected")))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [
-                  _vm._v("Select only alumni that loaded to the list")
+                  _vm._v(_vm._s(_vm.$tc("alumni.export.selected_description")))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-footer" }, [
@@ -96875,7 +97192,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Select")]
+                    [_vm._v(_vm._s(_vm.$t("system.select")))]
                   )
                 ])
               ])
@@ -97071,42 +97388,61 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("AchievementForm", { ref: "ach" }),
+      _c("AchievementForm", {
+        ref: "ach",
+        on: {
+          update: function($event) {
+            _vm.$emit("update")
+          }
+        }
+      }),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "h1 m-2", staticStyle: { "text-align": "center" } },
         [
-          _vm._v("\n        Achievements\n        "),
-          _c(
-            "span",
-            {
-              staticClass: "btn btn-primary btn-sm",
-              on: {
-                click: function($event) {
-                  _vm.$refs.ach.show(_vm.profile.id)
-                }
-              }
-            },
-            [_vm._v("new achievement")]
-          )
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.$t("roleAlumni.achievements")) +
+              "\n        "
+          ),
+          _vm.profile.id == _vm.$root.user.data.id
+            ? _c(
+                "span",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      _vm.$refs.ach.show(_vm.profile.id)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.$t("system.create")))]
+              )
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
       _vm._l(_vm.profile.achievements, function(info) {
         return _c("div", { staticClass: "achievement-container" }, [
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Date: ")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("system.date")) + ": ")
+            ]),
             _vm._v(_vm._s(_vm.getDate(info.time)))
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("span", { staticClass: "h6" }, [_vm._v("Time: ")]),
+            _c("span", { staticClass: "h6" }, [
+              _vm._v(_vm._s(_vm.$t("system.time")) + ": ")
+            ]),
             _vm._v(_vm._s(_vm.getTime(info.time)))
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Description:")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("roleAlumni.description")) + ":")
+            ]),
             _vm._v(_vm._s(info.description))
           ])
         ])
@@ -97140,25 +97476,36 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("GraduateinfoForm", { ref: "new_education" }),
+      _c("GraduateinfoForm", {
+        ref: "new_education",
+        on: {
+          update: function($event) {
+            _vm.$emit("update")
+          }
+        }
+      }),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "h1 m-2", staticStyle: { "text-align": "center" } },
         [
-          _vm._v("\n        Education\n        "),
-          _c(
-            "span",
-            {
-              staticClass: "btn btn-primary btn-sm",
-              on: {
-                click: function($event) {
-                  _vm.$refs.new_education.show(_vm.profile.id)
-                }
-              }
-            },
-            [_vm._v("add new education")]
-          )
+          _vm._v(
+            "\n        " + _vm._s(_vm.$t("roleAlumni.education")) + "\n        "
+          ),
+          _vm.$root.user.data.id == _vm.profile.id
+            ? _c(
+                "span",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      _vm.$refs.new_education.show(_vm.profile.id)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.$t("system.create")))]
+              )
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
@@ -97172,17 +97519,23 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Department:")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("roleAlumni.education")) + ":")
+            ]),
             _vm._v(_vm._s(info.department.name))
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Country:")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("university.department.name")) + ":")
+            ]),
             _vm._v(_vm._s(info.university.country.name))
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Graduation year:")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("alumni.graduation_year")) + ":")
+            ]),
             _vm._v(
               _vm._s(info.graduate_year ? info.graduate_year : "not provided")
             )
@@ -97215,22 +97568,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "div",
-        { staticClass: "h1 m-2", staticStyle: { "text-align": "center" } },
-        [_vm._v("\n        Followers\n    ")]
-      )
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "h1 m-2", staticStyle: { "text-align": "center" } },
+      [_vm._v("\n        " + _vm._s(_vm.$t("roleAlumni.followers")) + "\n    ")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("table", { staticClass: "table" }, [
+        _c("thead", [
+          _c("tr", [
+            _c("th", [_vm._v(_vm._s(_vm.$t("alumni.first_name")))]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(_vm.$t("alumni.last_name")))])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.followers, function(follower) {
+            return _c(
+              "tr",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.$router.push("/profile/" + follower.id)
+                  }
+                }
+              },
+              [
+                _c("td", [_vm._v(_vm._s(follower.first_name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(follower.last_name))])
+              ]
+            )
+          }),
+          0
+        )
+      ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97252,59 +97632,83 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
+  return _c(
+    "div",
+    [
+      _c("SearchAlumniModal", {
+        ref: "search",
+        attrs: { user_id: _vm.profile.id },
+        on: {
+          update: function($event) {
+            _vm.$emit("update")
+          }
+        }
+      }),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "h1 m-2", staticStyle: { "text-align": "center" } },
-        [_vm._v("\n        Followings\n    ")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=template&id=27494e9e&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/components/news.vue?vue&type=template&id=27494e9e&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "news" }, [
-        _c("p", { staticClass: "p1" }, [_vm._v("news 1")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "new_body" }, [_vm._v("news 1 body")])
+        [
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.$t("roleAlumni.followings")) +
+              "\n        "
+          ),
+          _vm.$root.user.data.id == _vm.profile.id
+            ? _c(
+                "div",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      _vm.$refs.search.show()
+                    }
+                  }
+                },
+                [_vm._v("Search")]
+              )
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "table-responsive" }, [
+        _c("table", { staticClass: "table" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", [_vm._v(_vm._s(_vm.$t("alumni.first_name")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$t("alumni.last_name")))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.followings, function(following) {
+              return _c(
+                "tr",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.$router.push("/profile/" + following.id)
+                    }
+                  }
+                },
+                [
+                  _c("td", [_vm._v(_vm._s(following.first_name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(following.last_name))])
+                ]
+              )
+            }),
+            0
+          )
+        ])
       ])
-    ])
-  }
-]
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97329,41 +97733,237 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("WEForm", { ref: "new_exp" }),
+      _c("WEForm", {
+        ref: "new_exp",
+        on: {
+          update: function($event) {
+            _vm.$emit("update")
+          }
+        }
+      }),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "h1 m-2", staticStyle: { "text-align": "center" } },
         [
-          _vm._v("\n        Work experience\n        "),
-          _c(
-            "span",
-            {
-              staticClass: "btn btn-primary btn-sm",
-              on: {
-                click: function($event) {
-                  _vm.$refs.new_exp.show(_vm.profile.id)
-                }
-              }
-            },
-            [_vm._v("add new work experience")]
-          )
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.$t("roleAlumni.workExperience")) +
+              "\n        "
+          ),
+          _vm.$root.user.data.id == _vm.profile.id
+            ? _c(
+                "span",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      _vm.$refs.new_exp.show(_vm.profile.id)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.$t("system.create")))]
+              )
+            : _vm._e()
         ]
       ),
       _vm._v(" "),
       _vm._l(_vm.profile.work_experience, function(info) {
         return _c("div", { staticClass: "we-container" }, [
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Company:")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("system.Company")) + ":")
+            ]),
             _vm._v(_vm._s(info.company.name))
           ]),
           _vm._v(" "),
           _c("div", [
-            _c("span", { staticClass: "h5" }, [_vm._v("Position:")]),
+            _c("span", { staticClass: "h5" }, [
+              _vm._v(_vm._s(_vm.$t("roleAlumni.position")) + ":")
+            ]),
             _vm._v(_vm._s(info.position))
           ])
         ])
       })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=template&id=618436b8&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=template&id=618436b8& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "modal",
+    { ref: "modal", attrs: { title: "add program" } },
+    [
+      _c("template", { slot: "body" }, [
+        _c("div", { staticClass: "form" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v(_vm._s(_vm.$t("system.search")))]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.text,
+                  expression: "form.text"
+                }
+              ],
+              staticClass: "form-control",
+              domProps: { value: _vm.form.text },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "text", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "btn btn-block btn-primary",
+              on: {
+                click: function($event) {
+                  _vm.getAlumniList()
+                }
+              }
+            },
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.$t("system.search")) +
+                  "\n            "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "table-responsive" }, [
+          _vm.users && _vm.users.length > 0
+            ? _c("table", { staticClass: " table" }, [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th"),
+                    _vm._v(" "),
+                    _c("th", [_vm._v(_vm._s(_vm.$t("alumni.first_name")))]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v(_vm._s(_vm.$t("alumni.last_name")))])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.users, function(user) {
+                    return _c("tr", [
+                      _c("td", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.selected_users,
+                              expression: "selected_users"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            value: user.id,
+                            checked: Array.isArray(_vm.selected_users)
+                              ? _vm._i(_vm.selected_users, user.id) > -1
+                              : _vm.selected_users
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.selected_users,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = user.id,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.selected_users = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selected_users = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.selected_users = $$c
+                              }
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(user.first_name) +
+                            "\n                    "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(user.last_name) +
+                            "\n                    "
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ])
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("template", { slot: "footer" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-secondary", on: { click: _vm.hide } },
+          [_vm._v(_vm._s(_vm.$t("system.cancel")))]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: {
+              disabled: !_vm.selected_users || _vm.selected_users.length == 0
+            },
+            on: { click: _vm.addFriends }
+          },
+          [_vm._v(_vm._s(_vm.$t("system.add")))]
+        )
+      ])
     ],
     2
   )
@@ -97406,7 +98006,8 @@ var render = function() {
             _vm.user.status_id == 1
               ? _c("h2", { staticClass: "name1" }, [
                   _vm._v(
-                    "working at " +
+                    _vm._s(_vm.$t("roleAlumni.workingAt")) +
+                      " " +
                       _vm._s(_vm.user.current_company.company.name)
                   )
                 ])
@@ -97415,7 +98016,8 @@ var render = function() {
             _vm.user.status_id == 2
               ? _c("h2", { staticClass: "name1" }, [
                   _vm._v(
-                    "studying at " +
+                    _vm._s(_vm.$t("roleAlumni.studyingAt")) +
+                      " " +
                       _vm._s(_vm.user.current_university.university.name)
                   )
                 ])
@@ -97486,18 +98088,20 @@ var render = function() {
                       : _vm._e()
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "upload_button",
-                      on: {
-                        click: function($event) {
-                          _vm.$refs.upload_image_button.click()
-                        }
-                      }
-                    },
-                    [_vm._v("Upload image")]
-                  )
+                  _vm.id == _vm.$root.user.data.id
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "upload_button",
+                          on: {
+                            click: function($event) {
+                              _vm.$refs.upload_image_button.click()
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.$t("roleAlumni.uploadImage")))]
+                      )
+                    : _vm._e()
                 ],
                 2
               )
@@ -97535,7 +98139,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Education")]
+                              [_vm._v(_vm._s(_vm.$t("roleAlumni.education")))]
                             )
                           ]
                         ),
@@ -97561,7 +98165,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Work experience")]
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.$t("roleAlumni.workExperience"))
+                                )
+                              ]
                             )
                           ]
                         ),
@@ -97585,7 +98193,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Achievements")]
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.$t("roleAlumni.achievements"))
+                                )
+                              ]
                             )
                           ]
                         ),
@@ -97610,13 +98222,21 @@ var render = function() {
                                 }
                               },
                               [
-                                _vm._v("Followers  "),
+                                _vm._v(
+                                  _vm._s(_vm.$t("roleAlumni.followers")) + "  "
+                                ),
                                 _c(
                                   "badge",
                                   { staticClass: "badge badge-light" },
                                   [
                                     _c("span", { staticClass: "h6" }, [
-                                      _vm._v(_vm._s(_vm.user.followers.length))
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.user.followers
+                                            ? _vm.user.followers.length
+                                            : 0
+                                        )
+                                      )
                                     ])
                                   ]
                                 )
@@ -97646,14 +98266,21 @@ var render = function() {
                                 }
                               },
                               [
-                                _vm._v("Followings  "),
+                                _vm._v(
+                                  _vm._s(_vm.$t("roleAlumni.followings")) + "  "
+                                ),
                                 _c(
                                   "badge",
                                   { staticClass: "badge badge-light" },
                                   [
                                     _c("span", { staticClass: "h6" }, [
                                       _vm._v(
-                                        " " + _vm._s(_vm.user.followings.length)
+                                        " " +
+                                          _vm._s(
+                                            _vm.user.followings
+                                              ? _vm.user.followings.length
+                                              : 0
+                                          )
                                       )
                                     ])
                                   ]
@@ -97668,25 +98295,68 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _vm.current_tab == "achievements"
-                    ? _c("Achievements", { attrs: { profile: _vm.user } })
+                    ? _c("Achievements", {
+                        attrs: { profile: _vm.user },
+                        on: {
+                          update: function($event) {
+                            _vm.getItem()
+                          }
+                        }
+                      })
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.current_tab == "education"
-                    ? _c("Education", { attrs: { profile: _vm.user } })
+                    ? _c("Education", {
+                        attrs: { profile: _vm.user },
+                        on: {
+                          update: function($event) {
+                            _vm.getItem()
+                          }
+                        }
+                      })
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.current_tab == "news" ? _c("News") : _vm._e(),
+                  _vm.current_tab == "news"
+                    ? _c("News", {
+                        on: {
+                          update: function($event) {
+                            _vm.getItem()
+                          }
+                        }
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.current_tab == "work_experience"
-                    ? _c("WorkExperience", { attrs: { profile: _vm.user } })
+                    ? _c("WorkExperience", {
+                        attrs: { profile: _vm.user },
+                        on: {
+                          update: function($event) {
+                            _vm.getItem()
+                          }
+                        }
+                      })
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.current_tab == "followers"
-                    ? _c("Followers", { attrs: { profile: _vm.user } })
+                    ? _c("Followers", {
+                        attrs: { profile: _vm.user },
+                        on: {
+                          update: function($event) {
+                            _vm.getItem()
+                          }
+                        }
+                      })
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.current_tab == "followings"
-                    ? _c("Followings", { attrs: { profile: _vm.user } })
+                    ? _c("Followings", {
+                        attrs: { profile: _vm.user },
+                        on: {
+                          update: function($event) {
+                            _vm.getItem()
+                          }
+                        }
+                      })
                     : _vm._e()
                 ],
                 1
@@ -97696,30 +98366,6 @@ var render = function() {
         ])
       ])
     : _vm._e()
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/common/About.vue?vue&type=template&id=79d61e48&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/common/About.vue?vue&type=template&id=79d61e48& ***!
-  \**********************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    There is an about page\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -97745,7 +98391,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return !_vm.loading && _vm.$common.data && _vm.$common.data.nu_departments
     ? _c("div", [
-        _vm._m(0),
+        _c("div", { staticClass: "mb-3" }, [
+          _c("div", { staticClass: "content-header h1" }, [
+            _vm._v(_vm._s(_vm.$tc("system.dashboard")))
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "container " }, [
           _c("div", { staticClass: "row justify-content-between" }, [
@@ -97754,15 +98404,15 @@ var render = function() {
               { staticClass: "col col-12 mb-4" },
               [
                 _c("div", { staticClass: "h4 text-center" }, [
-                  _vm._v("Number of alumni per year in total")
+                  _vm._v(_vm._s(_vm.$t("system.Dashboard.per_year_total")))
                 ]),
                 _vm._v(" "),
                 _c("line-chart", {
                   attrs: {
                     data: _vm.alumniPerYear,
                     min: "0",
-                    xtitle: "year",
-                    ytitle: "alumnis number"
+                    xtitle: _vm.$t("system.Dashboard.year"),
+                    ytitle: _vm.$t("university.graduates_number")
                   }
                 })
               ],
@@ -97771,44 +98421,69 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col col-5 mb-4" },
+              { staticClass: "col col-12 mb-4 bg-primary text-white" },
               [
-                _c("div", { staticClass: "h4 text-center" }, [
-                  _vm._v("Gpa groups")
+                _c("div", { staticClass: "h2 text-left" }, [
+                  _vm._v(
+                    " " + _vm._s(_vm.$t("system.Dashboard.total_users_number"))
+                  )
                 ]),
                 _vm._v(" "),
-                _c("bar-chart", { attrs: { data: _vm.gpaDivisions } })
-              ],
-              1
+                _c("div", { staticClass: "h1 text-left" }, [
+                  _vm._v(_vm._s(_vm.totalGrads))
+                ])
+              ]
             ),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col col-5 mb-4" },
+              { staticClass: "col col-3  mb-4 bg-success text-white" },
               [
-                _c("div", { staticClass: "h4 text-center" }, [
-                  _vm._v("Alumni per school in total")
+                _c("div", { staticClass: "h2 text-left" }, [
+                  _vm._v(_vm._s(_vm.$t("system.Dashboard.working_total")))
                 ]),
                 _vm._v(" "),
-                _c("bar-chart", { attrs: { data: _vm.AlumniPerSchool } })
-              ],
-              1
+                _c("div", { staticClass: "h1 text-left" }, [
+                  _vm._v(_vm._s(_vm.totalWorking))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col col-3  offset-1 mb-4 bg-warning text-white" },
+              [
+                _c("div", { staticClass: "h2 text-left" }, [
+                  _vm._v(
+                    " " + _vm._s(_vm.$t("system.Dashboard.studying_total"))
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "h1 text-left" }, [
+                  _vm._v(_vm._s(_vm.totalStudying))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col col-3  offset-1 mb-4 bg-danger text-white" },
+              [
+                _c("div", { staticClass: "h2 text-left" }, [
+                  _vm._v(" " + _vm._s(_vm.$t("system.Dashboard.no_info_total")))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "h1 text-left" }, [
+                  _vm._v(_vm._s(_vm.totalNoWorkInformation))
+                ])
+              ]
             )
           ])
         ])
       ])
     : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("div", { staticClass: "content-header h3" }, [_vm._v("Dashboard")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -97971,13 +98646,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "modal",
-    { ref: "modal", attrs: { title: _vm.$t("company.modals.create_header") } },
+    {
+      ref: "modal",
+      attrs: { title: _vm.$t("system.company.create_modal_header") }
+    },
     [
       _c("template", { slot: "body" }, [
         _c("form", [
           _c("div", { staticClass: "form-group row" }, [
             _c("label", { staticClass: "col-3 col-form-label" }, [
-              _vm._v(_vm._s(_vm.$t("company.name")))
+              _vm._v(_vm._s(_vm.$t("system.name")))
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-9" }, [
@@ -98080,7 +98758,7 @@ var render = function() {
           _c("Form", { ref: "form", on: { update: _vm.getList } }),
           _vm._v(" "),
           _c("div", { staticClass: "content-header h3" }, [
-            _vm._v(_vm._s(_vm.$t("company.list")))
+            _vm._v(_vm._s(_vm.$t("system.Companies")))
           ]),
           _vm._v(" "),
           _c("input", {
@@ -98124,7 +98802,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(" " + _vm._s(_vm.$t("company.create")) + " ")]
+              [_vm._v(" " + _vm._s(_vm.$t("system.create")) + " ")]
             )
           ])
         ],
@@ -98140,8 +98818,7 @@ var render = function() {
         [
           _vm._v(
             "\n            " +
-              _vm._s(_vm.$t("companies.found_number")) +
-              _vm._s(_vm.total) +
+              _vm._s(_vm.$tc("system.companies_found_number", _vm.total)) +
               "\n        "
           )
         ]
@@ -98153,7 +98830,7 @@ var render = function() {
         _c("tr", [
           _c("th"),
           _vm._v(" "),
-          _c("th", [_vm._v(_vm._s(_vm.$t("company.name")))]),
+          _c("th", [_vm._v(_vm._s(_vm.$t("system.name")))]),
           _vm._v(" "),
           _c("th")
         ])
@@ -98201,7 +98878,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "modal",
-    { ref: "modal", attrs: { title: "New country" } },
+    { ref: "modal", attrs: { title: _vm.$t("system.country_edit") } },
     [
       _c("template", { slot: "body" }, [
         _c(
@@ -98245,7 +98922,7 @@ var render = function() {
                     [
                       _c("option", { attrs: { value: "en" } }, [_vm._v("en")]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "ru" } }, [_vm._v("ru")])
+                      _c("option", { attrs: { value: "ru" } }, [_vm._v("ру")])
                     ]
                   )
                 ]),
@@ -98284,7 +98961,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("remove")]
+                  [_vm._v(_vm._s(_vm.$t("system.remove")))]
                 )
               ])
             }),
@@ -98296,7 +98973,7 @@ var render = function() {
                     staticClass: "btn btn-primary btn-block",
                     on: { click: _vm.newTranslation }
                   },
-                  [_vm._v(" New translation")]
+                  [_vm._v(" " + _vm._s(_vm.$t("system.new_translation")))]
                 )
               : _vm._e()
           ],
@@ -98321,8 +98998,8 @@ var render = function() {
                   _vm.translations &&
                     _vm.translations[0] &&
                     _vm.translations[0].country_id
-                    ? "Update"
-                    : "Create"
+                    ? _vm.$t("system.update")
+                    : _vm.$t("system.create")
                 ) +
                 "\n        "
             )
@@ -98395,7 +99072,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "content-header h3" }, [
-            _vm._v("Countries")
+            _vm._v(_vm._s(_vm.$t("system.countries")))
           ]),
           _vm._v(" "),
           _c("input", {
@@ -98425,7 +99102,7 @@ var render = function() {
               staticClass: "btn btn-primary btn-sm",
               on: { click: _vm.getList }
             },
-            [_vm._v("Search")]
+            [_vm._v(_vm._s(_vm.$t("system.search")))]
           ),
           _vm._v(" "),
           _c(
@@ -98438,7 +99115,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Add country")]
+            [_vm._v(_vm._s(_vm.$t("system.add")))]
           )
         ],
         1
@@ -98452,8 +99129,8 @@ var render = function() {
         },
         [
           _vm._v(
-            "\n            Found number of countries: " +
-              _vm._s(_vm.total) +
+            "\n           " +
+              _vm._s(_vm.$tc("system.found_countries_number", _vm.total)) +
               "\n        "
           )
         ]
@@ -98463,7 +99140,17 @@ var render = function() {
     _c(
       "div",
       [
-        _vm._m(0),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-5" }, [
+            _vm._v(_vm._s(_vm.$t("system.english_name")))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-5" }, [
+            _vm._v(_vm._s(_vm.$t("system.russian_name")))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col" })
+        ]),
         _vm._v(" "),
         _vm._l(_vm.countries, function(country) {
           return _c("div", { staticClass: "row" }, [
@@ -98512,11 +99199,15 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v(" Edit")]
+                [_vm._v(" " + _vm._s(_vm.$t("system.edit")))]
               )
             ]),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c("div", { staticClass: "col-1" }, [
+              _c("div", { staticClass: "btn btn-danger" }, [
+                _vm._v(" " + _vm._s(_vm.$t("system.remove")))
+              ])
+            ])
           ])
         })
       ],
@@ -98524,28 +99215,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-5" }, [_vm._v("English name")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-5" }, [_vm._v("Russian name")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-1" }, [
-      _c("div", { staticClass: "btn btn-danger" }, [_vm._v(" Delete")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -98569,14 +99239,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "modal",
-    { ref: "modal", attrs: { title: "Add new departmnet" } },
+    {
+      ref: "modal",
+      attrs: {
+        title: _vm.$tc("university.department.add_department_to_system")
+      }
+    },
     [
       _c("template", { slot: "body" }, [
         _c(
           "div",
           [
             _c("div", { staticClass: "form-group row" }, [
-              _c("label", { staticClass: "col-4" }, [_vm._v(" English name")]),
+              _c("label", { staticClass: "col-4" }, [
+                _vm._v(" " + _vm._s(_vm.$t("system.english_name")))
+              ]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -98612,7 +99289,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v(" Show russian translation ")]
+                    [
+                      _vm._v(
+                        " " + _vm._s(_vm.$t("system.show_russian_tr")) + " "
+                      )
+                    ]
                   )
                 ])
               : _vm._e(),
@@ -98621,7 +99302,7 @@ var render = function() {
               ? [
                   _c("div", { staticClass: "form-group row" }, [
                     _c("label", { staticClass: "col-4" }, [
-                      _vm._v(" Russian name")
+                      _vm._v(" " + _vm._s(_vm.$t("system.russian_name")))
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -98663,13 +99344,22 @@ var render = function() {
               }
             }
           },
-          [_vm._v(" cancel")]
+          [_vm._v(" " + _vm._s(_vm.$t("system.cancel")))]
         ),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "btn btn-primary", on: { click: _vm.sendForm } },
-          [_vm._v(" " + _vm._s(_vm.form.id ? "update" : "create"))]
+          [
+            _vm._v(
+              " " +
+                _vm._s(
+                  _vm.form.id
+                    ? _vm.$t("system.update")
+                    : _vm.$t("system.create")
+                )
+            )
+          ]
         )
       ])
     ],
@@ -98705,15 +99395,17 @@ var render = function() {
         "modal",
         {
           ref: "removeModal",
-          attrs: { title: _vm.$tc("departments.remove_modal_title") }
+          attrs: { title: _vm.$tc("university.department.remove_modal_title") }
         },
         [
           _c("template", { slot: "body" }, [
             _c("div", [
               _vm._v(
-                "\n                remove " +
+                "\n                " +
+                  _vm._s(_vm.$t("system.remove")) +
+                  " " +
                   _vm._s(_vm.toremove.name) +
-                  "\n            "
+                  "?\n            "
               )
             ])
           ]),
@@ -98730,7 +99422,13 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                    Cancel\n                ")]
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.$t("system.cancel")) +
+                    "\n                "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -98743,7 +99441,13 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n                    Delete\n                ")]
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.$t("system.remove")) +
+                    "\n                "
+                )
+              ]
             )
           ])
         ],
@@ -98754,7 +99458,7 @@ var render = function() {
         "div",
         [
           _c("div", { staticClass: "content-header h3" }, [
-            _vm._v("University departments")
+            _vm._v(_vm._s(_vm.$t("university.departments")))
           ]),
           _vm._v(" "),
           _c("input", {
@@ -98784,7 +99488,7 @@ var render = function() {
               staticClass: "btn btn-primary btn-sm",
               on: { click: _vm.getList }
             },
-            [_vm._v("Search")]
+            [_vm._v(_vm._s(_vm.$t("system.search")))]
           ),
           _vm._v(" "),
           _c(
@@ -98797,7 +99501,13 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n            Add department\n        ")]
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("system.create")) +
+                  "\n        "
+              )
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -98808,8 +99518,10 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            Found number of departments: " +
-                  _vm._s(_vm.total) +
+                "\n            " +
+                  _vm._s(
+                    _vm.$tc("system.found_departments_number", _vm.total)
+                  ) +
                   "\n        "
               )
             ]
@@ -98826,7 +99538,7 @@ var render = function() {
             _c("th", { staticClass: "col-9" }, [
               _vm._v(
                 "\n                    " +
-                  _vm._s(_vm.$t("department.name")) +
+                  _vm._s(_vm.$t("university.department.name")) +
                   "\n                "
               )
             ]),
@@ -98834,7 +99546,7 @@ var render = function() {
             _c("th", { staticClass: "col-1" }, [
               _vm._v(
                 "\n                    " +
-                  _vm._s(_vm.$t("department.alumni_number")) +
+                  _vm._s(_vm.$t("university.department.alumni_number")) +
                   "\n                "
               )
             ]),
@@ -98842,7 +99554,7 @@ var render = function() {
             _c("th", { staticClass: "col-1" }, [
               _vm._v(
                 "\n                    " +
-                  _vm._s(_vm.$t("department.universities_number")) +
+                  _vm._s(_vm.$t("university.department.universities_number")) +
                   "\n                "
               )
             ]),
@@ -98862,28 +99574,35 @@ var render = function() {
               _c("td", [_vm._v(_vm._s(department.universities.length))]),
               _vm._v(" "),
               _c("td", { staticClass: "btn-group" }, [
-                _c("button", {
-                  staticClass: "btn  btn-sm col-6 edit_button",
-                  on: {
-                    click: function($event) {
-                      _vm.$refs.modal.show(department)
-                    }
-                  }
-                }),
-                _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-danger btn-sm col-6 ",
+                    staticClass: "btn btn-sm btn-warning",
                     on: {
                       click: function($event) {
-                        _vm.toremove = department
-                        _vm.$refs.removeModal.show()
+                        _vm.$refs.modal.show(department)
                       }
                     }
                   },
-                  [_vm._v(" Delete")]
-                )
+                  [_vm._v(_vm._s(_vm.$t("system.edit")))]
+                ),
+                _vm._v(" "),
+                department.universities.length == 0 &&
+                department.alumnis.length == 0
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger btn-sm col-6 ",
+                        on: {
+                          click: function($event) {
+                            _vm.toremove = department
+                            _vm.$refs.removeModal.show()
+                          }
+                        }
+                      },
+                      [_vm._v(" " + _vm._s(_vm.$t("system.remove")))]
+                    )
+                  : _vm._e()
               ])
             ])
           }),
@@ -98924,7 +99643,7 @@ var render = function() {
         _c("form", { staticClass: "contrainer" }, [
           _c("div", { staticClass: "form-group row" }, [
             _c("label", { staticClass: "label col-4" }, [
-              _vm._v("English name")
+              _vm._v(_vm._s(_vm.$t("system.english_name")))
             ]),
             _vm._v(" "),
             _c("input", {
@@ -98957,7 +99676,7 @@ var render = function() {
               _vm.showRussianName
                 ? [
                     _c("label", { staticClass: "label col-4" }, [
-                      _vm._v("Russian name")
+                      _vm._v(_vm._s(_vm.$t("system.russian_name")))
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -98994,7 +99713,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("remove")]
+                        [_vm._v(_vm._s(_vm.$tc("system.remove")))]
                       )
                     ])
                   ]
@@ -99010,7 +99729,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" add translation")]
+                      [_vm._v(" " + _vm._s(_vm.$t("system.add_translation")))]
                     )
                   ]
             ],
@@ -99019,7 +99738,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "form-group row" }, [
             _c("label", { staticClass: "form-check-label col-3" }, [
-              _vm._v(" country")
+              _vm._v(" " + _vm._s(_vm.$t("system.country")))
             ]),
             _vm._v(" "),
             _c(
@@ -99082,7 +99801,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Add departments")]
+                    [_vm._v(_vm._s(_vm.$tc("system.add_department")))]
                   )
                 ]
               : [
@@ -99143,7 +99862,7 @@ var render = function() {
                         staticClass: "btn btn-success",
                         on: { click: _vm.pushDepartmentToUniversity }
                       },
-                      [_vm._v("add")]
+                      [_vm._v(_vm._s(_vm.$t("system.add")))]
                     )
                   ])
                 ]
@@ -99153,7 +99872,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("template", { slot: "footer" }, [
-        _c("button", { staticClass: "btn btn-secondary" }, [_vm._v("cancel")]),
+        _c("button", { staticClass: "btn btn-secondary" }, [
+          _vm._v(_vm._s(_vm.$tc("system.cancel")))
+        ]),
         _vm._v(" "),
         _c(
           "button",
@@ -99166,7 +99887,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("create ")]
+          [_vm._v(_vm._s(_vm.$t("system.create")) + " ")]
         )
       ])
     ],
@@ -99203,22 +99924,19 @@ var render = function() {
             _vm._v(_vm._s(_vm.university.name))
           ]),
           _vm._v(" "),
-          _c("removeProgramWarning", { ref: "removeProgramWarningRef" }),
-          _vm._v(" "),
           _c("addProgramToUniversity", {
             ref: "addProgramToUniversityRef",
-            attrs: { university: _vm.university }
+            attrs: { university: _vm.university },
+            on: { update: _vm.getItem }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "container row" }, [
             _c("div", { staticClass: "col-6" }, [
               _c("div", [
-                _c("div", { staticClass: "h6" }, [
-                  _vm._v(" General information")
-                ]),
-                _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-4" }, [_vm._v("Country")]),
+                  _c("div", { staticClass: "col-4" }, [
+                    _vm._v(_vm._s(_vm.$t("university.country")))
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-8" }, [
                     _vm._v(_vm._s(_vm.university.country.name))
@@ -99228,7 +99946,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-8" }, [
-                  _vm._v(" Number of graduate alumni:")
+                  _vm._v(" " + _vm._s(_vm.$t("university.graduates_number")))
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-4" }, [
@@ -99240,46 +99958,50 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-4" }, [_vm._v(" Programs:")]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-8" },
-                  [
-                    _vm._l(_vm.university.programs, function(program) {
-                      return [_vm._v(_vm._s(program.name) + " ")]
-                    })
-                  ],
-                  2
-                )
-              ])
+              _c("div", { staticClass: "h2" }, [
+                _vm._v(" " + _vm._s(_vm.$t("university.Programs")) + ":")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.university.programs, function(program) {
+                  return _c("div", { staticClass: "col-12" }, [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(program.name) +
+                        "\n                "
+                    )
+                  ])
+                }),
+                0
+              )
             ]),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "col-6" },
               [
-                _c("div", { staticClass: "h6 text-center" }, [
-                  _vm._v(" Departments in University"),
+                _c("div", { staticClass: "h2 text-center" }, [
+                  _vm._v(" " + _vm._s(_vm.$t("university.departments"))),
                   _c(
                     "span",
                     {
-                      staticClass: "badge badge-primary ml-4",
+                      staticClass: "btn btn-primary btn-sm float-right",
                       on: {
                         click: function($event) {
                           _vm.$refs.addProgramToUniversityRef.show()
                         }
                       }
                     },
-                    [_vm._v("add departments")]
+                    [_vm._v(_vm._s(_vm.$t("system.add")))]
                   )
                 ]),
                 _vm._v(" "),
                 _vm._l(_vm.university.programs, function(program) {
                   return _c("div", { staticClass: "mb-4" }, [
-                    _c("div", { staticClass: "h6" }, [
-                      _vm._v(" " + _vm._s(program.name) + " departments")
+                    _c("div", { staticClass: "h5" }, [
+                      _vm._v(" " + _vm._s(program.name))
                     ]),
                     _vm._v(" "),
                     _c(
@@ -99330,11 +100052,17 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("Modal", { ref: "form_modal" }),
+      _c("Modal", { ref: "form_modal", on: { updated: _vm.getList } }),
+      _vm._v(" "),
+      _c("RemoveModal", {
+        ref: "remove_modal",
+        attrs: { id: _vm.toRemove },
+        on: { updated: _vm.getList }
+      }),
       _vm._v(" "),
       _c("div", [
         _c("div", { staticClass: "content-header h3" }, [
-          _vm._v("Universities")
+          _vm._v(_vm._s(_vm.$t("system.universities")))
         ]),
         _vm._v(" "),
         _c("input", {
@@ -99361,7 +100089,7 @@ var render = function() {
         _c(
           "button",
           { staticClass: "btn btn-primary btn-sm", on: { click: _vm.getList } },
-          [_vm._v("Search")]
+          [_vm._v(_vm._s(_vm.$t("system.search")))]
         ),
         _vm._v(" "),
         _c(
@@ -99374,7 +100102,11 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n            Create university\n        ")]
+          [
+            _vm._v(
+              "\n            " + _vm._s(_vm.$t("system.create")) + "\n        "
+            )
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -99385,8 +100117,8 @@ var render = function() {
           },
           [
             _vm._v(
-              "\n            Found number of countries: " +
-                _vm._s(_vm.total) +
+              "\n            " +
+                _vm._s(_vm.$tc("university.found_number", _vm.total)) +
                 "\n        "
             )
           ]
@@ -99395,7 +100127,25 @@ var render = function() {
       _vm._v(" "),
       _c("div", [
         _c("table", { staticClass: "table" }, [
-          _vm._m(0),
+          _c("thead", [
+            _c("tr", [
+              _c("th", [_vm._v("#")]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$t("system.english_name")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$t("system.russian_name")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$t("system.country")))]),
+              _vm._v(" "),
+              _c("th", [_vm._v(_vm._s(_vm.$t("university.graduates_number")))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(_vm._s(_vm.$t("university.departments_number")))
+              ]),
+              _vm._v(" "),
+              _c("th")
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "tbody",
@@ -99412,37 +100162,75 @@ var render = function() {
                 [
                   _c("td", [_vm._v(_vm._s(index))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(university.name))]),
+                  _c(
+                    "td",
+                    [
+                      university.translations
+                        ? [
+                            _vm._l(university.translations, function(t) {
+                              return t.locale == "en"
+                                ? [_vm._v(_vm._s(t.name))]
+                                : _vm._e()
+                            })
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      university.translations
+                        ? [
+                            _vm._l(university.translations, function(t) {
+                              return t.locale == "ru"
+                                ? [_vm._v(_vm._s(t.name))]
+                                : _vm._e()
+                            })
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  ),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(university.country.name))]),
                   _vm._v(" "),
                   _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm btn-warning",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                          }
-                        }
-                      },
-                      [_vm._v(" edit")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-sm btn-danger",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                          }
-                        }
-                      },
-                      [_vm._v(" remove")]
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(university.alumni_number) +
+                        "\n                "
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(university.departments_number) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  university.alumni_number == 0 &&
+                  university.departments_number == 0
+                    ? _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-sm btn-danger",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.toRemove = university.id
+                                _vm.$refs.remove_modal.show()
+                              }
+                            }
+                          },
+                          [_vm._v("  " + _vm._s(_vm.$t("system.remove")))]
+                        )
+                      ])
+                    : _vm._e()
                 ]
               )
             }),
@@ -99454,24 +100242,56 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/university/modals/RemoveModal.vue?vue&type=template&id=ecb2811c&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/university/modals/RemoveModal.vue?vue&type=template&id=ecb2811c& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "modal",
+    { ref: "modal", attrs: { title: _vm.$t("university.remove_header") } },
+    [
+      _c("template", { slot: "body" }, [
+        _vm._v(
+          "\n        " + _vm._s(_vm.$t("university.remove_body")) + "\n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("template", { slot: "footer" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-secondary", on: { click: _vm.hide } },
+          [_vm._v(_vm._s(_vm.$t("system.cancel")))]
+        ),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Country")]),
-        _vm._v(" "),
-        _c("th")
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", on: { click: _vm.remove } },
+          [_vm._v(_vm._s(_vm.$t("system.remove")))]
+        )
       ])
-    ])
-  }
-]
+    ],
+    2
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -99495,7 +100315,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "modal",
-    { ref: "modal", attrs: { title: "add program" } },
+    { ref: "modal", attrs: { title: _vm.$t("university.add_program") } },
     [
       _c("template", { slot: "body" }, [
         _c("div", { staticClass: "form-group" }, [
@@ -99541,7 +100361,7 @@ var render = function() {
           { staticClass: "form-group" },
           [
             _c("label", { staticClass: "label" }, [
-              _vm._v("Programs available")
+              _vm._v(_vm._s(_vm.$t("university.programs_available")))
             ]),
             _vm._v(" "),
             _vm._l(_vm.$common.data.programs, function(program) {
@@ -99644,9 +100464,13 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("template", { slot: "footer" }, [
-        _c("div", { staticClass: "btn btn-secondary" }, [_vm._v("cancel")]),
+        _c("div", { staticClass: "btn btn-secondary" }, [
+          _vm._v(_vm._s(_vm.$t(_vm.system.cancel)))
+        ]),
         _vm._v(" "),
-        _c("div", { staticClass: "btn btn-danger" }, [_vm._v("apply")])
+        _c("div", { staticClass: "btn btn-danger" }, [
+          _vm._v(_vm._s(_vm.$t(_vm.system.delete)))
+        ])
       ])
     ],
     2
@@ -113747,12 +114571,16 @@ var messages = {
   ru: {
     system: _i18n__WEBPACK_IMPORTED_MODULE_11__["systemRu"],
     alumni: _i18n__WEBPACK_IMPORTED_MODULE_11__["alumniRu"],
-    administrators: _i18n__WEBPACK_IMPORTED_MODULE_11__["administratorsRu"]
+    administrators: _i18n__WEBPACK_IMPORTED_MODULE_11__["administratorsRu"],
+    university: _i18n__WEBPACK_IMPORTED_MODULE_11__["universityRu"],
+    roleAlumni: _i18n__WEBPACK_IMPORTED_MODULE_11__["roleAlumniRu"]
   },
   en: {
     system: _i18n__WEBPACK_IMPORTED_MODULE_11__["systemEn"],
     alumni: _i18n__WEBPACK_IMPORTED_MODULE_11__["alumniEn"],
-    administrators: _i18n__WEBPACK_IMPORTED_MODULE_11__["administratorsEn"]
+    administrators: _i18n__WEBPACK_IMPORTED_MODULE_11__["administratorsEn"],
+    university: _i18n__WEBPACK_IMPORTED_MODULE_11__["universityKz"],
+    roleAlumni: _i18n__WEBPACK_IMPORTED_MODULE_11__["roleAlumniEn"]
   }
 };
 var common = vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$common = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(_components_Common_vue__WEBPACK_IMPORTED_MODULE_5__["default"]).$mount();
@@ -114194,7 +115022,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************!*\
   !*** ./resources/js/i18n.js ***!
   \******************************/
-/*! exports provided: systemRu, systemEn, alumniRu, alumniEn, administratorsRu, administratorsEn */
+/*! exports provided: systemRu, systemEn, alumniRu, alumniEn, roleAlumniRu, roleAlumniEn, administratorsRu, administratorsEn, universityRu, universityKz */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -114203,8 +115031,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "systemEn", function() { return systemEn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alumniRu", function() { return alumniRu; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "alumniEn", function() { return alumniEn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roleAlumniRu", function() { return roleAlumniRu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "roleAlumniEn", function() { return roleAlumniEn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "administratorsRu", function() { return administratorsRu; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "administratorsEn", function() { return administratorsEn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "universityRu", function() { return universityRu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "universityKz", function() { return universityKz; });
 /* harmony import */ var _lang_ru_system_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lang/ru/system.json */ "./resources/lang/ru/system.json");
 var _lang_ru_system_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru/system.json */ "./resources/lang/ru/system.json", 1);
 /* harmony import */ var _lang_en_system_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lang/en/system.json */ "./resources/lang/en/system.json");
@@ -114213,10 +115045,18 @@ var _lang_en_system_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/_
 var _lang_ru_alumni_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru/alumni.json */ "./resources/lang/ru/alumni.json", 1);
 /* harmony import */ var _lang_en_alumni_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lang/en/alumni.json */ "./resources/lang/en/alumni.json");
 var _lang_en_alumni_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/en/alumni.json */ "./resources/lang/en/alumni.json", 1);
-/* harmony import */ var _lang_ru_administrators_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lang/ru/administrators.json */ "./resources/lang/ru/administrators.json");
-var _lang_ru_administrators_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru/administrators.json */ "./resources/lang/ru/administrators.json", 1);
-/* harmony import */ var _lang_en_administrators_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lang/en/administrators.json */ "./resources/lang/en/administrators.json");
-var _lang_en_administrators_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/en/administrators.json */ "./resources/lang/en/administrators.json", 1);
+/* harmony import */ var _lang_ru_role_alumni_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lang/ru/role_alumni.json */ "./resources/lang/ru/role_alumni.json");
+var _lang_ru_role_alumni_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru/role_alumni.json */ "./resources/lang/ru/role_alumni.json", 1);
+/* harmony import */ var _lang_en_role_alumni_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lang/en/role_alumni.json */ "./resources/lang/en/role_alumni.json");
+var _lang_en_role_alumni_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/en/role_alumni.json */ "./resources/lang/en/role_alumni.json", 1);
+/* harmony import */ var _lang_ru_administrators_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lang/ru/administrators.json */ "./resources/lang/ru/administrators.json");
+var _lang_ru_administrators_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru/administrators.json */ "./resources/lang/ru/administrators.json", 1);
+/* harmony import */ var _lang_en_administrators_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../lang/en/administrators.json */ "./resources/lang/en/administrators.json");
+var _lang_en_administrators_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/en/administrators.json */ "./resources/lang/en/administrators.json", 1);
+/* harmony import */ var _lang_ru_university_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lang/ru/university.json */ "./resources/lang/ru/university.json");
+var _lang_ru_university_json__WEBPACK_IMPORTED_MODULE_8___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/ru/university.json */ "./resources/lang/ru/university.json", 1);
+/* harmony import */ var _lang_en_university_json__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lang/en/university.json */ "./resources/lang/en/university.json");
+var _lang_en_university_json__WEBPACK_IMPORTED_MODULE_9___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../lang/en/university.json */ "./resources/lang/en/university.json", 1);
 //sidebar, navbar
 
 
@@ -114226,12 +115066,21 @@ var systemEn = JSON.parse(JSON.stringify(_lang_en_system_json__WEBPACK_IMPORTED_
 
 
 var alumniRu = JSON.parse(JSON.stringify(_lang_ru_alumni_json__WEBPACK_IMPORTED_MODULE_2__));
-var alumniEn = JSON.parse(JSON.stringify(_lang_en_alumni_json__WEBPACK_IMPORTED_MODULE_3__)); //administrator
+var alumniEn = JSON.parse(JSON.stringify(_lang_en_alumni_json__WEBPACK_IMPORTED_MODULE_3__));
+
+
+var roleAlumniRu = JSON.parse(JSON.stringify(_lang_ru_role_alumni_json__WEBPACK_IMPORTED_MODULE_4__));
+var roleAlumniEn = JSON.parse(JSON.stringify(_lang_en_role_alumni_json__WEBPACK_IMPORTED_MODULE_5__)); //administrator
 
 
 
-var administratorsRu = JSON.parse(JSON.stringify(_lang_ru_administrators_json__WEBPACK_IMPORTED_MODULE_4__));
-var administratorsEn = JSON.parse(JSON.stringify(_lang_en_administrators_json__WEBPACK_IMPORTED_MODULE_5__));
+var administratorsRu = JSON.parse(JSON.stringify(_lang_ru_administrators_json__WEBPACK_IMPORTED_MODULE_6__));
+var administratorsEn = JSON.parse(JSON.stringify(_lang_en_administrators_json__WEBPACK_IMPORTED_MODULE_7__)); //university
+
+
+
+var universityRu = JSON.parse(JSON.stringify(_lang_ru_university_json__WEBPACK_IMPORTED_MODULE_8__));
+var universityKz = JSON.parse(JSON.stringify(_lang_en_university_json__WEBPACK_IMPORTED_MODULE_9__));
 
 /***/ }),
 
@@ -114335,21 +115184,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(__dirname) {/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _views_common_Login_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/common/Login.vue */ "./resources/js/views/common/Login.vue");
-/* harmony import */ var _views_common_About_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/common/About.vue */ "./resources/js/views/common/About.vue");
-/* harmony import */ var _views_common_Dashboard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/common/Dashboard.vue */ "./resources/js/views/common/Dashboard.vue");
-/* harmony import */ var _views_alumni_List_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/alumni/List.vue */ "./resources/js/views/alumni/List.vue");
-/* harmony import */ var _views_alumni_Item_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/alumni/Item.vue */ "./resources/js/views/alumni/Item.vue");
-/* harmony import */ var _views_administrators_List_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/administrators/List.vue */ "./resources/js/views/administrators/List.vue");
-/* harmony import */ var _views_administrators_Item_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/administrators/Item.vue */ "./resources/js/views/administrators/Item.vue");
-/* harmony import */ var _views_university_List_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/university/List.vue */ "./resources/js/views/university/List.vue");
-/* harmony import */ var _views_university_Item_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/university/Item.vue */ "./resources/js/views/university/Item.vue");
-/* harmony import */ var _views_country_List_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/country/List.vue */ "./resources/js/views/country/List.vue");
-/* harmony import */ var _views_country_Item_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/country/Item.vue */ "./resources/js/views/country/Item.vue");
-/* harmony import */ var _views_departments_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/departments/List.vue */ "./resources/js/views/departments/List.vue");
-/* harmony import */ var _views_companies_List_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/companies/List.vue */ "./resources/js/views/companies/List.vue");
-/* harmony import */ var _views_companies_Item_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/companies/Item.vue */ "./resources/js/views/companies/Item.vue");
-/* harmony import */ var _views_alumni_page_profile_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/alumni_page/profile.vue */ "./resources/js/views/alumni_page/profile.vue");
-
+/* harmony import */ var _views_common_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/common/Dashboard.vue */ "./resources/js/views/common/Dashboard.vue");
+/* harmony import */ var _views_alumni_List_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/alumni/List.vue */ "./resources/js/views/alumni/List.vue");
+/* harmony import */ var _views_alumni_Item_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/alumni/Item.vue */ "./resources/js/views/alumni/Item.vue");
+/* harmony import */ var _views_administrators_List_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/administrators/List.vue */ "./resources/js/views/administrators/List.vue");
+/* harmony import */ var _views_administrators_Item_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/administrators/Item.vue */ "./resources/js/views/administrators/Item.vue");
+/* harmony import */ var _views_university_List_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/university/List.vue */ "./resources/js/views/university/List.vue");
+/* harmony import */ var _views_university_Item_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/university/Item.vue */ "./resources/js/views/university/Item.vue");
+/* harmony import */ var _views_country_List_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/country/List.vue */ "./resources/js/views/country/List.vue");
+/* harmony import */ var _views_country_Item_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/country/Item.vue */ "./resources/js/views/country/Item.vue");
+/* harmony import */ var _views_departments_List_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/departments/List.vue */ "./resources/js/views/departments/List.vue");
+/* harmony import */ var _views_companies_List_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/companies/List.vue */ "./resources/js/views/companies/List.vue");
+/* harmony import */ var _views_companies_Item_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/companies/Item.vue */ "./resources/js/views/companies/Item.vue");
+/* harmony import */ var _views_alumni_page_profile_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/alumni_page/profile.vue */ "./resources/js/views/alumni_page/profile.vue");
 
 
 
@@ -114369,18 +115216,18 @@ __webpack_require__.r(__webpack_exports__);
   mode: 'history',
   base: __dirname,
   routes: [{
-    name: "about",
+    name: "login",
     path: "/",
-    component: _views_common_About_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    component: _views_common_Login_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     props: false,
     meta: {
-      title: "About",
+      title: "Login",
       forVisitors: true
     }
   }, {
     name: "companies",
     path: "/companies",
-    component: _views_companies_List_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+    component: _views_companies_List_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     props: false,
     meta: {
       title: "Companies",
@@ -114389,7 +115236,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "company",
     path: "/companies/:id",
-    component: _views_companies_List_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
+    component: _views_companies_List_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
     props: true,
     meta: {
       title: "Company",
@@ -114407,7 +115254,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "dashboard",
     path: "/dashboard",
-    component: _views_common_Dashboard_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    component: _views_common_Dashboard_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     props: false,
     meta: {
       title: "Dashboard",
@@ -114416,7 +115263,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "profile",
     path: "/profile/:id",
-    component: _views_alumni_page_profile_vue__WEBPACK_IMPORTED_MODULE_15__["default"],
+    component: _views_alumni_page_profile_vue__WEBPACK_IMPORTED_MODULE_14__["default"],
     props: true,
     meta: {
       title: "Profile",
@@ -114425,7 +115272,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "alumni-list",
     path: "/alumni",
-    component: _views_alumni_List_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _views_alumni_List_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     props: false,
     meta: {
       title: "Alumni",
@@ -114434,7 +115281,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "alumni-item",
     path: "/alumni/:id",
-    component: _views_alumni_Item_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _views_alumni_Item_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     props: true,
     meta: {
       title: "Alumni",
@@ -114443,7 +115290,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "administrators",
     path: "/administrators",
-    component: _views_administrators_List_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    component: _views_administrators_List_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     props: false,
     meta: {
       title: "Administration",
@@ -114452,7 +115299,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "administrator",
     path: "/administrators/:id",
-    component: _views_administrators_Item_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    component: _views_administrators_Item_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     props: true,
     meta: {
       title: "Administration",
@@ -114461,7 +115308,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "universities",
     path: "/universities",
-    component: _views_university_List_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
+    component: _views_university_List_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     props: false,
     meta: {
       title: "Universities",
@@ -114470,7 +115317,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "university",
     path: "/universities/:id",
-    component: _views_university_Item_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+    component: _views_university_Item_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
     props: true,
     meta: {
       title: "University",
@@ -114479,7 +115326,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "country",
     path: "/countries/:id",
-    component: _views_country_Item_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+    component: _views_country_Item_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
     props: true,
     meta: {
       title: "Country",
@@ -114488,7 +115335,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "countries",
     path: "/countries",
-    component: _views_country_List_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+    component: _views_country_List_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
     props: false,
     meta: {
       title: "Countries",
@@ -114497,7 +115344,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     name: "departments",
     path: "/departments",
-    component: _views_departments_List_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+    component: _views_departments_List_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
     props: false,
     meta: {
       title: "Departments",
@@ -115511,93 +116358,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/alumni_page/components/news.vue":
-/*!************************************************************!*\
-  !*** ./resources/js/views/alumni_page/components/news.vue ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _news_vue_vue_type_template_id_27494e9e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./news.vue?vue&type=template&id=27494e9e&scoped=true& */ "./resources/js/views/alumni_page/components/news.vue?vue&type=template&id=27494e9e&scoped=true&");
-/* harmony import */ var _news_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./news.vue?vue&type=script&lang=js& */ "./resources/js/views/alumni_page/components/news.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css& */ "./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _news_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _news_vue_vue_type_template_id_27494e9e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _news_vue_vue_type_template_id_27494e9e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "27494e9e",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/alumni_page/components/news.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/alumni_page/components/news.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/views/alumni_page/components/news.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./news.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css&":
-/*!*********************************************************************************************************************!*\
-  !*** ./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css& ***!
-  \*********************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=style&index=0&id=27494e9e&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_style_index_0_id_27494e9e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/views/alumni_page/components/news.vue?vue&type=template&id=27494e9e&scoped=true&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/js/views/alumni_page/components/news.vue?vue&type=template&id=27494e9e&scoped=true& ***!
-  \*******************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_template_id_27494e9e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./news.vue?vue&type=template&id=27494e9e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/components/news.vue?vue&type=template&id=27494e9e&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_template_id_27494e9e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_news_vue_vue_type_template_id_27494e9e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/views/alumni_page/components/work_experience.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/views/alumni_page/components/work_experience.vue ***!
@@ -115685,6 +116445,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/alumni_page/modals/search_alumni_modal.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/alumni_page/modals/search_alumni_modal.vue ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _search_alumni_modal_vue_vue_type_template_id_618436b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./search_alumni_modal.vue?vue&type=template&id=618436b8& */ "./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=template&id=618436b8&");
+/* harmony import */ var _search_alumni_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_alumni_modal.vue?vue&type=script&lang=js& */ "./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _search_alumni_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _search_alumni_modal_vue_vue_type_template_id_618436b8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _search_alumni_modal_vue_vue_type_template_id_618436b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/alumni_page/modals/search_alumni_modal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_search_alumni_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./search_alumni_modal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_search_alumni_modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=template&id=618436b8&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=template&id=618436b8& ***!
+  \******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_search_alumni_modal_vue_vue_type_template_id_618436b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./search_alumni_modal.vue?vue&type=template&id=618436b8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/alumni_page/modals/search_alumni_modal.vue?vue&type=template&id=618436b8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_search_alumni_modal_vue_vue_type_template_id_618436b8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_search_alumni_modal_vue_vue_type_template_id_618436b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/views/alumni_page/profile.vue":
 /*!****************************************************!*\
   !*** ./resources/js/views/alumni_page/profile.vue ***!
@@ -115767,75 +116596,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_template_id_328c759b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profile_vue_vue_type_template_id_328c759b_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/views/common/About.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/views/common/About.vue ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _About_vue_vue_type_template_id_79d61e48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./About.vue?vue&type=template&id=79d61e48& */ "./resources/js/views/common/About.vue?vue&type=template&id=79d61e48&");
-/* harmony import */ var _About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./About.vue?vue&type=script&lang=js& */ "./resources/js/views/common/About.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _About_vue_vue_type_template_id_79d61e48___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _About_vue_vue_type_template_id_79d61e48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/common/About.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/common/About.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/views/common/About.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./About.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/common/About.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/common/About.vue?vue&type=template&id=79d61e48&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/views/common/About.vue?vue&type=template&id=79d61e48& ***!
-  \****************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_template_id_79d61e48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./About.vue?vue&type=template&id=79d61e48& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/common/About.vue?vue&type=template&id=79d61e48&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_template_id_79d61e48___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_template_id_79d61e48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -116756,6 +117516,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/university/modals/RemoveModal.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/views/university/modals/RemoveModal.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RemoveModal_vue_vue_type_template_id_ecb2811c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RemoveModal.vue?vue&type=template&id=ecb2811c& */ "./resources/js/views/university/modals/RemoveModal.vue?vue&type=template&id=ecb2811c&");
+/* harmony import */ var _RemoveModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RemoveModal.vue?vue&type=script&lang=js& */ "./resources/js/views/university/modals/RemoveModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RemoveModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RemoveModal_vue_vue_type_template_id_ecb2811c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RemoveModal_vue_vue_type_template_id_ecb2811c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/university/modals/RemoveModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/university/modals/RemoveModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/views/university/modals/RemoveModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RemoveModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/university/modals/RemoveModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/university/modals/RemoveModal.vue?vue&type=template&id=ecb2811c&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/views/university/modals/RemoveModal.vue?vue&type=template&id=ecb2811c& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveModal_vue_vue_type_template_id_ecb2811c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./RemoveModal.vue?vue&type=template&id=ecb2811c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/university/modals/RemoveModal.vue?vue&type=template&id=ecb2811c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveModal_vue_vue_type_template_id_ecb2811c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RemoveModal_vue_vue_type_template_id_ecb2811c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/views/university/modals/addProgramToUniversity.vue":
 /*!*************************************************************************!*\
   !*** ./resources/js/views/university/modals/addProgramToUniversity.vue ***!
@@ -116898,10 +117727,10 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/lang/en/administrators.json ***!
   \***********************************************/
-/*! exports provided: list, found_number, create, modals, default */
+/*! exports provided: list, found_number, create, role, modals, default */
 /***/ (function(module) {
 
-module.exports = {"list":"Administrators list","found_number":"Number of found administrators:","create":"new administrator","modals":{"create_header":"Create new administrator"}};
+module.exports = {"list":"Administrators list","found_number":"Found {1} administrator |Found {n} administrators","create":"new administrator","role":"role","modals":{"create_header":"Create new administrator"}};
 
 /***/ }),
 
@@ -116909,10 +117738,21 @@ module.exports = {"list":"Administrators list","found_number":"Number of found a
 /*!***************************************!*\
   !*** ./resources/lang/en/alumni.json ***!
   \***************************************/
-/*! exports provided: list, found_number, create, first_name, last_name, email, modals, add_graduation_info, default */
+/*! exports provided: list, found_number, profile, create, first_name, last_name, email, select_graduation_year, select_program, graduation_year, program, department, new_graduation_info, socials, edit_socials, modals, select_massaction, export, add_graduation_info, default */
 /***/ (function(module) {
 
-module.exports = {"list":"Alumni list","found_number":"Number of found alumni:","create":"new alumni","first_name":"first name","last_name":"last name","email":"email","modals":{"create_header":"Create new alumni"},"add_graduation_info":"add NU graduation info"};
+module.exports = {"list":"Alumni list","found_number":"Found {n} alumni","profile":"profile","create":"new alumni","first_name":"first name","last_name":"last name","email":"email","select_graduation_year":"graduation year","select_program":"study program","graduation_year":"Graduation year","program":"program","department":"department","new_graduation_info":"add graduate information","socials":"Social networks","edit_socials":"edit socials","modals":{"create_header":"Create new alumni"},"select_massaction":"Download alumni","export":{"all":"export all","all_description":"export all alumni from database","selected":"export selected","selected_description":"export only selected alumni"},"add_graduation_info":"add NU graduation info"};
+
+/***/ }),
+
+/***/ "./resources/lang/en/role_alumni.json":
+/*!********************************************!*\
+  !*** ./resources/lang/en/role_alumni.json ***!
+  \********************************************/
+/*! exports provided: workingAt, studyingAt, education, workExperience, achievements, followers, followings, position, uploadImage, description, default */
+/***/ (function(module) {
+
+module.exports = {"workingAt":"Working at","studyingAt":"Studying at","education":"Education","workExperience":"Work experience","achievements":"Achievements","followers":"Followers","followings":"Followings","position":"Position","uploadImage":"upload image","description":"Description"};
 
 /***/ }),
 
@@ -116920,10 +117760,21 @@ module.exports = {"list":"Alumni list","found_number":"Number of found alumni:",
 /*!***************************************!*\
   !*** ./resources/lang/en/system.json ***!
   \***************************************/
-/*! exports provided: login, registration, dashboard, administrators, alumni, universities, countries, departments, search, create, cancel, add, default */
+/*! exports provided: login, found_departments_number, registration, dashboard, administrators, alumni, universities, countries, departments, search, create, cancel, add, name, university, select, upload_image, not_given, with_selected, export_excel, apply, country, remove, edit, english_name, russian_name, show_russian_tr, update, logout, new_translation, Companies, companies_found_number, company, loading, Company, date, time, country_edit, found_countries_number, Dashboard, add_translation, add_department, info, default */
 /***/ (function(module) {
 
-module.exports = {"login":"login","registration":"registration","dashboard":"Dashboard","administrators":"Administrators","alumni":"Alumni","universities":"Universities","countries":"Countries","departments":"Departments","search":"search","create":"create","cancel":"cancel","add":"add"};
+module.exports = {"login":"login","found_departments_number":"Found {1} department| Found {n} departments","registration":"registration","dashboard":"Dashboard","administrators":"Administrators","alumni":"Alumni","universities":"Universities","countries":"Countries","departments":"Departments","search":"search","create":"create","cancel":"cancel","add":"add","name":"name","university":"university","select":"select","upload_image":"upload image","not_given":"not given","with_selected":"With selected {n} alumni","export_excel":"export","apply":"apply","country":"country","remove":"remove","edit":"edit","english_name":"english name","russian_name":"russian name","show_russian_tr":"show russian translation","update":"update","logout":"logout","new_translation":"add translation","Companies":"Companies","companies_found_number":"Found {1} company| Found {n} companies","company":{"create_modal_header":"Create new company"},"loading":"Loading...","Company":"Company","date":"Date","time":"Time","country_edit":"Edit company","found_countries_number":"Found {0} countires| Found {1} countiry| Found {n} countires","Dashboard":{"per_year_total":"Number of alumni per year in total","total_users_number":"Users","working_total":"Working users","studying_total":"Studying users","no_info_total":"No information","year":"year"},"add_translation":"add translation","add_department":"add department","info":"Information"};
+
+/***/ }),
+
+/***/ "./resources/lang/en/university.json":
+/*!*******************************************!*\
+  !*** ./resources/lang/en/university.json ***!
+  \*******************************************/
+/*! exports provided: programs, name, found_number, universities, country, graduates_number, Programs, departments, add_program, programs_available, department, departments_number, remove_header, remove_body, default */
+/***/ (function(module) {
+
+module.exports = {"programs":{"bachelor":"Bachelor","masters":"Masters","phd":"Phd"},"name":"name","found_number":"Found {1} university |Found {n} universities","universities":"Universities","country":"Country","graduates_number":"Graduates number","Programs":"Programs","departments":"Departments","add_program":"New program","programs_available":"Available programs","department":{"name":"Department name","alumni_number":"alumni","universities_number":"universities","add_department_to_system":"create new department","remove_modal_title":"Remove department"},"departments_number":"departments number","remove_header":"Removing university","remove_body":"Do you really want to remove university from the system?"};
 
 /***/ }),
 
@@ -116931,10 +117782,10 @@ module.exports = {"login":"login","registration":"registration","dashboard":"Das
 /*!***********************************************!*\
   !*** ./resources/lang/ru/administrators.json ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: list, found_number, create, role, modals, default */
 /***/ (function(module) {
 
-module.exports = {};
+module.exports = {"list":"Список администраторов","found_number":"Найден {1} администратор |Найдено {n} администраторов","create":"Новый администратор","role":"роль","modals":{"create_header":"Создание нового администратора"}};
 
 /***/ }),
 
@@ -116942,10 +117793,21 @@ module.exports = {};
 /*!***************************************!*\
   !*** ./resources/lang/ru/alumni.json ***!
   \***************************************/
-/*! exports provided: default */
+/*! exports provided: list, found_number, profile, create, first_name, last_name, email, select_graduation_year, select_program, graduation_year, program, department, new_graduation_info, socials, edit_socials, modals, select_massaction, export, add_graduation_info, default */
 /***/ (function(module) {
 
-module.exports = {};
+module.exports = {"list":"Список выпускников","found_number":"Найден {1} выпускник|Найдено {n} выпускников","profile":"профиль","create":"добавить выпускника","first_name":"Имя","last_name":"Фамилие","email":"электронная почта","select_graduation_year":"год выпуска","select_program":"программа обучения","graduation_year":"Год обучения","program":"программа","department":"департамент","new_graduation_info":"добавить информацию о выпуске","socials":"Социальные сети","edit_socials":"редактировать соц сети","modals":{"create_header":"Создание нового выпускника"},"select_massaction":"Скачать архивом","export":{"all":"Выгрузить всех","all_description":"Выгрузить всех выпускников с базы данных","selected":"Выгрузить выбранные","selected_description":"Выгрузить только выделенных выпускников"},"add_graduation_info":"Добавить информацию о выпускнике"};
+
+/***/ }),
+
+/***/ "./resources/lang/ru/role_alumni.json":
+/*!********************************************!*\
+  !*** ./resources/lang/ru/role_alumni.json ***!
+  \********************************************/
+/*! exports provided: workingAt, studyingAt, education, workExperience, achievements, followers, followings, position, uploadImage, description, default */
+/***/ (function(module) {
+
+module.exports = {"workingAt":"Работает в ","studyingAt":"Учится в ","education":"Обучение","workExperience":"Опыт работы","achievements":"Достижения","followers":"Подписчики","followings":"Подписки","position":"Позиция","uploadImage":"добавить фото","description":"Описание"};
 
 /***/ }),
 
@@ -116953,10 +117815,21 @@ module.exports = {};
 /*!***************************************!*\
   !*** ./resources/lang/ru/system.json ***!
   \***************************************/
-/*! exports provided: login, registration, dashboard, default */
+/*! exports provided: login, found_departments_number, registration, dashboard, administrators, alumni, universities, countries, departments, search, create, cancel, add, name, university, select, upload_image, not_given, with_selected, export_excel, apply, country, remove, edit, english_name, russian_name, show_russian_tr, update, logout, new_translation, Companies, companies_found_number, company, loading, Company, date, time, country_edit, found_countries_number, Dashboard, add_translation, add_department, info, default */
 /***/ (function(module) {
 
-module.exports = {"login":"войти в систему","registration":"регистрация","dashboard":"Дэшборд"};
+module.exports = {"login":"Войти","found_departments_number":"Найден {1} департамент| Найдено {n} департамента|Найдено {n} департаментов","registration":"регистрация","dashboard":"Дэшборд","administrators":"Администраторы","alumni":"Выпускники","universities":"Университеты","countries":"Страны","departments":"Департаменты","search":"поиск","create":"создать","cancel":"отмена","add":"добавить","name":"название","university":"университет","select":"выбрать","upload_image":"добавить фото","not_given":"нет информации","with_selected":"с выбранным {1} выпускником| с выбранными {n} выпускниками","export_excel":"выгрузить","apply":"применить","country":"страны","remove":"удалить","edit":"редактировать","english_name":"наименование на английском","russian_name":"наименование на русском","show_russian_tr":"показывать руский перевод","update":"обновить","logout":"выйти","new_translation":"добавить перевод","Companies":"Комании","companies_found_number":"Найдена {1} комания| Найдено {n} компаний","company":{"create_modal_header":"Создание новой компании"},"loading":"Загрузка...","Company":"Компания","date":"Дата","time":"Время","country_edit":"Настройка компании","found_countries_number":"Найдено {0} стран| Найдена {1} страна| Найдено {n} стран","Dashboard":{"per_year_total":"Количество выпускников в год","total_users_number":"Количество выпускников в системе","working_total":"Работающие","studying_total":"Учащиеся","no_info_total":"Нет информации","year":"год выпуска"},"add_translation":"добавить перевод","add_department":"добавить департамент","info":"Информация"};
+
+/***/ }),
+
+/***/ "./resources/lang/ru/university.json":
+/*!*******************************************!*\
+  !*** ./resources/lang/ru/university.json ***!
+  \*******************************************/
+/*! exports provided: programs, name, found_number, universities, country, graduates_number, Programs, departments, add_program, programs_available, department, departments_number, remove_header, remove_body, default */
+/***/ (function(module) {
+
+module.exports = {"programs":{"bachelor":"Бакалавриат","masters":"Магистратура","phd":"Докторантура"},"name":"наименование","found_number":"Найден {1} университет |Найдено {n} университета|Найдено {n} университетов","universities":"Университеты","country":"Страна","graduates_number":"Количество выпускников","Programs":"Программы обучения","departments":"Департаменты","add_program":"Добавить программу","programs_available":"Доступные программы","department":{"name":"Наименование департамента","alumni_number":"кол-во выпускников","universities_number":"кол-во университетов","add_department_to_system":"добавить новый департамент","remove_modal_title":"Удаление департамента"},"departments_number":"кол-во департаментов","remove_header":"Удаление университета","remove_body":"Вы действительно хотиете удалить университет?"};
 
 /***/ }),
 
