@@ -51,7 +51,7 @@
                     <td>{{department.universities.length}}</td>
                     <td class="btn-group">
                         <button class="btn btn-sm btn-warning" @click="$refs.modal.show(department)">{{$t("system.edit")}}</button>
-                        <button class="btn btn-danger btn-sm col-6 " @click="toremove=department;$refs.removeModal.show()"> {{$t("system.remove")}}</button>
+                        <button class="btn btn-danger btn-sm col-6 " v-if="department.universities.length ==0 && department.alumnis.length==0" @click="toremove=department;$refs.removeModal.show()"> {{$t("system.remove")}}</button>
                     </td>
                 </tr>
             </tbody>
