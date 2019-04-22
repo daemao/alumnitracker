@@ -174,14 +174,13 @@ class AlumniController extends Controller{
         return url('/') . '/sheets/' . $hash . '.xlsx';
     }
 
-    public function getAvailableFollowers(){
-        return User::where("role_id",2)->filter(Input::all())->get();
+    public function getAvailableFollowers(Request $request){
+        return User::where("role_id",2)->whereNot("id",$request->user()->id)->filter(Input::all())->get();
     }
 
     public function startFollow(Request $request){
         $user_id = $request->get("user_id");
         $user_ids = $request->get("users");
-        Log::info($user_id);
         if($user_ids){
                 $requests=[];
                 foreach ($user_ids as $id){
