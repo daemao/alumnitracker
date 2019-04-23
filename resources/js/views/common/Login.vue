@@ -31,7 +31,7 @@
                     username:"",
                     password:"",
                     client_id:2,
-                    client_secret:"58porFc2or2W8ZNkJj3FFt2leMg99REtriNkTZaT",
+                    client_secret:"",
                     grant_type:"password"
                 },
                 loading:false,
@@ -45,6 +45,8 @@
             login() {
                 let component = this;
                 this.loading = true;
+                let secret = document.head.querySelector('meta[name="client-secret"]');
+                this.form.client_secret=secret.content;
                 post(
                     component,
                     "/oauth/token",

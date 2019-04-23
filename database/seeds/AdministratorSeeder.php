@@ -11,19 +11,12 @@ class AdministratorSeeder extends Seeder
      */
     public function run()
     {
-        $yersultan_administator = [
-            "first_name" => "Yersultan",
-            "last_name" => "Nagashtay",
+        $mona_administator = [
+            "first_name" => "Mona",
+            "last_name" => "Rizvi",
             "password" => bcrypt(123456),
             "role_id" => 1,
-            "email" =>"yersultan.nagashtay@nu.edu.kz",
-        ];
-        $karina_administator = [
-            "first_name" => "Karina",
-            "last_name" => "Kim",
-            "password" => bcrypt(123456),
-            "role_id" => 1,
-            "email" =>"karina.kim@nu.edu.kz",
+            "email" =>"mona.rizvi@nu.edu.kz",
         ];
         $admin = \App\Role::create(["original_name"=>'admin']);
         $admin->translateOrNew("en")->name = "administrator";
@@ -33,16 +26,6 @@ class AdministratorSeeder extends Seeder
         $alumni->translateOrNew("en")->name = "alumni";
         $alumni->translateOrNew("ru")->name = "выпускник";
         $alumni->save();
-
-        \App\User::create($karina_administator);
-        \App\User::create($yersultan_administator);
-        $yersultan_alumni = [
-            "first_name" => "Yersultan",
-            "last_name" => "Nagashtay",
-            "password" => bcrypt(123456),
-            "role_id" => 2,
-            "email" =>"alumni@nu.edu.kz",
-        ];
-        \App\User::create($yersultan_alumni);
+        \App\User::create($mona_administator);
     }
 }

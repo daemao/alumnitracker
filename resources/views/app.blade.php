@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
-
+    <meta name="client-secret" content="58porFc2or2W8ZNkJj3FFt2leMg99REtriNkTZaT">
 </head>
     <body>
         <div id="app"/>
