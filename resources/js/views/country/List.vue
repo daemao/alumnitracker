@@ -29,8 +29,7 @@
                         <template v-for="t in country.translations" v-if="t.locale == 'ru'">{{t.name}}</template>
                     </template>
                 </div>
-                <div class="col-1"> <div class="btn btn-warning" @click="$refs.form_modal.show(country.translations)"> {{$t("system.edit")}}</div></div>
-                <div class="col-1"> <div class="btn btn-danger"> {{$t("system.remove")}}</div></div>
+                <div class="col-2"> <div class="btn btn-warning" @click="$refs.form_modal.show(country.translations)"> {{$t("system.edit")}}</div></div>
             </div>
         </div>
     </div>
